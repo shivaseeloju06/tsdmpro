@@ -15,6 +15,7 @@ Node.js
 MongoDb
 
 Nodmon
+nodemon --exec npm run dev:test
 
 Express
 

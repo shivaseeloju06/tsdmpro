@@ -1,0 +1,766 @@
+{
+	"info": {
+		"_postman_id": "9236eda5-7627-4d97-a9be-806cc88965ed",
+		"name": "TSDM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Project",
+			"item": [
+				{
+					"name": "/projects/",
+					"item": [
+						{
+							"name": "Get all Projects",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/projects",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Project",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "POC Project",
+											"type": "text"
+										},
+										{
+											"key": "alm_id",
+											"value": "1",
+											"description": "id reference to ALM system",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/projects",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/project/id/",
+					"item": [
+						{
+							"name": "Get Project by Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/id/60423764ec1ce629c4038397",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"id",
+										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Project by Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "POC Project",
+											"type": "text"
+										},
+										{
+											"key": "alm_id",
+											"value": "1",
+											"description": "id reference to ALM system",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/id/60423764ec1ce629c4038397",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"id",
+										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Project by Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/id/60423764ec1ce629c4038397",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"id",
+										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/project/almid/",
+					"item": [
+						{
+							"name": "Get Project by ALM Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/almid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"almid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Project by ALM Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "POC Project",
+											"type": "text"
+										},
+										{
+											"key": "alm_id",
+											"value": "1",
+											"description": "id reference to ALM system",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/almid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"almid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Project by ALM Id Copy",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/almid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"almid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/project/name/",
+					"item": [
+						{
+							"name": "Get Project by Name",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Project by Name",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Project by Name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "POC Project",
+											"type": "text"
+										},
+										{
+											"key": "alm_id",
+											"value": "1",
+											"description": "id reference to ALM system",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Testsuite (Epic)",
+			"item": [
+				{
+					"name": "/testsuites/",
+					"item": [
+						{
+							"name": "Get all Projects",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/projects",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Project",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "POC Project",
+											"type": "text"
+										},
+										{
+											"key": "alm_id",
+											"value": "1",
+											"description": "id reference to ALM system",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/projects",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/testsuite/id/",
+					"item": [
+						{
+							"name": "Get Project by Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/id/60423764ec1ce629c4038397",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"id",
+										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Project by Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "POC Project",
+											"type": "text"
+										},
+										{
+											"key": "alm_id",
+											"value": "1",
+											"description": "id reference to ALM system",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/id/60423764ec1ce629c4038397",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"id",
+										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Project by Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/id/60423764ec1ce629c4038397",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"id",
+										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/testsuite/almid/",
+					"item": [
+						{
+							"name": "Get Project by ALM Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/almid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"almid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Project by ALM Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "POC Project",
+											"type": "text"
+										},
+										{
+											"key": "alm_id",
+											"value": "1",
+											"description": "id reference to ALM system",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/almid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"almid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Project by ALM Id Copy",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/almid/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"almid",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/testsuite/name/",
+					"item": [
+						{
+							"name": "Get Project by Name",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Project by Name",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Project by Name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "POC Project",
+											"type": "text"
+										},
+										{
+											"key": "alm_id",
+											"value": "1",
+											"description": "id reference to ALM system",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Scenario",
+			"item": [
+				{
+					"name": "Get all Scenarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/scenarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"scenarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a Scenario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/projects?name&alm_id&workflow_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": null
+								},
+								{
+									"key": "alm_id",
+									"value": null,
+									"description": "id reference to ALM system"
+								},
+								{
+									"key": "workflow_id",
+									"value": null,
+									"description": "internal id to workflow record"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
