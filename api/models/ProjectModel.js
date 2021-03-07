@@ -24,8 +24,9 @@ var projectSchema = new Schema({
     ref: 'Testsuite'
   }]
 });
-projectSchema.virtual('projectId').get(function(){
+projectSchema.virtual('project_id').get(function(){
   return this._id;
 });
+
 module.exports = mongoose.model('Project', projectSchema);
 

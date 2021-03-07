@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "9236eda5-7627-4d97-a9be-806cc88965ed",
 		"name": "TSDM",
+		"description": "This collection contains all the RESTful API endpoints to _CRUD_ data to the **TSDM** engine:",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -9,7 +10,7 @@
 			"name": "Project",
 			"item": [
 				{
-					"name": "/projects/",
+					"name": "/project/",
 					"item": [
 						{
 							"name": "Get all Projects",
@@ -17,14 +18,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/projects",
+									"raw": "http://localhost:3000/project",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"projects"
+										"project"
 									]
 								}
 							},
@@ -34,38 +35,38 @@
 							"name": "Add a Project",
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "POC Project",
-											"type": "text"
-										},
-										{
-											"key": "alm_id",
-											"value": "1",
-											"description": "id reference to ALM system",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"The 2nd Project\",\r\n    \"alm_id\":2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/projects",
+									"raw": "http://localhost:3000/project",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"projects"
+										"project"
 									]
 								}
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "The default endpoint to CRUD **projects** to the **TSDM** engine with minimum information:"
 				},
 				{
 					"name": "/project/id/",
@@ -83,7 +84,7 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/id/60423764ec1ce629c4038397",
+									"raw": "http://localhost:3000/project/id/6042738f5aa4eb443cd7b585",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -92,7 +93,7 @@
 									"path": [
 										"project",
 										"id",
-										"60423764ec1ce629c4038397"
+										"6042738f5aa4eb443cd7b585"
 									]
 								}
 							},
@@ -104,23 +105,16 @@
 								"method": "PUT",
 								"header": [],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "POC Project",
-											"type": "text"
-										},
-										{
-											"key": "alm_id",
-											"value": "1",
-											"description": "id reference to ALM system",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"The 1st Project (edited once)\",\r\n    \"alm_id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/id/60423764ec1ce629c4038397",
+									"raw": "http://localhost:3000/project/id/6042738f5aa4eb443cd7b585",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -129,7 +123,7 @@
 									"path": [
 										"project",
 										"id",
-										"60423764ec1ce629c4038397"
+										"6042738f5aa4eb443cd7b585"
 									]
 								}
 							},
@@ -145,7 +139,7 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/id/60423764ec1ce629c4038397",
+									"raw": "http://localhost:3000/project/id/604273a75aa4eb443cd7b586",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -154,13 +148,14 @@
 									"path": [
 										"project",
 										"id",
-										"60423764ec1ce629c4038397"
+										"604273a75aa4eb443cd7b586"
 									]
 								}
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "The endpoint to CRUD **projects** to the **TSDM** engine with minimum information if you know the tsdm_id:"
 				},
 				{
 					"name": "/project/almid/",
@@ -199,20 +194,13 @@
 								"method": "PUT",
 								"header": [],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "POC Project",
-											"type": "text"
-										},
-										{
-											"key": "alm_id",
-											"value": "1",
-											"description": "id reference to ALM system",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"The 1st Project (edited twice)\",\r\n    \"alm_id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
 									"raw": "http://localhost:3000/project/almid/1",
@@ -255,7 +243,8 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "The endpoint to CRUD **projects** to the **TSDM** engine with minimum information if you know the alm_id:"
 				},
 				{
 					"name": "/project/name/",
@@ -289,6 +278,36 @@
 							"response": []
 						},
 						{
+							"name": "Update a Project by Name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"The 1st Project (edited 3 times)\",\r\n    \"alm_id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Delete a Project by Name",
 							"request": {
 								"method": "DELETE",
@@ -312,103 +331,175 @@
 								}
 							},
 							"response": []
-						},
+						}
+					],
+					"description": "The endpoint to CRUD **projects** to the **TSDM** engine with minimum information if you know the name:"
+				},
+				{
+					"name": "/project/testsuite/",
+					"item": [
 						{
-							"name": "Update a Project by Name",
+							"name": "Add a Project and Testsuites",
 							"request": {
-								"method": "PUT",
-								"header": [],
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "POC Project",
-											"type": "text"
-										},
-										{
-											"key": "alm_id",
-											"value": "1",
-											"description": "id reference to ALM system",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"The 1st Project\",\r\n    \"alm_id\":1,\r\n    \"testsuites\":[\r\n        {\r\n            \"name\":\"The 1st Epic\",\r\n            \"alm_id\":1\r\n        },\r\n        {\r\n            \"name\":\"The 2nd Epic\",\r\n            \"alm_id\":2\r\n        }\r\n    ]\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/name/POC%20Project",
+									"raw": "http://localhost:3000/project",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"project",
-										"name",
-										"POC%20Project"
+										"project"
 									]
 								}
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "**TODO: must still be implemented**"
 				}
-			]
+			],
+			"description": "The RESTful API endpoints for **projects**:"
 		},
 		{
 			"name": "Testsuite (Epic)",
 			"item": [
 				{
-					"name": "/testsuites/",
+					"name": "/testsuite/",
 					"item": [
 						{
-							"name": "Get all Projects",
+							"name": "Get all Testsuites",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/projects",
+									"raw": "http://localhost:3000/testsuite",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"projects"
+										"testsuite"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Add a Project",
+							"name": "Add a Testsuite with Project ID",
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "POC Project",
-											"type": "text"
-										},
-										{
-											"key": "alm_id",
-											"value": "1",
-											"description": "id reference to ALM system",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Some obscure name\",\r\n    \"alm_id\": 888,\r\n    \"project\": {\r\n        \"search_by\":\"id\",\r\n        \"value\":\"604392b2af865f2e9cf9edf0\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/projects",
+									"raw": "http://localhost:3000/testsuite",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"projects"
+										"testsuite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Testsuite with Project Name",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Some other name\",\r\n    \"alm_id\": 777,\r\n    \"project\": {\r\n        \"search_by\":\"name\",\r\n        \"value\":\"The 1st Project\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/testsuite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"testsuite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Testsuite with Project ALM ID",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999,\r\n    \"project\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":1\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/testsuite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"testsuite"
 									]
 								}
 							},
@@ -420,7 +511,7 @@
 					"name": "/testsuite/id/",
 					"item": [
 						{
-							"name": "Get Project by Id",
+							"name": "Get Testsuite by Id",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -432,60 +523,53 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/id/60423764ec1ce629c4038397",
+									"raw": "http://localhost:3000/testsuite/id/60451c5cb98f8c0418c56ee4",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"project",
+										"testsuite",
 										"id",
-										"60423764ec1ce629c4038397"
+										"60451c5cb98f8c0418c56ee4"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Update a Project by Id",
+							"name": "Update a Testsuite by Id",
 							"request": {
 								"method": "PUT",
 								"header": [],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "POC Project",
-											"type": "text"
-										},
-										{
-											"key": "alm_id",
-											"value": "1",
-											"description": "id reference to ALM system",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999,\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/id/60423764ec1ce629c4038397",
+									"raw": "http://localhost:3000/testsuite/id/60451c5cb98f8c0418c56ee4",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"project",
+										"testsuite",
 										"id",
-										"60423764ec1ce629c4038397"
+										"60451c5cb98f8c0418c56ee4"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Delete a Project by Id",
+							"name": "Delete a Testsuite by Id",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -515,7 +599,7 @@
 					"name": "/testsuite/almid/",
 					"item": [
 						{
-							"name": "Get Project by ALM Id",
+							"name": "Get Testsuite by ALM Id",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -527,60 +611,53 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/almid/1",
+									"raw": "http://localhost:3000/testsuite/almid/777",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"project",
+										"testsuite",
 										"almid",
-										"1"
+										"777"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Update a Project by ALM Id",
+							"name": "Update a Testsuite by ALM Id",
 							"request": {
 								"method": "PUT",
 								"header": [],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "POC Project",
-											"type": "text"
-										},
-										{
-											"key": "alm_id",
-											"value": "1",
-											"description": "id reference to ALM system",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/almid/1",
+									"raw": "http://localhost:3000/testsuite/almid/777",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"project",
+										"testsuite",
 										"almid",
-										"1"
+										"777"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Delete a Project by ALM Id Copy",
+							"name": "Delete a Testsuite by ALM Id Copy",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -589,16 +666,16 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/almid/1",
+									"raw": "http://localhost:3000/testsuite/almid/777",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"project",
+										"testsuite",
 										"almid",
-										"1"
+										"777"
 									]
 								}
 							},
@@ -610,7 +687,7 @@
 					"name": "/testsuite/name/",
 					"item": [
 						{
-							"name": "Get Project by Name",
+							"name": "Get Testsuite by Name",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -622,14 +699,44 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/name/POC%20Project",
+									"raw": "http://localhost:3000/testsuite/name/AN%20other%20name",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"project",
+										"testsuite",
+										"name",
+										"AN%20other%20name"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Testsuite by Name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/testsuite/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"testsuite",
 										"name",
 										"POC%20Project"
 									]
@@ -638,7 +745,7 @@
 							"response": []
 						},
 						{
-							"name": "Delete a Project by Name",
+							"name": "Delete a Testsuite by Name",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -647,51 +754,14 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/name/POC%20Project",
+									"raw": "http://localhost:3000/testsuite/name/POC%20Project",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"project",
-										"name",
-										"POC%20Project"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Update a Project by Name",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "POC Project",
-											"type": "text"
-										},
-										{
-											"key": "alm_id",
-											"value": "1",
-											"description": "id reference to ALM system",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "http://localhost:3000/project/name/POC%20Project",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"project",
+										"testsuite",
 										"name",
 										"POC%20Project"
 									]
@@ -700,6 +770,10 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "/testsuite/workflow/",
+					"item": []
 				}
 			]
 		},

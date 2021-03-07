@@ -1,15 +1,18 @@
 'use strict';
+//import '.env/config';
 var mongoose = require('mongoose'),
 Project = mongoose.model('Project');
+// Testsuite = mongoose.model('Testsuite');
 
 exports.list_all_projects = function(req, res) {
-  Project.find({}, function(err, project) {
+  Project.find({}).populate('testsuite').exec(function(err, project) {
     if (err) {
       res.send(err);
       console.log(err);
       return;
     };
     res.json(project);
+    // TODO See why populate doesn't return the sub-documents
   });
 };
 
@@ -25,6 +28,7 @@ exports.create_a_project = function(req, res) {
   });
 };
 
+// TODO implement populate
 exports.read_a_project_by_id = function(req, res) {
   Project.findById(req.params.projectId, function(err, project) {
     if (err) {
@@ -58,6 +62,7 @@ exports.delete_a_project_by_id = function(req, res) {
   });
 };
 
+// TODO implement populate
 exports.read_a_project_by_alm_id = function(req, res) {
   Project.findOne({alm_id: req.params.almId}, function(err, project) {
     if (err) {
@@ -91,6 +96,7 @@ exports.delete_a_project_by_alm_id = function(req, res) {
   });
 };
 
+// TODO implement populate
 exports.read_a_project_by_name = function(req, res) {
   Project.findOne({name: req.params.name}, function(err, project) {
     if (err) {
@@ -123,3 +129,5 @@ exports.delete_a_project_by_name = function(req, res) {
     res.json({ message: 'Project successfully deleted' });
   });
 };
+
+//TODO implement routes to CRUD a Project with embedded Testsuites

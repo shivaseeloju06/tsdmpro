@@ -11,7 +11,9 @@ var testsuiteSchema = new Schema({
   },
   project: {
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Project'
+    ref: 'Project',
+    required: 'Please provide a reference to the Project',
+    sparse: true 
   },
   name: {
     type: String,
@@ -28,7 +30,7 @@ var testsuiteSchema = new Schema({
     ref: 'Workflow'
   }]
 })
-testsuiteSchema.virtual('testsuiteId').get(function(){
+testsuiteSchema.virtual('testsuite_id').get(function(){
   return this._id;
 });
 module.exports = mongoose.model('Testsuite', testsuiteSchema);

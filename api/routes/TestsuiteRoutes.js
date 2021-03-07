@@ -4,7 +4,7 @@ module.exports = function(app) {
 
   // TSDM Routes
   // Test Suites (Epics)
-  app.route('/testsuites')
+  app.route('/testsuite')
     .get(Testsuite.list_all_testsuites)
     .post(Testsuite.create_a_testsuite);
 

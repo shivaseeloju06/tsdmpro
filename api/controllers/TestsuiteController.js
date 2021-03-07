@@ -1,6 +1,7 @@
 'use strict';
 var mongoose = require('mongoose'),
-Testsuite = mongoose.model('Testsuite');
+Testsuite = mongoose.model('Testsuite'),
+Project = mongoose.model('Project');
 
 exports.list_all_testsuites = function(req, res) {
   Testsuite.find({}, function(err, testsuite) {
@@ -13,15 +14,17 @@ exports.list_all_testsuites = function(req, res) {
   });
 };
 
-exports.create_a_testsuite = function(req, res) {
-  var new_testsuite = new Testsuite(req.body);
+exports.create_a_testsuite = async function(req, res) {
+  var newBody = await getProjectId(req.body);
+  var new_testsuite = new Testsuite(newBody);
   new_testsuite.save(function(err, testsuite) {
-    if (err) {
-      res.send(err);
-      console.log(err);
-      return;
-    };
-    res.json(testsuite);
+      if (err) {
+        res.send(err);
+        console.log(err);
+        return;
+      };
+      pushTestsuiteToProject(newBody.project, testsuite.id);
+      res.json(testsuite);
   });
 };
 
@@ -122,4 +125,39 @@ exports.delete_a_testsuite_by_name = function(req, res) {
     };
     res.json({ message: 'Testsuite successfully deleted' });
   });
+};
+
+async function getProjectId(passedBody) {
+  try {
+    var newBody = {"name":passedBody.name, "alm_id":passedBody.alm_id}
+    switch(passedBody.project.search_by) {
+      case "id":
+        newBody.project = passedBody.project.value;
+        break;
+      case "name":
+        var theParent = await Project.findOne({name: passedBody.project.value}).exec();
+        newBody.project = theParent._id;
+        break;
+      case "alm_id":
+        var theParent = await Project.findOne({alm_id: passedBody.project.value}).exec();
+        newBody.project = theParent._id;
+        break;
+    };
+  }
+  catch (err) {
+    return err;
+  }
+  return newBody;
+};
+
+async function pushTestsuiteToProject(projectId, testsuiteId) {
+  var parent_project = await Project.findById(projectId, function(err, project) {
+    if (err) {
+      res.send(err);
+      console.log(err);
+      return;
+    };
+  });
+  parent_project.testsuites.push(testsuiteId);
+  parent_project.save();
 };

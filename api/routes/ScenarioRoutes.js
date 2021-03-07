@@ -4,7 +4,7 @@ module.exports = function(app) {
 
   // TSDM Routes
   // Scenarios (User Stories)
-  app.route('/scenarios')
+  app.route('/scenario')
     .get(Scenario.list_all_scenarios)
     .post(Scenario.create_a_scenario);
 

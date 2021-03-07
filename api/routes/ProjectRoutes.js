@@ -4,7 +4,7 @@ module.exports = function(app) {
 
   // TSDM Routes
   // Projects
-  app.route('/projects')
+  app.route('/project')
     .get(Project.list_all_projects)
     .post(Project.create_a_project);
 
@@ -22,4 +22,7 @@ module.exports = function(app) {
     .get(Project.read_a_project_by_name)
     .put(Project.update_a_project_by_name)
     .delete(Project.delete_a_project_by_name);
+
+  /*app.route('/project/testsuite/')
+    .post(Project.create_a_project_with_testsuites);*/
 };
