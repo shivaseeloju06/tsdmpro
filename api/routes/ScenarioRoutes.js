@@ -3,13 +3,23 @@ module.exports = function(app) {
   var Scenario = require('../controllers/ScenarioController');
 
   // TSDM Routes
-  // Scenarios (User Stories)
+  // Test Suites (Epics)
   app.route('/scenario')
     .get(Scenario.list_all_scenarios)
     .post(Scenario.create_a_scenario);
 
-  app.route('/scenario/:scenarioId')
-    .get(Scenario.read_a_scenario)
-    .put(Scenario.update_a_scenario)
-    .delete(Scenario.delete_a_scenario);
+  app.route('/scenario/id/:scenarioId')
+    .get(Scenario.read_a_scenario_by_id)
+    .put(Scenario.update_a_scenario_by_id)
+    .delete(Scenario.delete_a_scenario_by_id);
+
+  app.route('/scenario/almid/:almId')
+    .get(Scenario.read_a_scenario_by_alm_id)
+    .put(Scenario.update_a_scenario_by_alm_id)
+    .delete(Scenario.delete_a_scenario_by_alm_id);
+
+  app.route('/scenario/name/:name')
+    .get(Scenario.read_a_scenario_by_name)
+    .put(Scenario.update_a_scenario_by_name)
+    .delete(Scenario.delete_a_scenario_by_name);
   };

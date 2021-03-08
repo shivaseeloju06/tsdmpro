@@ -5,12 +5,11 @@ var Schema = mongoose.Schema;
 // Defines the schema for the **User Stories**
 // in the customer ALM system
 var scenarioSchema = new Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   created_date: {
     type: Date,
     default: Date.now
   },
-  workflow_id: {
+  workflow: {
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Workflow'
   },
@@ -21,6 +20,13 @@ var scenarioSchema = new Schema({
   alm_id: {
     type: String,
     required: 'Please enter the id for the Scenario from the ALM system'
-  }
+  },
+  transactions: [{
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Transaction'
+  }]
 })
+scenarioSchema.virtual('scenario_id').get(function(){
+  return this._id;
+});
 module.exports = mongoose.model('Scenario', scenarioSchema);

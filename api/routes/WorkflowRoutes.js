@@ -1,15 +1,25 @@
 'use strict';
 module.exports = function(app) {
-  var tsdm_apiWorkflow = require('../controllers/WorkflowController');
+  var Workflow = require('../controllers/WorkflowController');
 
   // TSDM Routes
-  // Workflows (Features)
+  // Test Suites (Epics)
   app.route('/workflow')
-    .get(tsdm_api.list_all_workflows)
-    .post(tsdm_api.create_a_workflow);
+    .get(Workflow.list_all_workflows)
+    .post(Workflow.create_a_workflow);
 
-  app.route('/workflow/:workflowId')
-    .get(tsdm_api.read_a_workflow)
-    .put(tsdm_api.update_a_workflow)
-    .delete(tsdm_api.delete_a_workflow);
+  app.route('/workflow/id/:workflowId')
+    .get(Workflow.read_a_workflow_by_id)
+    .put(Workflow.update_a_workflow_by_id)
+    .delete(Workflow.delete_a_workflow_by_id);
+
+  app.route('/workflow/almid/:almId')
+    .get(Workflow.read_a_workflow_by_alm_id)
+    .put(Workflow.update_a_workflow_by_alm_id)
+    .delete(Workflow.delete_a_workflow_by_alm_id);
+
+  app.route('/workflow/name/:name')
+    .get(Workflow.read_a_workflow_by_name)
+    .put(Workflow.update_a_workflow_by_name)
+    .delete(Workflow.delete_a_workflow_by_name);
   };

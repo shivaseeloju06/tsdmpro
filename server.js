@@ -7,7 +7,9 @@ var express = require('express'),
   // Include models here
   Project = require('./api/models/ProjectModel'), 
   Testsuite = require('./api/models/TestsuiteModel'), 
-  // Scenario = require('./api/models/ScenarioModel'),
+  Workflow = require('./api/models/WorkflowModel'), 
+  Scenario = require('./api/models/ScenarioModel'),
+  Transaction = require('./api/models/TransactionModel'),
   bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(morgan('dev'));
@@ -26,8 +28,10 @@ var ProjectRoutes = require('./api/routes/ProjectRoutes');
 ProjectRoutes(app);
 var TestsuiteRoutes = require('./api/routes/TestsuiteRoutes');
 TestsuiteRoutes(app);
-//var ScenarioRoutes = require('./api/routes/ScenarioRoutes');
-//ScenarioRoutes(app);
+var WorkflowRoutes = require('./api/routes/WorkflowRoutes');
+WorkflowRoutes(app);
+var ScenarioRoutes = require('./api/routes/ScenarioRoutes');
+ScenarioRoutes(app);
 
 // Error handling
 app.use((req, res, next) => {
