@@ -32,6 +32,8 @@ var WorkflowRoutes = require('./api/routes/WorkflowRoutes');
 WorkflowRoutes(app);
 var ScenarioRoutes = require('./api/routes/ScenarioRoutes');
 ScenarioRoutes(app);
+var TransactionRoutes = require('./api/routes/TransactionRoutes');
+TransactionRoutes(app);
 
 // Error handling
 app.use((req, res, next) => {

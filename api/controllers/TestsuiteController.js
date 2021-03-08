@@ -51,6 +51,7 @@ exports.update_a_testsuite_by_id = function(req, res) {
 };
 
 exports.delete_a_testsuite_by_id = function(req, res) {
+  // TODO Cascade deletions up and down
   Testsuite.remove({_id: req.params.testsuiteId}, function(err, testsuite) {
     if (err) {
       res.send(err);

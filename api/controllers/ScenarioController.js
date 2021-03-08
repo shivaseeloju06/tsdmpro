@@ -52,6 +52,7 @@ exports.update_a_scenario_by_id = function(req, res) {
 };
 
 exports.delete_a_scenario_by_id = function(req, res) {
+  // TODO Cascade deletions up and down
   Scenario.remove({_id: req.params.scenarioId}, function(err, scenario) {
     if (err) {
       res.send(err);

@@ -52,6 +52,7 @@ exports.update_a_project_by_id = function(req, res) {
 };
 
 exports.delete_a_project_by_id = function(req, res) {
+  // TODO Cascade deletions up and down
   Project.remove({_id: req.params.projectId}, function(err, project) {
     if (err) {
       res.send(err);

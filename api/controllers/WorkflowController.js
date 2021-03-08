@@ -51,6 +51,7 @@ exports.update_a_workflow_by_id = function(req, res) {
 };
 
 exports.delete_a_workflow_by_id = function(req, res) {
+  // TODO Cascade deletions up and down
   Workflow.remove({_id: req.params.workflowId}, function(err, workflow) {
     if (err) {
       res.send(err);

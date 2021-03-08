@@ -545,7 +545,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999,\r\n}",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -578,14 +578,14 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/id/60423764ec1ce629c4038397",
+									"raw": "http://localhost:3000/testsuite/id/60423764ec1ce629c4038397",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"project",
+										"testsuite",
 										"id",
 										"60423764ec1ce629c4038397"
 									]
@@ -633,7 +633,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
+									"raw": "{\r\n    \"name\": \"Test Suite 1\",\r\n    \"alm_id\": 999\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -641,7 +641,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/testsuite/almid/777",
+									"raw": "http://localhost:3000/testsuite/almid/999",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -650,7 +650,7 @@
 									"path": [
 										"testsuite",
 										"almid",
-										"777"
+										"999"
 									]
 								}
 							},
@@ -773,68 +773,1214 @@
 				},
 				{
 					"name": "/testsuite/workflow/",
-					"item": []
+					"item": [],
+					"description": "**TODO: must still be implemented**"
 				}
-			]
+			],
+			"description": "The RESTful API endpoints for **testsuites (epics)**:"
 		},
 		{
-			"name": "Scenario",
+			"name": "Workflow (Feature)",
 			"item": [
 				{
-					"name": "Get all Scenarios",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/scenarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"scenarios"
-							]
+					"name": "/workflow/",
+					"item": [
+						{
+							"name": "Get all Workflows",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/workflow",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Workflow with Testsuite ID",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"The 1st Workflow\",\r\n    \"alm_id\": 123,\r\n    \"testsuite\": {\r\n        \"search_by\":\"id\",\r\n        \"value\":\"60451c5cb98f8c0418c56ee4\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/workflow",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Workflow with Testsuite Name",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Some other name\",\r\n    \"alm_id\": 777,\r\n    \"testsuite\": {\r\n        \"search_by\":\"name\",\r\n        \"value\":\"The 1st Project\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/workflow",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Workflow with Testsuite ALM ID",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"The 2nd Workflow\",\r\n    \"alm_id\": 321,\r\n    \"testsuite\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":999\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/workflow",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Add a Scenario",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/projects?name&alm_id&workflow_id",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"projects"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": null
+					"name": "/workflow/id/",
+					"item": [
+						{
+							"name": "Get Workflow by Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
 								},
-								{
-									"key": "alm_id",
-									"value": null,
-									"description": "id reference to ALM system"
-								},
-								{
-									"key": "workflow_id",
-									"value": null,
-									"description": "internal id to workflow record"
+								"url": {
+									"raw": "http://localhost:3000/workflow/id/6045d71e9cb42435987ee0c9",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow",
+										"id",
+										"6045d71e9cb42435987ee0c9"
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Workflow by Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/workflow/id/60451c5cb98f8c0418c56ee4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow",
+										"id",
+										"60451c5cb98f8c0418c56ee4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Workflow by Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/workflow/id/60423764ec1ce629c4038397",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow",
+										"id",
+										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "/workflow/almid/",
+					"item": [
+						{
+							"name": "Get Workflow by ALM Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/workflow/almid/777",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow",
+										"almid",
+										"777"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Workflow by ALM Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test Suite 1\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/workflow/almid/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow",
+										"almid",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Workflow by ALM Id Copy",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/workflow/almid/777",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow",
+										"almid",
+										"777"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/workflow/name/",
+					"item": [
+						{
+							"name": "Get Workflow by Name",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/workflow/name/AN%20other%20name",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow",
+										"name",
+										"AN%20other%20name"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Workflow by Name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/workflow/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Workflow by Name",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/workflow/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/workflow/scenario/",
+					"item": [],
+					"description": "**TODO: must still be implemented**"
 				}
-			]
+			],
+			"description": "The RESTful API endpoints for **workflow (feature)**:"
+		},
+		{
+			"name": "Scenario (User Story)",
+			"item": [
+				{
+					"name": "/scenario/",
+					"item": [
+						{
+							"name": "Get all Scenarios",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/scenario",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Scenario with Workflow Id",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"The 1st Scenario\",\r\n    \"alm_id\": 987,\r\n    \"workflow\": {\r\n        \"search_by\":\"id\",\r\n        \"value\":\"6045d5e79cb42435987ee0c8\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Scenario with Workflow Name",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"The 2nd Scenario\",\r\n    \"alm_id\": 694,\r\n    \"workflow\": {\r\n        \"search_by\":\"name\",\r\n        \"value\":\"The 1st Workflow\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Scenario with Workflow ALM ID",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"The 3rd Scenario\",\r\n    \"alm_id\": 321,\r\n    \"workflow\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":999\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/scenario/id/",
+					"item": [
+						{
+							"name": "Get Scenario by Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario/id/6045e8dac9a23e2b3064bb9f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario",
+										"id",
+										"6045e8dac9a23e2b3064bb9f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Scenario by Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario/id/6045e8dac9a23e2b3064bb9f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario",
+										"id",
+										"6045e8dac9a23e2b3064bb9f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Scenario by Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario/id/60423764ec1ce629c4038397",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario",
+										"id",
+										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/scenario/almid/",
+					"item": [
+						{
+							"name": "Get Scenario by ALM Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario/almid/777",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario",
+										"almid",
+										"777"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Scenario by ALM Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test Suite 1\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario/almid/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario",
+										"almid",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Scenarion by ALM Id Copy",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario/almid/777",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario",
+										"almid",
+										"777"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/scenario/name/",
+					"item": [
+						{
+							"name": "Get Scenario by Name",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario/name/The%201st%20Scenario",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario",
+										"name",
+										"The%201st%20Scenario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Scenario by Name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Scenario by Name",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/scenario/transaction/",
+					"item": [],
+					"description": "**TODO: must still be implemented**"
+				}
+			],
+			"description": "The RESTful API endpoints for **workflow (feature)**:"
+		},
+		{
+			"name": "Transaction (Acceptance Criteria)",
+			"item": [
+				{
+					"name": "/transaction/",
+					"item": [
+						{
+							"name": "Get all Transactions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/transaction",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Transaction with Scenario ID",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"The 1st Transaction\",\r\n    \"alm_id\": 123,\r\n    \"scenario\": {\r\n        \"search_by\":\"id\",\r\n        \"value\":\"6045e8dac9a23e2b3064bb9f\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Transaction with Scenario Name",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Some other name\",\r\n    \"alm_id\": 777,\r\n    \"scenario\": {\r\n        \"search_by\":\"name\",\r\n        \"value\":\"The 1st Project\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Transaction with Scenario ALM ID",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"The 2nd Transaction\",\r\n    \"alm_id\": 555,\r\n    \"scenario\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":987\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/transaction/id/",
+					"item": [
+						{
+							"name": "Get Transaction by Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/id/6045d71e9cb42435987ee0c9",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"id",
+										"6045d71e9cb42435987ee0c9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Transaction by Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/id/60451c5cb98f8c0418c56ee4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"id",
+										"60451c5cb98f8c0418c56ee4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Transaction by Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/Transaction/id/60423764ec1ce629c4038397",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"Transaction",
+										"id",
+										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/transaction/almid/",
+					"item": [
+						{
+							"name": "Get Transaction by ALM Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/almid/777",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"almid",
+										"777"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Transaction by ALM Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test Suite 1\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/almid/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"almid",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Transaction by ALM Id Copy",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/almid/777",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"almid",
+										"777"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/transaction/name/",
+					"item": [
+						{
+							"name": "Get Transaction by Name",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/name/AN%20other%20name",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"name",
+										"AN%20other%20name"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Transaction by Name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Transaction by Name",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/transaction/steps/",
+					"item": [],
+					"description": "**TODO: must still be implemented**"
+				}
+			],
+			"description": "The RESTful API endpoints for **workflow (feature)**:"
 		}
 	]
 }

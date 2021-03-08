@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// Defines the schema for the **Features**
+// Defines the schema for the **Acceptance Criteria**
 // in the customer ALM system
 var transactionSchema = new Schema({
   created_date: {
