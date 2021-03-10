@@ -1,0 +1,82 @@
+POST /project/
+
+{
+    "name":"TSDM",
+    "alm_id":1
+}
+
+POST /testsuite/
+
+{
+    "name": "Regression",
+    "alm_id": 61,
+    "project": {
+        "search_by":"name",
+        "value":"TSDM%20Project"
+    }
+}
+
+{
+    "name": "Smoke",
+    "alm_id": 62,
+    "project": {
+        "search_by":"name",
+        "value":"TSDM%20Project"
+    }
+}
+
+POST /workflow/
+
+{
+    "name": "WEC Tagout - User Functions",
+    "alm_id": 43,
+    "testsuite": {
+        "search_by":"name",
+        "value":"Regression"
+    }
+}
+
+{
+    "name": "WEC Tagout - Other Functions",
+    "alm_id": 44,
+    "testsuite": {
+        "search_by":"name",
+        "value":"Regression"
+    }
+}
+
+POST /scenarios/
+
+{
+    "name": "Login with Valid Username and Password",
+    "alm_id": 45,
+    "workflow": {
+        "search_by":"alm_id",
+        "value":43
+    }
+}
+
+{
+    "name": "Login with Invalid Username and Password",
+    "alm_id": 46,
+    "workflow": {
+        "search_by":"alm_id",
+        "value":43
+    }
+}
+
+POST /transactions/
+
+{
+    "name": "AC10 - Each user type can log in with valid Username and Password",
+    "alm_id": 10,
+    "scenario": {
+        "search_by":"alm_id",
+        "value":45
+    }
+}
+
+
+
+
+

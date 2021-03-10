@@ -2,7 +2,7 @@ Simple Node.js RESTful API server for TSDM
 
 Introduction
 
-Setup
+Setup the app
 npm init / install
 
 Run
