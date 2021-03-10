@@ -1,24 +1,27 @@
 var express = require('express'),
+  cors = require('cors'),
   app = express(),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
   morgan = require('morgan'),
 
   // Include models here
-  Project = require('./api/models/ProjectModel'), 
-  Testsuite = require('./api/models/TestsuiteModel'), 
-  Workflow = require('./api/models/WorkflowModel'), 
+  Project = require('./api/models/ProjectModel'),
+  Testsuite = require('./api/models/TestsuiteModel'),
+  Workflow = require('./api/models/WorkflowModel'),
   Scenario = require('./api/models/ScenarioModel'),
   Transaction = require('./api/models/TransactionModel'),
   bodyParser = require('body-parser');
+
+app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/tsdmDB', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/tsdmDB', { useNewUrlParser: true })
   .then(() => console.log("MongoDb Connected"))
-  .catch(err => console.log(err)); 
+  .catch(err => console.log(err));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
