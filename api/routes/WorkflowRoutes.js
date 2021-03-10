@@ -13,6 +13,9 @@ module.exports = function(app) {
     .put(Workflow.update_a_workflow_by_id)
     .delete(Workflow.delete_a_workflow_by_id);
 
+  app.route('/workflow/id/:workflowId/scenario')
+    .get(Workflow.list_scenarios_by_workflow_id);
+
   app.route('/workflow/almid/:almId')
     .get(Workflow.read_a_workflow_by_alm_id)
     .put(Workflow.update_a_workflow_by_alm_id)

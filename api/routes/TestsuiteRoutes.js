@@ -13,6 +13,9 @@ module.exports = function(app) {
     .put(Testsuite.update_a_testsuite_by_id)
     .delete(Testsuite.delete_a_testsuite_by_id);
 
+  app.route('/testsuite/id/:testsuiteId/workflow')
+    .get(Testsuite.list_workflows_by_testsuite_id);
+
   app.route('/testsuite/almid/:almId')
     .get(Testsuite.read_a_testsuite_by_alm_id)
     .put(Testsuite.update_a_testsuite_by_alm_id)

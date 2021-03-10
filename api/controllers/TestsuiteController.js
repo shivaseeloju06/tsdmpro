@@ -1,7 +1,8 @@
 'use strict';
 var mongoose = require('mongoose'),
 Testsuite = mongoose.model('Testsuite'),
-Project = mongoose.model('Project');
+Project = mongoose.model('Project'),
+Workflow = mongoose.model('Workflow');
 
 exports.list_all_testsuites = function(req, res) {
   Testsuite.find({}, function(err, testsuite) {
@@ -59,6 +60,17 @@ exports.delete_a_testsuite_by_id = function(req, res) {
       return;
     };
     res.json({ message: 'Testsuite successfully deleted' });
+  });
+};
+
+exports.list_workflows_by_testsuite_id = function(req, res) {
+  Workflow.find({testsuite: req.params.testsuiteId}, function(err, workflows) {
+    if (err) {
+      res.send(err);
+      console.log(err);
+      return;
+    };
+    res.json(workflows);
   });
 };
 

@@ -13,6 +13,9 @@ module.exports = function(app) {
     .put(Scenario.update_a_scenario_by_id)
     .delete(Scenario.delete_a_scenario_by_id);
 
+  app.route('/scenario/id/:scenarioId/transaction')
+    .get(Scenario.list_transactions_by_scenario_id);
+
   app.route('/scenario/almid/:almId')
     .get(Scenario.read_a_scenario_by_alm_id)
     .put(Scenario.update_a_scenario_by_alm_id)

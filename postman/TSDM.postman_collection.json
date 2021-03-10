@@ -44,7 +44,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"The 2nd Project\",\r\n    \"alm_id\":2\r\n}",
+									"raw": "{\r\n    \"name\":\"TSDM\",\r\n    \"alm_id\":1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -158,6 +158,41 @@
 					"description": "The endpoint to CRUD **projects** to the **TSDM** engine with minimum information if you know the tsdm_id:"
 				},
 				{
+					"name": "/project/id/<id>/testsuite",
+					"item": [
+						{
+							"name": "Get Testsuites by Project Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/project/id/6048b2dfff142c25605fabeb/testsuite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"project",
+										"id",
+										"6048b2dfff142c25605fabeb",
+										"testsuite"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "The endpoint to CRUD **projects** to the **TSDM** engine with minimum information if you know the tsdm_id:"
+				},
+				{
 					"name": "/project/almid/",
 					"item": [
 						{
@@ -195,7 +230,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"The 1st Project (edited twice)\",\r\n    \"alm_id\":1\r\n}",
+									"raw": "{\r\n    \"name\":\"The 15th Project (edited for Merk)\",\r\n    \"alm_id\":15\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -203,7 +238,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/almid/1",
+									"raw": "http://localhost:3000/project/almid/15",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -212,7 +247,7 @@
 									"path": [
 										"project",
 										"almid",
-										"1"
+										"15"
 									]
 								}
 							},
@@ -416,7 +451,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Some obscure name\",\r\n    \"alm_id\": 888,\r\n    \"project\": {\r\n        \"search_by\":\"id\",\r\n        \"value\":\"604392b2af865f2e9cf9edf0\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"name\": \"Smoke\",\r\n    \"alm_id\": 62,\r\n    \"project\": {\r\n        \"search_by\":\"id\",\r\n        \"value\":\"6048b2dfff142c25605fabeb\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -484,7 +519,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999,\r\n    \"project\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":1\r\n    }\r\n}",
+									"raw": "{\r\n    \"name\": \"Test Suite Merk\",\r\n    \"alm_id\": 1500001,\r\n    \"project\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":15\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -588,6 +623,40 @@
 										"testsuite",
 										"id",
 										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/testsuite/id/<id>/workflow",
+					"item": [
+						{
+							"name": "Get Workflows by Testsuite Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/testsuite/id/6048b384ff142c25605fabed/workflow",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"testsuite",
+										"id",
+										"6048b384ff142c25605fabed",
+										"workflow"
 									]
 								}
 							},
@@ -851,7 +920,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Some other name\",\r\n    \"alm_id\": 777,\r\n    \"testsuite\": {\r\n        \"search_by\":\"name\",\r\n        \"value\":\"The 1st Project\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"name\": \"WEC Tagout - Other Functions\",\r\n    \"alm_id\": 44,\r\n    \"testsuite\": {\r\n        \"search_by\":\"name\",\r\n        \"value\":\"Regression\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -989,6 +1058,40 @@
 										"workflow",
 										"id",
 										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/workflow/id/<id>/scenarion",
+					"item": [
+						{
+							"name": "Get Scenarios by Workflow Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/workflow/id/6048b3d5ff142c25605fabef/scenario",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"workflow",
+										"id",
+										"6048b3d5ff142c25605fabef",
+										"scenario"
 									]
 								}
 							},
@@ -1286,7 +1389,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"The 3rd Scenario\",\r\n    \"alm_id\": 321,\r\n    \"workflow\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":999\r\n    }\r\n}",
+									"raw": "{\r\n    \"name\": \"Login with Invalid Username and Password\",\r\n    \"alm_id\": 46,\r\n    \"workflow\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":43\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1390,6 +1493,40 @@
 										"scenario",
 										"id",
 										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/scenario/id/<id>/transaction",
+					"item": [
+						{
+							"name": "Get Transactions by Scenario Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/scenario/id/6048b41cff142c25605fabf1/transaction",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scenario",
+										"id",
+										"6048b41cff142c25605fabf1",
+										"transaction"
 									]
 								}
 							},
@@ -1687,7 +1824,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"The 2nd Transaction\",\r\n    \"alm_id\": 555,\r\n    \"scenario\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":987\r\n    }\r\n}",
+									"raw": "{\r\n    \"name\": \"AC10 - Each user type can log in with valid Username and Password\",\r\n    \"alm_id\": 10,\r\n    \"scenario\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":45\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

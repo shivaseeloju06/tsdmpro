@@ -1,7 +1,8 @@
 'use strict';
 var mongoose = require('mongoose'),
 Workflow = mongoose.model('Workflow'),
-Testsuite = mongoose.model('Testsuite');
+Testsuite = mongoose.model('Testsuite'),
+Scenario = mongoose.model('Scenario');
 
 exports.list_all_workflows = function(req, res) {
   Workflow.find({}, function(err, workflow) {
@@ -59,6 +60,17 @@ exports.delete_a_workflow_by_id = function(req, res) {
       return;
     };
     res.json({ message: 'Workflow successfully deleted' });
+  });
+};
+
+exports.list_scenarios_by_workflow_id = function(req, res) {
+  Scenario.find({workflow: req.params.workflowId}, function(err, scenarios) {
+    if (err) {
+      res.send(err);
+      console.log(err);
+      return;
+    };
+    res.json(scenarios);
   });
 };
 

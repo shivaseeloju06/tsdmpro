@@ -1,7 +1,8 @@
 'use strict';
 var mongoose = require('mongoose'),
 Scenario = mongoose.model('Scenario'),
-Workflow = mongoose.model('Workflow');
+Workflow = mongoose.model('Workflow'),
+Transaction = mongoose.model('Transaction');
 
 exports.list_all_scenarios = function(req, res) {
   Scenario.find({}, function(err, scenario) {
@@ -60,6 +61,17 @@ exports.delete_a_scenario_by_id = function(req, res) {
       return;
     };
     res.json({ message: 'Scenario successfully deleted' });
+  });
+};
+
+exports.list_transactions_by_scenario_id = function(req, res) {
+  Transaction.find({scenario: req.params.scenarioId}, function(err, transactions) {
+    if (err) {
+      res.send(err);
+      console.log(err);
+      return;
+    };
+    res.json(transactions);
   });
 };
 
