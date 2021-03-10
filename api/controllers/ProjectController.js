@@ -1,8 +1,8 @@
 'use strict';
 //import '.env/config';
 var mongoose = require('mongoose'),
-Project = mongoose.model('Project');
-// Testsuite = mongoose.model('Testsuite');
+Project = mongoose.model('Project'),
+Testsuite = mongoose.model('Testsuite');
 
 exports.list_all_projects = function(req, res) {
   Project.find({}).populate('testsuite').exec(function(err, project) {
@@ -60,6 +60,17 @@ exports.delete_a_project_by_id = function(req, res) {
       return;
     };
     res.json({ message: 'Project successfully deleted' });
+  });
+};
+
+exports.list_testsuites_by_project_id = function(req, res) {
+  Testsuite.find({project: req.params.projectId}, function(err, testsuites) {
+    if (err) {
+      res.send(err);
+      console.log(err);
+      return;
+    };
+    res.json(testsuites);
   });
 };
 

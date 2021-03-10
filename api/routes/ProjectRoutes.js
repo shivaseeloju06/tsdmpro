@@ -13,6 +13,9 @@ module.exports = function(app) {
     .put(Project.update_a_project_by_id)
     .delete(Project.delete_a_project_by_id);
 
+  app.route('/project/id/:projectId/testsuite')
+    .get(Project.list_testsuites_by_project_id);
+
   app.route('/project/almid/:almId')
     .get(Project.read_a_project_by_alm_id)
     .put(Project.update_a_project_by_alm_id)
