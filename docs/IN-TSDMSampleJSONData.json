@@ -164,6 +164,17 @@
 							]
 						}
 					]
+				},
+				{
+					"id": null,
+					"name": "Smoke",
+					"almid": 62,
+					"parent": null,
+					"synceddate": "2014-06-25T05:05:05.000Z",
+					"createdate": "2014-06-25T05:05:05.000Z",
+					"updatedate": "2014-06-25T05:05:05.000Z",
+					"workflows": [{}]
+				
 				}
 			]
 		}

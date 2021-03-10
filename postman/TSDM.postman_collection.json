@@ -369,46 +369,6 @@
 						}
 					],
 					"description": "The endpoint to CRUD **projects** to the **TSDM** engine with minimum information if you know the name:"
-				},
-				{
-					"name": "/project/testsuite/",
-					"item": [
-						{
-							"name": "Add a Project and Testsuites",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"The 1st Project\",\r\n    \"alm_id\":1,\r\n    \"testsuites\":[\r\n        {\r\n            \"name\":\"The 1st Epic\",\r\n            \"alm_id\":1\r\n        },\r\n        {\r\n            \"name\":\"The 2nd Epic\",\r\n            \"alm_id\":2\r\n        }\r\n    ]\r\n\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:3000/project",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"project"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"description": "**TODO: must still be implemented**"
 				}
 			],
 			"description": "The RESTful API endpoints for **projects**:"
@@ -839,11 +799,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "/testsuite/workflow/",
-					"item": [],
-					"description": "**TODO: must still be implemented**"
 				}
 			],
 			"description": "The RESTful API endpoints for **testsuites (epics)**:"
@@ -1274,11 +1229,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "/workflow/scenario/",
-					"item": [],
-					"description": "**TODO: must still be implemented**"
 				}
 			],
 			"description": "The RESTful API endpoints for **workflow (feature)**:"
@@ -1709,11 +1659,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "/scenario/transaction/",
-					"item": [],
-					"description": "**TODO: must still be implemented**"
 				}
 			],
 			"description": "The RESTful API endpoints for **workflow (feature)**:"
@@ -2110,11 +2055,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "/transaction/steps/",
-					"item": [],
-					"description": "**TODO: must still be implemented**"
 				}
 			],
 			"description": "The RESTful API endpoints for **workflow (feature)**:"
