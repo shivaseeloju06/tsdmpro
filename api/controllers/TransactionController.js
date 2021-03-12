@@ -1,7 +1,8 @@
 'use strict';
 var mongoose = require('mongoose'),
 Transaction = mongoose.model('Transaction'),
-Scenario = mongoose.model('Scenario');
+Scenario = mongoose.model('Scenario'),
+Gherkinstep = mongoose.model('Gherkinstep');
 
 exports.list_all_transactions = function(req, res) {
   Transaction.find({}, function(err, transaction) {
@@ -16,7 +17,6 @@ exports.list_all_transactions = function(req, res) {
 
 exports.create_a_transaction = async function(req, res) {
   var newBody = await getScenarioId(req.body);
-  console.log(newBody);
   var new_transaction = new Transaction(newBody);
     new_transaction.save(function(err, transaction) {
       if (err) {
@@ -60,6 +60,17 @@ Transaction.remove({_id: req.params.transactionId}, function(err, transaction) {
       return;
     };
     res.json({ message: 'Transaction successfully deleted' });
+  });
+};
+
+exports.list_gherkinsteps_by_transaction_id = function(req, res) {
+  Gherkinstep.find({workflow: req.params.transactionId}, function(err, gherkinsteps) {
+    if (err) {
+      res.send(err);
+      console.log(err);
+      return;
+    };
+    res.json(gherkinsteps);
   });
 };
 

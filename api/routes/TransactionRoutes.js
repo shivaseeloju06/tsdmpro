@@ -13,6 +13,9 @@ module.exports = function(app) {
     .put(Transaction.update_a_transaction_by_id)
     .delete(Transaction.delete_a_transaction_by_id);
 
+  app.route('/transaction/id/:transactionId/gherkinstep')
+    .get(Transaction.list_gherkinsteps_by_transaction_id);
+
   app.route('/transaction/almid/:almId')
     .get(Transaction.read_a_transaction_by_alm_id)
     .put(Transaction.update_a_transaction_by_alm_id)

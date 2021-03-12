@@ -1,180 +1,88 @@
 {
 	"projects": [
 		{
-			"projectid": null,
-			"projectname": "TSDM",
+			"name": "TSDM",
+			"alm_id": 1,
+			"is_active": 1,
 			"url": "https://dev.azure.com/SQSDemos/TSDM",
-			"synceddate": "2014-06-25T05:05:05.000Z",
-			"createdate": "2014-06-25T05:05:05.000Z",
-			"updatedate": "2014-06-25T05:05:05.000Z",
 			"testsuites": [
 				{
-					"id": null,
 					"name": "Regression",
-					"almid": 61,
-					"parent": null,
-					"synceddate": "2014-06-25T05:05:05.000Z",
-					"createdate": "2014-06-25T05:05:05.000Z",
-					"updatedate": "2014-06-25T05:05:05.000Z",
+					"is_active": 1,
+					"alm_id": 61,
 					"workflows": [
 						{
-							"id": null,
 							"name": "WEC Tagout - User Functions",
-							"almid": 43,
-							"parent": null,
-							"synceddate": "2014-06-25T05:05:05.000Z",
-							"createdate": "2014-06-25T05:05:05.000Z",
-							"updatedate": "2014-06-25T05:05:05.000Z",
+							"is_active": 1,
+							"alm_id": 43,
 							"scenarios": [
 								{
-									"id": null,
 									"name": "Login with Valid Username and Password",
-									"almid": 45,
-									"parent": null,
-									"requirement": "As a user type I have to log on to the system so I can perform my duties",
-									"synceddate": "2014-06-25T05:05:05.000Z",
-									"createdate": "2014-06-25T05:05:05.000Z",
-									"updatedate": "2014-06-25T05:05:05.000Z",
-									"Transactions": [
+									"is_active": 1,
+									"alm_id": 45,
+									"requirement": "As an user type I have to log on to the system so I can perform my duties",
+									"transactions": [
 										{
-											"id": null,
 											"name": "AC10 - Each user type can log in with valid Username and Password",
-											"acceptancecriterianumber": 10,
-											"parent": null,
-											"synceddate": "2014-06-25T05:05:05.000Z",
-											"createdate": "2014-06-25T05:05:05.000Z",
-											"updatedate": "2014-06-25T05:05:05.000Z",
+											"is_active": 1,
+											"alm_id": 10,
 											"gherkinsteps": [
 												{
-													"id": null,
+													"is_active": 1,
 													"index": 1,
-													"GherkinKeyword": "GIVEN",
-													"name": "I have navigated to the login page",
-													"parent": null,
-													"synceddate": "2014-06-25T05:05:05.000Z",
-													"createdate": "2014-06-25T05:05:05.000Z",
-													"updatedate": "2014-06-25T05:05:05.000Z",
-													"StepActions": []
+													"gherkin_keyword": "GIVEN",
+													"name": "I have navigated to the login page"
 												},
 												{
-													"id": null,
+													"is_active": 1,
 													"index": 2,
-													"GherkinKeyword": "WHEN",
-													"name": "{username} and {password} is entered",
-													"parent": null,
-													"synceddate": "2014-06-25T05:05:05.000Z",
-													"createdate": "2014-06-25T05:05:05.000Z",
-													"updatedate": "2014-06-25T05:05:05.000Z",
-													"StepActions": [
-														{
-															"id": null,
-															"index": 1,
-															"name": "Enter Username in User Field",
-															"parent": null,
-															"ExpectedResult": "PASS",
-															"Instruction": "Input Text",
-															"synceddate": "2014-06-25T05:05:05.000Z",
-															"createdate": "2014-06-25T05:05:05.000Z",
-															"updatedate": "2014-06-25T05:05:05.000Z",
-															"arguments": [
-																{
-																	"environment": "dev",
-																	"dataitteration": 1,
-																	"keyvalues": [
-																		{
-																			"key": "locator",
-																			"value": "@id=\"UserName\""
-																		},
-																		{
-																			"key": "text",
-																			"value": "happyDog00"
-																		},
-																		{
-																			"key": "clear",
-																			"value": "true"
-																		}
-																	]
-																},
-																{
-																	"environment": "dev",
-																	"dataitteration": 2,
-																	"keyvalues": [
-																		{
-																			"key": "locator",
-																			"value": "@id=\"UserName\""
-																		},
-																		{
-																			"key": "text",
-																			"value": "FredFlintrock"
-																		},
-																		{
-																			"key": "clear",
-																			"value": "true"
-																		}
-																	]
-																},
-																{
-																	"environment": "uat",
-																	"dataitteration": 1,
-																	"keyvalues": [
-																		{
-																			"key": "locator",
-																			"value": "@id=\"UsrName\""
-																		},
-																		{
-																			"key": "text",
-																			"value": "happyDog00"
-																		},
-																		{
-																			"key": "clear",
-																			"value": "true"
-																		}
-																	]
-																}
-															]
-														}
-													]
+													"gherkin_keyword": "WHEN",
+													"name": "{username} and {password} is entered"
 												},
 												{
-													"id": null,
+													"is_active": 1,
 													"index": 3,
-													"GherkinKeyword": "AND",
-													"name": "Login button is clicked",
-													"parent": null,
-													"synceddate": "2014-06-25T05:05:05.000Z",
-													"createdate": "2014-06-25T05:05:05.000Z",
-													"updatedate": "2014-06-25T05:05:05.000Z",
-													"StepActions": []
+													"gherkin_keyword": "AND",
+													"name": "Login button is clicked"
 												},
 												{
-													"id": null,
+													"is_active": 1,
 													"index": 4,
-													"GherkinKeyword": "THEN",
-													"name": "{username} is logged in",
-													"parent": null,
-													"synceddate": "2014-06-25T05:05:05.000Z",
-													"createdate": "2014-06-25T05:05:05.000Z",
-													"updatedate": "2014-06-25T05:05:05.000Z",
-													"StepActions": []
+													"gherkin_keyword": "THEN",
+													"name": "{username} is logged in"
 												}
 											]
+										},
+										{
+											"name": "AC20 - Each user type can log in with valid Username and Password and select Remember Me option ",
+											"is_active": 1,
+											"alm_id": 20,
+											"gherkinsteps": []
 										}
 									]
+								},
+								{
+									"name": "Login with Invalid Username and Password",
+									"is_active": 1,
+									"alm_id": 46,
+									"requirement": "As a invalid user type I cannot log on to the system",
+									"transactions": []
 								}
 							]
+						},
+						{
+							"name": "WEC Tagout - Other Functions",
+							"is_active": 1,
+							"alm_id": 44,
+							"scenarios": []
 						}
 					]
 				},
 				{
-					"id": null,
 					"name": "Smoke",
-					"almid": 62,
-					"parent": null,
-					"synceddate": "2014-06-25T05:05:05.000Z",
-					"createdate": "2014-06-25T05:05:05.000Z",
-					"updatedate": "2014-06-25T05:05:05.000Z",
-					"workflows": [{}]
-				
+					"is_active": 1,
+					"alm_id": 62,
+					"workflows": []
 				}
 			]
 		}

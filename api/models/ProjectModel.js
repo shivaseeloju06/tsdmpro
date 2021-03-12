@@ -5,13 +5,30 @@ var Schema = mongoose.Schema;
 // Defines the schema for the **Projects**
 // in the customer ALM system
 var projectSchema = new Schema({
+  is_active: {
+    type: Boolean,
+    default: 1
+  },
   created_date: {
+    type: Date,
+    default: Date.now
+  },
+  synced_date: {
+    type: Date,
+    default: Date.now
+  },
+  updated_date: {
     type: Date,
     default: Date.now
   },
   name: {
     type: String,
     required: 'Please enter the name of the Project',
+    unique: true
+  },
+  url: {
+    type: String,
+    required: 'Please enter the URL of the Project',
     unique: true
   },
   alm_id: {

@@ -143,7 +143,7 @@ exports.delete_a_scenario_by_name = function(req, res) {
 
 async function getWorkflowId(passedBody) {
   try {
-    var newBody = {"name":passedBody.name, "alm_id":passedBody.alm_id}
+    var newBody = {"name":passedBody.name, "alm_id":passedBody.alm_id, "requirement":passedBody.requirement}
     switch(passedBody.workflow.search_by) {
       case "id":
         newBody.workflow = passedBody.workflow.value;

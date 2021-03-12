@@ -5,7 +5,19 @@ var Schema = mongoose.Schema;
 // Defines the schema for the **Features**
 // in the customer ALM system
 var workflowSchema = new Schema({
+  is_active: {
+    type: Boolean,
+    default: 1
+  },
   created_date: {
+    type: Date,
+    default: Date.now
+  },
+  synced_date: {
+    type: Date,
+    default: Date.now
+  },
+  updated_date: {
     type: Date,
     default: Date.now
   },

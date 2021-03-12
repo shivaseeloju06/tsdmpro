@@ -11,9 +11,11 @@ var express = require('express'),
   Workflow = require('./api/models/WorkflowModel'),
   Scenario = require('./api/models/ScenarioModel'),
   Transaction = require('./api/models/TransactionModel'),
+  Gherkinstep = require('./api/models/GherkinstepModel'),
   bodyParser = require('body-parser');
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
@@ -22,9 +24,6 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/tsdmDB', { useNewUrlParser: true })
   .then(() => console.log("MongoDb Connected"))
   .catch(err => console.log(err));
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 // Import and register all routes here
 var ProjectRoutes = require('./api/routes/ProjectRoutes');
@@ -37,6 +36,10 @@ var ScenarioRoutes = require('./api/routes/ScenarioRoutes');
 ScenarioRoutes(app);
 var TransactionRoutes = require('./api/routes/TransactionRoutes');
 TransactionRoutes(app);
+var GherkinstepRoutes = require('./api/routes/GherkinstepRoutes');
+GherkinstepRoutes(app);
+var ImportRoutes = require('./api/routes/ImportRoutes');
+ImportRoutes(app);
 
 // Error handling
 app.use((req, res, next) => {
