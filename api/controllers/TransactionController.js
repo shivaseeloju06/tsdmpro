@@ -1,11 +1,11 @@
 'use strict';
 var mongoose = require('mongoose'),
-Transaction = mongoose.model('Transaction'),
-Scenario = mongoose.model('Scenario'),
-Gherkinstep = mongoose.model('Gherkinstep');
+  Transaction = mongoose.model('Transaction'),
+  Scenario = mongoose.model('Scenario'),
+  Gherkinstep = mongoose.model('Gherkinstep');
 
-exports.list_all_transactions = function(req, res) {
-  Transaction.find({}, function(err, transaction) {
+exports.list_all_transactions = function (req, res) {
+  Transaction.find({}, function (err, transaction) {
     if (err) {
       res.send(err);
       console.log(err);
@@ -15,22 +15,22 @@ exports.list_all_transactions = function(req, res) {
   });
 };
 
-exports.create_a_transaction = async function(req, res) {
+exports.create_a_transaction = async function (req, res) {
   var newBody = await getScenarioId(req.body);
   var new_transaction = new Transaction(newBody);
-    new_transaction.save(function(err, transaction) {
-      if (err) {
-        res.send(err);
-        console.log(err);
-        return;
-      };
-      pushTransactionToScenario(newBody.scenario, transaction.id);
-      res.json(transaction);
+  new_transaction.save(function (err, transaction) {
+    if (err) {
+      res.send(err);
+      console.log(err);
+      return;
+    };
+    pushTransactionToScenario(newBody.scenario, transaction.id);
+    res.json(transaction);
   });
 };
 
-exports.read_a_transaction_by_id = function(req, res) {
-  Transaction.findById(req.params.transactionId, function(err, transaction) {
+exports.read_a_transaction_by_id = function (req, res) {
+  Transaction.findById(req.params.transactionId, function (err, transaction) {
     if (err) {
       res.send(err);
       console.log(err);
@@ -40,8 +40,8 @@ exports.read_a_transaction_by_id = function(req, res) {
   });
 };
 
-exports.update_a_transaction_by_id = function(req, res) {
-  Transaction.findOneAndUpdate({_id: req.params.transactionId}, req.body, {new: true}, function(err, transaction) {
+exports.update_a_transaction_by_id = function (req, res) {
+  Transaction.findOneAndUpdate({ _id: req.params.transactionId }, req.body, { new: true }, function (err, transaction) {
     if (err) {
       res.send(err);
       console.log(err);
@@ -51,9 +51,9 @@ exports.update_a_transaction_by_id = function(req, res) {
   });
 };
 
-exports.delete_a_transaction_by_id = function(req, res) {
-    // TODO Cascade deletions up and down
-Transaction.remove({_id: req.params.transactionId}, function(err, transaction) {
+exports.delete_a_transaction_by_id = function (req, res) {
+  // TODO Cascade deletions up and down
+  Transaction.remove({ _id: req.params.transactionId }, function (err, transaction) {
     if (err) {
       res.send(err);
       console.log(err);
@@ -63,8 +63,8 @@ Transaction.remove({_id: req.params.transactionId}, function(err, transaction) {
   });
 };
 
-exports.list_gherkinsteps_by_transaction_id = function(req, res) {
-  Gherkinstep.find({workflow: req.params.transactionId}, function(err, gherkinsteps) {
+exports.list_gherkinsteps_by_transaction_id = function (req, res) {
+  Gherkinstep.find({ transaction: req.params.transactionId }, function (err, gherkinsteps) {
     if (err) {
       res.send(err);
       console.log(err);
@@ -74,8 +74,8 @@ exports.list_gherkinsteps_by_transaction_id = function(req, res) {
   });
 };
 
-exports.read_a_transaction_by_alm_id = function(req, res) {
-  Transaction.findOne({alm_id: req.params.almId}, function(err, transaction) {
+exports.read_a_transaction_by_alm_id = function (req, res) {
+  Transaction.findOne({ alm_id: req.params.almId }, function (err, transaction) {
     if (err) {
       res.send(err);
       console.log(err);
@@ -85,8 +85,8 @@ exports.read_a_transaction_by_alm_id = function(req, res) {
   });
 };
 
-exports.update_a_transaction_by_alm_id = function(req, res) {
-  Transaction.findOneAndUpdate({alm_id: req.params.almId}, req.body, {new: true}, function(err, transaction) {
+exports.update_a_transaction_by_alm_id = function (req, res) {
+  Transaction.findOneAndUpdate({ alm_id: req.params.almId }, req.body, { new: true }, function (err, transaction) {
     if (err) {
       res.send(err);
       console.log(err);
@@ -96,8 +96,8 @@ exports.update_a_transaction_by_alm_id = function(req, res) {
   });
 };
 
-exports.delete_a_transaction_by_alm_id = function(req, res) {
-  Transaction.findOneAndRemove({alm_id: req.params.almId}, function(err, transaction) {
+exports.delete_a_transaction_by_alm_id = function (req, res) {
+  Transaction.findOneAndRemove({ alm_id: req.params.almId }, function (err, transaction) {
     if (err) {
       res.send(err);
       console.log(err);
@@ -107,8 +107,8 @@ exports.delete_a_transaction_by_alm_id = function(req, res) {
   });
 };
 
-exports.read_a_transaction_by_name = function(req, res) {
-  Transaction.findOne({name: req.params.name}, function(err, transaction) {
+exports.read_a_transaction_by_name = function (req, res) {
+  Transaction.findOne({ name: req.params.name }, function (err, transaction) {
     if (err) {
       res.send(err);
       console.log(err);
@@ -118,8 +118,8 @@ exports.read_a_transaction_by_name = function(req, res) {
   });
 };
 
-exports.update_a_transaction_by_name = function(req, res) {
-  Transaction.findOneAndUpdate({name: req.params.name}, req.body, {new: true}, function(err, transaction) {
+exports.update_a_transaction_by_name = function (req, res) {
+  Transaction.findOneAndUpdate({ name: req.params.name }, req.body, { new: true }, function (err, transaction) {
     if (err) {
       res.send(err);
       console.log(err);
@@ -129,8 +129,8 @@ exports.update_a_transaction_by_name = function(req, res) {
   });
 };
 
-exports.delete_a_transaction_by_name = function(req, res) {
-  Transaction.findOneAndRemove({name: req.params.name}, function(err, transaction) {
+exports.delete_a_transaction_by_name = function (req, res) {
+  Transaction.findOneAndRemove({ name: req.params.name }, function (err, transaction) {
     if (err) {
       res.send(err);
       console.log(err);
@@ -142,17 +142,17 @@ exports.delete_a_transaction_by_name = function(req, res) {
 
 async function getScenarioId(passedBody) {
   try {
-    var newBody = {"name":passedBody.name, "alm_id":passedBody.alm_id}
-    switch(passedBody.scenario.search_by) {
+    var newBody = { "name": passedBody.name, "alm_id": passedBody.alm_id }
+    switch (passedBody.scenario.search_by) {
       case "id":
         newBody.scenario = passedBody.scenario.value;
         break;
       case "name":
-        var theParent = await Scenario.findOne({name: passedBody.scenario.value}).exec();
+        var theParent = await Scenario.findOne({ name: passedBody.scenario.value }).exec();
         newBody.scenario = theParent._id;
         break;
       case "alm_id":
-        var theParent = await Scenario.findOne({alm_id: passedBody.scenario.value}).exec();
+        var theParent = await Scenario.findOne({ alm_id: passedBody.scenario.value }).exec();
         newBody.scenario = theParent._id;
         break;
     };
@@ -164,7 +164,7 @@ async function getScenarioId(passedBody) {
 };
 
 async function pushTransactionToScenario(scenarioId, transactionId) {
-  var parent_scenario = await Scenario.findById(scenarioId, function(err, project) {
+  var parent_scenario = await Scenario.findById(scenarioId, function (err, project) {
     if (err) {
       res.send(err);
       console.log(err);
