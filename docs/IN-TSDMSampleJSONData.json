@@ -7,45 +7,53 @@
 			"url": "https://dev.azure.com/SQSDemos/TSDM",
 			"testsuites": [
 				{
+					"parent": 1,
 					"name": "Regression",
 					"is_active": 1,
 					"alm_id": 61,
 					"workflows": [
 						{
+							"parent": 61,
 							"name": "WEC Tagout - User Functions",
 							"is_active": 1,
 							"alm_id": 43,
 							"scenarios": [
 								{
+									"parent": 43,
 									"name": "Login with Valid Username and Password",
 									"is_active": 1,
 									"alm_id": 45,
 									"requirement": "As an user type I have to log on to the system so I can perform my duties",
 									"transactions": [
 										{
+											"parent": 45,
 											"name": "AC10 - Each user type can log in with valid Username and Password",
 											"is_active": 1,
 											"alm_id": 10,
 											"gherkinsteps": [
 												{
+													"parent": 10,
 													"is_active": 1,
 													"index": 1,
 													"gherkin_keyword": "GIVEN",
 													"name": "I have navigated to the login page"
 												},
 												{
+													"parent": 10,
 													"is_active": 1,
 													"index": 2,
 													"gherkin_keyword": "WHEN",
 													"name": "{username} and {password} is entered"
 												},
 												{
+													"parent": 10,
 													"is_active": 1,
 													"index": 3,
 													"gherkin_keyword": "AND",
 													"name": "Login button is clicked"
 												},
 												{
+													"parent": 10,
 													"is_active": 1,
 													"index": 4,
 													"gherkin_keyword": "THEN",
@@ -54,6 +62,7 @@
 											]
 										},
 										{
+											"parent": 45,
 											"name": "AC20 - Each user type can log in with valid Username and Password and select Remember Me option ",
 											"is_active": 1,
 											"alm_id": 20,
@@ -62,6 +71,7 @@
 									]
 								},
 								{
+									"parent": 43,
 									"name": "Login with Invalid Username and Password",
 									"is_active": 1,
 									"alm_id": 46,
@@ -71,6 +81,7 @@
 							]
 						},
 						{
+							"parent": 61,
 							"name": "WEC Tagout - Other Functions",
 							"is_active": 1,
 							"alm_id": 44,
@@ -79,6 +90,7 @@
 					]
 				},
 				{
+					"parent": 1,
 					"name": "Smoke",
 					"is_active": 1,
 					"alm_id": 62,

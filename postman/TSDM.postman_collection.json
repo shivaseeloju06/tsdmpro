@@ -44,7 +44,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"TSDM\",\r\n    \"alm_id\":1\r\n}",
+									"raw": "{\r\n    \"name\":\"TSDM\",\r\n    \"alm_id\":1,\r\n    \"url\": \"https://dev.azure.com/SQSDemos/TSDM\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -411,7 +411,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Smoke\",\r\n    \"alm_id\": 62,\r\n    \"project\": {\r\n        \"search_by\":\"id\",\r\n        \"value\":\"6048b2dfff142c25605fabeb\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"name\": \"Regression\",\r\n    \"alm_id\": 61,\r\n    \"project\": {\r\n        \"search_by\":\"id\",\r\n        \"value\":\"6049f040ada0794850f0deca\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -875,7 +875,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"WEC Tagout - Other Functions\",\r\n    \"alm_id\": 44,\r\n    \"testsuite\": {\r\n        \"search_by\":\"name\",\r\n        \"value\":\"Regression\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"name\": \"WEC Tagout - User Functions\",\r\n    \"alm_id\": 44,\r\n    \"testsuite\": {\r\n        \"search_by\":\"name\",\r\n        \"value\":\"Regression\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -970,7 +970,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
+									"raw": "{\r\n    \"name\": \"WEC Tagout - User Functions\",\r\n    \"alm_id\": 43\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -978,7 +978,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/workflow/id/60451c5cb98f8c0418c56ee4",
+									"raw": "http://localhost:3000/workflow/id/6049f245ada0794850f0decf",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -987,7 +987,7 @@
 									"path": [
 										"workflow",
 										"id",
-										"60451c5cb98f8c0418c56ee4"
+										"6049f245ada0794850f0decf"
 									]
 								}
 							},
@@ -1339,7 +1339,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Login with Invalid Username and Password\",\r\n    \"alm_id\": 46,\r\n    \"workflow\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":43\r\n    }\r\n}",
+									"raw": "{\r\n    \"name\": \"Login with Invalid Username and Password\",\r\n    \"alm_id\": 46,\r\n    \"requirement\": \"As a invalid user type I cannot log on to the system\",\r\n    \"workflow\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":43\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1881,6 +1881,40 @@
 					]
 				},
 				{
+					"name": "/transaction/id/<id>/gherkinstep",
+					"item": [
+						{
+							"name": "Get Gherkinsteps byTransaction Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/id/6045d71e9cb42435987ee0c9/gherkinstep",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"id",
+										"6045d71e9cb42435987ee0c9",
+										"gherkinstep"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "/transaction/almid/",
 					"item": [
 						{
@@ -2058,6 +2092,454 @@
 				}
 			],
 			"description": "The RESTful API endpoints for **workflow (feature)**:"
+		},
+		{
+			"name": "Gherkin Step",
+			"item": [
+				{
+					"name": "/gherkinstep/",
+					"item": [
+						{
+							"name": "Get all Gherkin Steps",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/gherkinstep",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"gherkinstep"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Gherkin Step with Transaction ID",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"gherkin_keyword\": \"GIVEN\",\r\n    \"name\": \"I have navigated to the login page\",\r\n    \"index\": 1,\r\n    \"transaction\": {\r\n        \"search_by\":\"id\",\r\n        \"value\":\"6049f597a287a92fcc6b0297\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/gherkinstep",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"gherkinstep"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Gherkin Step with Transaction Name",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Some other name\",\r\n    \"alm_id\": 777,\r\n    \"scenario\": {\r\n        \"search_by\":\"name\",\r\n        \"value\":\"The 1st Project\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/gherkinstep",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"gherkinstep"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Gherkin Step with Transaction ALM ID",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AC10 - Each user type can log in with valid Username and Password\",\r\n    \"alm_id\": 10,\r\n    \"scenario\": {\r\n        \"search_by\":\"alm_id\",\r\n        \"value\":45\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/gherkinstep",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"gherkinstep"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/gherkinstep/id/",
+					"item": [
+						{
+							"name": "Get Gherkin Step by Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/gherkinstep/id/6045d71e9cb42435987ee0c9",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"gherkinstep",
+										"id",
+										"6045d71e9cb42435987ee0c9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Gherkin Step by Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/gherkinstep/id/60451c5cb98f8c0418c56ee4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"gherkinstep",
+										"id",
+										"60451c5cb98f8c0418c56ee4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Gherkin Step by Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/gherkinstep/id/60423764ec1ce629c4038397",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"gherkinstep",
+										"id",
+										"60423764ec1ce629c4038397"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/gherkinstep/name/",
+					"item": [
+						{
+							"name": "Get Transaction by Name",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/name/AN%20other%20name",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"name",
+										"AN%20other%20name"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Transaction by Name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AN other name\",\r\n    \"alm_id\": 999\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Transaction by Name",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/name/POC%20Project",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"name",
+										"POC%20Project"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "The RESTful API endpoints for **workflow (feature)**:"
+		},
+		{
+			"name": "Import",
+			"item": [
+				{
+					"name": "Get All Projects with all children",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/import",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"import"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Project with all children",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"projects\": [\r\n\t\t{\r\n\t\t\t\"name\": \"TSDM\",\r\n\t\t\t\"alm_id\": 1,\r\n\t\t\t\"is_active\": 1,\r\n\t\t\t\"url\": \"https://dev.azure.com/SQSDemos/TSDM\",\r\n\t\t\t\"testsuites\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"parent\": 1,\r\n\t\t\t\t\t\"name\": \"Regression\",\r\n\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\"alm_id\": 61,\r\n\t\t\t\t\t\"workflows\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"parent\": 61,\r\n\t\t\t\t\t\t\t\"name\": \"WEC Tagout - User Functions\",\r\n\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\"alm_id\": 43,\r\n\t\t\t\t\t\t\t\"scenarios\": [\r\n\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"parent\": 43,\r\n\t\t\t\t\t\t\t\t\t\"name\": \"Login with Valid Username and Password\",\r\n\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\"alm_id\": 45,\r\n\t\t\t\t\t\t\t\t\t\"requirement\": \"As an user type I have to log on to the system so I can perform my duties\",\r\n\t\t\t\t\t\t\t\t\t\"transactions\": [\r\n\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\"parent\": 45,\r\n\t\t\t\t\t\t\t\t\t\t\t\"name\": \"AC10 - Each user type can log in with valid Username and Password\",\r\n\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\"alm_id\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\"gherkinsteps\": [\r\n\t\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"parent\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"index\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"gherkin_keyword\": \"GIVEN\",\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"name\": \"I have navigated to the login page\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"parent\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"index\": 2,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"gherkin_keyword\": \"WHEN\",\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"name\": \"{username} and {password} is entered\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"parent\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"index\": 3,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"gherkin_keyword\": \"AND\",\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"name\": \"Login button is clicked\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"parent\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"index\": 4,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"gherkin_keyword\": \"THEN\",\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"name\": \"{username} is logged in\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\"parent\": 45,\r\n\t\t\t\t\t\t\t\t\t\t\t\"name\": \"AC20 - Each user type can log in with valid Username and Password and select Remember Me option \",\r\n\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\"alm_id\": 20,\r\n\t\t\t\t\t\t\t\t\t\t\t\"gherkinsteps\": []\r\n\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"parent\": 43,\r\n\t\t\t\t\t\t\t\t\t\"name\": \"Login with Invalid Username and Password\",\r\n\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\"alm_id\": 46,\r\n\t\t\t\t\t\t\t\t\t\"requirement\": \"As a invalid user type I cannot log on to the system\",\r\n\t\t\t\t\t\t\t\t\t\"transactions\": []\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"parent\": 61,\r\n\t\t\t\t\t\t\t\"name\": \"WEC Tagout - Other Functions\",\r\n\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\"alm_id\": 44,\r\n\t\t\t\t\t\t\t\"scenarios\": []\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"parent\": 1,\r\n\t\t\t\t\t\"name\": \"Smoke\",\r\n\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\"alm_id\": 62,\r\n\t\t\t\t\t\"workflows\": []\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/import",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"import"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Action",
+			"item": [
+				{
+					"name": "/action/",
+					"item": [
+						{
+							"name": "Get all Actions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/action",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"action"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Gherkin Step with Transaction ID",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"some action description\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/action",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"action"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/action/<description>",
+					"item": [
+						{
+							"name": "Get Actions by Wildcard",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/action/some",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"action",
+										"some"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
 		}
 	]
 }

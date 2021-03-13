@@ -12,6 +12,7 @@ var express = require('express'),
   Scenario = require('./api/models/ScenarioModel'),
   Transaction = require('./api/models/TransactionModel'),
   Gherkinstep = require('./api/models/GherkinstepModel'),
+  Action = require('./api/models/ActionModel'),
   bodyParser = require('body-parser');
 
 app.use(cors());
@@ -40,6 +41,8 @@ var GherkinstepRoutes = require('./api/routes/GherkinstepRoutes');
 GherkinstepRoutes(app);
 var ImportRoutes = require('./api/routes/ImportRoutes');
 ImportRoutes(app);
+var ActionRoutes = require('./api/routes/ActionRoutes');
+ActionRoutes(app);
 
 // Error handling
 app.use((req, res, next) => {
