@@ -21,6 +21,7 @@ var instructionSchema = new Schema({
       {argument: {type: String}}
   ]
 })
+instructionSchema.index({'library': 1, 'name': 1}, {unique: true});
 instructionSchema.virtual('instruction_id').get(function(){
   return this._id;
 });
