@@ -6,7 +6,8 @@ var mongoose = require('mongoose'),
     Workflow = mongoose.model('Workflow'),
     Scenario = mongoose.model('Scenario'),
     Transaction = mongoose.model('Transaction'),
-    Gherkinstep = mongoose.model('Gherkinstep');
+    Gherkinstep = mongoose.model('Gherkinstep'),
+    Instruction = mongoose.model('Instruction');
 
 exports.list_all_projects_and_children = function(req, res) {
         Project.find({})
@@ -37,6 +38,16 @@ exports.import__all_projects_and_children = async function(req, res) {
   }
 };
 
+exports.import_all_instructions = async function(req, res) {
+  var arrayCollection = req.body;
+  var callback;
+  const response = await Promise.all([
+    addCollectionOfInstructions(arrayCollection, callback)
+  ]);
+  console.log(callback);
+  return res.sendStatus(200);
+};
+
 // nested import code
 async function addProjects(recJson, res) {
   var arrayCollection = recJson.projects;
@@ -52,7 +63,7 @@ async function addProjects(recJson, res) {
       return res.json(project);
     })
   })
-}
+};
 
 async function addTestsuites(recJson, res) {
   var arrayCollection = recJson.testsuites;
@@ -78,4 +89,20 @@ async function addTestsuites(recJson, res) {
     thisParent.save();
   });
   return;
-}
+};
+
+async function addCollectionOfInstructions(collection, response) {
+  collection.forEach( function(element, response) {
+    var new_instruction = new Instruction(element);
+    new_instruction.save( function(err, instruction, res) {
+      if (err) {
+        //res.send(err);
+        console.log(err);
+        return res;
+      };
+      return res;
+    });
+    return response;
+  })
+  return response;
+};
