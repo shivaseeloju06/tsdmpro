@@ -4,20 +4,7 @@
 		"wip_step_collection": [
 			{
 				"index": 1,
-				"action": {
-					"description": "Enter Username",
-					"expected_result": "PASS",
-					"instruction": "Input Text",
-					"test_data": [
-						{
-							"iteration": "1",
-							"environments": [
-								{},
-								{}
-							]
-						}
-					],
-				}
+				"action": 
 			},
 			{
 				"index": 1,

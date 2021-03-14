@@ -5,6 +5,9 @@ var mongoose = require('mongoose'),
 
 exports.list_all_actions = function (req, res) {
   Action.find({})
+    .populate('instruction')
+    .populate({path: 'environment', populate: {path: 'environment'}})
+    .populate('valuename')
     .exec(function (err, action) {
       if (err) {
         res.send(err);
