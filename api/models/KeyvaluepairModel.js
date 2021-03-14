@@ -14,7 +14,8 @@ var keyvaluepairSchema = new Schema({
     required: 'Please enter the iteration for the Key Value Pair'
   },
   environment: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Environment',
     required: 'Please enter the environment for the Key Value Pair'
   },
   name: {

@@ -3,7 +3,7 @@ module.exports = function(app) {
   var Environment = require('../controllers/EnvironmentController');
 
   // TSDM Routes
-  // Actions
+  // Environments
   app.route('/environment')
     .get(Environment.list_all_environments)
     .post(Environment.create_an_environment);

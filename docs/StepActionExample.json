@@ -1,0 +1,34 @@
+{
+	"stepaction": {
+		"name": "{username} and {password} is entered",
+		"wip_step_collection": [
+			{
+				"index": 1,
+				"action": {
+					"description": "Enter Username",
+					"expected_result": "PASS",
+					"instruction": "Input Text",
+					"test_data": [
+						{
+							"iteration": "1",
+							"environments": [
+								{},
+								{}
+							]
+						}
+					],
+				}
+			},
+			{
+				"index": 1,
+				"action": {
+					"description": "Enter Username",
+					"expected_result": "PASS",
+					"instruction": "Input Text",
+					"test_data": [{""}],
+				}
+			}			
+		],	
+		"published_step_collection": {}
+	}
+}
