@@ -2479,7 +2479,7 @@
 							"response": []
 						},
 						{
-							"name": "Add a Gherkin Step with Transaction ID",
+							"name": "Add an Action",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2532,6 +2532,69 @@
 									"path": [
 										"action",
 										"some"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Instruction",
+			"item": [
+				{
+					"name": "/instruction/",
+					"item": [
+						{
+							"name": "Get all Instructions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/instruction",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"instruction"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add an Instruction",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"library\": \"SapGuiLibrary\",\r\n\t\"name\": \"Click Element\",\r\n\t\"arguments\": [\r\n\t    {\r\n\t\t\t\"argument\": \"element_id\"\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/instruction",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"instruction"
 									]
 								}
 							},

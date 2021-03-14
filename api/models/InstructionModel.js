@@ -17,8 +17,10 @@ var instructionSchema = new Schema({
     type: String,
     required: 'Please enter the name of the Instruction'
   },
-  arguments:[
-      {argument: {type: String}}
+  arguments: [
+    {
+      argument: {type: String}
+    }
   ]
 })
 instructionSchema.index({'library': 1, 'name': 1}, {unique: true});
