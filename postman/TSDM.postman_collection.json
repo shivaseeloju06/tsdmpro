@@ -2439,7 +2439,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"description\": \"some action description\"\r\n}",
+									"raw": "{\r\n\t\"description\": \"Enter Username\",\r\n\t\"expected_result\": \"PASS\",\r\n\t\"instruction\": \"604dee25e42d41392c4f92d0\",\r\n\t\"test_data\": [\r\n\t\t{\r\n\t\t\t\"iteration\": \"1\",\r\n\t\t\t\"environments\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"environment\": \"604df4a6ae1f0446948d8224\",\r\n\t\t\t\t\t\"datapairs\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"argument\": \"element_id\",\r\n\t\t\t\t\t\t\t\"valuename\": \"604e0c756b51ee287ccae92d\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"argument\": \"text\",\r\n\t\t\t\t\t\t\t\"valuename\": \"604e1932e1229549542e635f\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2463,15 +2463,22 @@
 					]
 				},
 				{
-					"name": "/action/<description>",
+					"name": "/action/<id>",
 					"item": [
 						{
-							"name": "Get Actions by Wildcard",
+							"name": "Get an Action by Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
 								"url": {
-									"raw": "http://localhost:3000/action/some",
+									"raw": "http://localhost:3000/action/604df4a6ae1f0446948d8224",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -2479,7 +2486,87 @@
 									"port": "3000",
 									"path": [
 										"action",
-										"some"
+										"604df4a6ae1f0446948d8224"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update an Action by Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"UAT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/action/604df4a6ae1f0446948d8224",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"action",
+										"604df4a6ae1f0446948d8224"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an Action by Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/action/604273a75aa4eb443cd7b586",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"action",
+										"604273a75aa4eb443cd7b586"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "The endpoint to CRUD **projects** to the **TSDM** engine with minimum information if you know the tsdm_id:"
+				},
+				{
+					"name": "/action/search/<description>",
+					"item": [
+						{
+							"name": "Get Actions by Wildcard",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/action/search/Enter",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"action",
+										"search",
+										"Enter"
 									]
 								}
 							},
@@ -2741,7 +2828,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"iteration\": 1,\r\n    \"environment\": \"604df4a6ae1f0446948d8224\",\r\n    \"name\":\"Username Field\",\r\n    \"value\": \"@id='Username'\"\r\n}",
+									"raw": "{\r\n    \"iteration\": 1,\r\n    \"environment\": \"604df4a6ae1f0446948d8224\",\r\n    \"name\":\"Username Text\",\r\n    \"value\": \"happyDog99\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

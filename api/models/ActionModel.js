@@ -18,8 +18,8 @@ var actionSchema = new Schema({
     enum: ['PASS', 'FAIL'],
   },
   instruction: {
-    type: String,
-    required: 'Please enter an Instruction'
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Instruction',
   },
   test_data:[
     {
@@ -29,25 +29,22 @@ var actionSchema = new Schema({
       },
       environments: [
         {
-          environment: [
+          environment: {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'Environment',
+          },
+          datapairs: [
             {
-              environment: {
+              argument: {
                 type: String,
-                required: 'Please enter an environment'
+                required: 'please enter an argument'
               },
-              datapairs: [
-                {
-                  argument: {
-                    type: String,
-                    required: 'please enter an argument'
-                  },
-                  valuename: {
-                    type: String,
-                  }
-                }
-              ]
-            }        
-         ]
+              valuename: {
+                type: mongoose.Schema.Types.ObjectId, 
+                ref: 'Keyvaluepairs',
+              }
+            }
+          ]
         }
       ]
     }
