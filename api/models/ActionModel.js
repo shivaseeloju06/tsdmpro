@@ -41,7 +41,7 @@ var actionSchema = new Schema({
               },
               valuename: {
                 type: mongoose.Schema.Types.ObjectId, 
-                ref: 'Keyvaluepairs',
+                ref: 'Keyvaluepair',
               }
             }
           ]
