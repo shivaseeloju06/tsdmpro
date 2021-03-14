@@ -14,6 +14,7 @@ var express = require('express'),
   Gherkinstep = require('./api/models/GherkinstepModel'),
   Action = require('./api/models/ActionModel'),
   Instruction = require('./api/models/InstructionModel'),
+  Environment = require('./api/models/EnvironmentModel')
   bodyParser = require('body-parser');
 
 app.use(cors());
@@ -46,6 +47,8 @@ var ActionRoutes = require('./api/routes/ActionRoutes');
 ActionRoutes(app);
 var InstructionRoutes = require('./api/routes/InstructionRoutes');
 InstructionRoutes(app);
+var EnvironmentRoutes = require('./api/routes/EnvironmentRoutes');
+EnvironmentRoutes(app);
 
 // Error handling
 app.use((req, res, next) => {
