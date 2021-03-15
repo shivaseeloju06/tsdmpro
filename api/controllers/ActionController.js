@@ -6,8 +6,8 @@ var mongoose = require('mongoose'),
 exports.list_all_actions = function (req, res) {
   Action.find({})
     .populate('instruction')
-    .populate({path: 'environment', populate: {path: 'environment'}})
-    .populate('valuename')
+    .populate({path: 'test_data.environments.environment', model: 'Environment'})
+    .populate({path: 'test_data.environments.datapairs.valuename', model: 'Keyvaluepair'})
     .exec(function (err, action) {
       if (err) {
         res.send(err);
@@ -53,7 +53,10 @@ exports.delete_an_action_by_id = function (req, res) {
 
 exports.list_all_actions_by_wildcard = function (req, res) {
   Action.find({description: {$regex: req.params.description,$options:'i'}})
-    .exec(function (err, result){
+  .populate('instruction')
+  .populate({path: 'test_data.environments.environment', model: 'Environment'})
+  .populate({path: 'test_data.environments.datapairs.valuename', model: 'Keyvaluepair'})
+  .exec(function (err, result){
       if (err) {
         res.send(err);
         console.log(err);
