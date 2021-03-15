@@ -2131,7 +2131,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"gherkin_keyword\": \"GIVEN\",\r\n    \"name\": \"I have navigated to the login page\",\r\n    \"index\": 1,\r\n    \"transaction\": {\r\n        \"search_by\":\"id\",\r\n        \"value\":\"6049f597a287a92fcc6b0297\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"gherkin_keyword\": \"THEN\",\r\n    \"name\": \"{username} is logged in\",\r\n    \"index\": 4,\r\n    \"transaction\": {\r\n        \"search_by\":\"id\",\r\n        \"value\":\"6049f597a287a92fcc6b0297\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2439,7 +2439,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"description\": \"Enter Username\",\r\n\t\"expected_result\": \"PASS\",\r\n\t\"instruction\": \"604dee25e42d41392c4f92d0\",\r\n\t\"test_data\": [\r\n\t\t{\r\n\t\t\t\"iteration\": \"1\",\r\n\t\t\t\"environments\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"environment\": \"604df4a6ae1f0446948d8224\",\r\n\t\t\t\t\t\"datapairs\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"argument\": \"element_id\",\r\n\t\t\t\t\t\t\t\"valuename\": \"604e0c756b51ee287ccae92d\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"argument\": \"text\",\r\n\t\t\t\t\t\t\t\"valuename\": \"604e1932e1229549542e635f\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"raw": "{\r\n\t\"description\": \"Enter Username\",\r\n\t\"expected_result\": \"PASS\",\r\n\t\"instruction\": \"604eebdb5bf2da0e48ef8d12\",\r\n\t\"test_data\": [\r\n\t\t{\r\n\t\t\t\"iteration\": \"1\",\r\n\t\t\t\"environments\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"environment\": \"604eecf95bf2da0e48ef8d43\",\r\n\t\t\t\t\t\"datapairs\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"argument\": \"element_id\",\r\n\t\t\t\t\t\t\t\"valuename\": \"604eee1a5bf2da0e48ef8d45\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"argument\": \"text\",\r\n\t\t\t\t\t\t\t\"valuename\": \"604eede55bf2da0e48ef8d44\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2677,7 +2677,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"DEV\"\r\n}",
+									"raw": "{\r\n    \"name\":\"UAT\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2828,7 +2828,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"iteration\": 1,\r\n    \"environment\": \"604df4a6ae1f0446948d8224\",\r\n    \"name\":\"Username Text\",\r\n    \"value\": \"happyDog99\"\r\n}",
+									"raw": "{\r\n    \"iteration\": 1,\r\n    \"environment\": \"604eecf95bf2da0e48ef8d43\",\r\n    \"name\":\"Username Field Locator\",\r\n    \"value\": \"@id='UserName'\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
