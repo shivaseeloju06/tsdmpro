@@ -52,7 +52,7 @@ exports.delete_an_action_by_id = function (req, res) {
 };
 
 exports.list_all_actions_by_wildcard = function (req, res) {
-  Action.find({description: {$regex: req.params.description}})
+  Action.find({description: {$regex: req.params.description,$options:'i'}})
     .exec(function (err, result){
       if (err) {
         res.send(err);
