@@ -3,7 +3,9 @@ var mongoose = require('mongoose'),
   Keyvaluepair = mongoose.model('Keyvaluepair');
 
 exports.list_all_keyvaluepairs = function (req, res) {
-  Keyvaluepair.find({}, function (err, keyvaluepair) {
+  Keyvaluepair.find({})
+  .populate('environment')
+  .exec( function (err, keyvaluepair) {
     if (err) {
       res.send(err);
       console.log(err);

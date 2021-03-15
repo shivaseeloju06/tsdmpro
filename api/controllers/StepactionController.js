@@ -50,7 +50,7 @@ exports.delete_a_stepaction_by_id = function (req, res) {
 };
 
 exports.list_all_stepactions_by_wildcard = function (req, res) {
-  Stepaction.find({description: {$regex: req.params.description}})
+  Stepaction.find({name: {$regex: req.params.description}})
     .exec(function (err, result){
       if (err) {
         res.send(err);
@@ -63,7 +63,8 @@ exports.list_all_stepactions_by_wildcard = function (req, res) {
 
 exports.list_all_stepactions_by_name = function (req, res) {
   console.log(req.params.name);
-  Stepaction.find({description: req.params.name})
+  Stepaction.find({name: req.params.name})
+    .populate('action')
     .exec(function (err, result){
       if (err) {
         res.send(err);

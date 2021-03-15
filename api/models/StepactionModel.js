@@ -30,7 +30,7 @@ var stepactionSchema = new Schema({
       },
       action: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Stepaction',
+        ref: 'Action',
       }
     }
   ],
@@ -42,7 +42,7 @@ var stepactionSchema = new Schema({
       },
       action: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Stepaction',
+        ref: 'Action',
       }
     }
   ]
