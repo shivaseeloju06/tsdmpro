@@ -25,8 +25,7 @@ var stepactionSchema = new Schema({
   wip_step_collection: [
     {
       index: {
-        type: Number,
-        unique: true
+        type: Number
       },
       action: {
         type: mongoose.Schema.Types.ObjectId, 
@@ -37,8 +36,7 @@ var stepactionSchema = new Schema({
   published_step_collection: [
     {
       index: {
-        type: Number,
-        unique: true
+        type: Number
       },
       action: {
         type: mongoose.Schema.Types.ObjectId, 

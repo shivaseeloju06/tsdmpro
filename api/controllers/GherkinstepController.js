@@ -135,7 +135,7 @@ async function pushGherkinstepToTransaction(transactionId, gherkinstepId) {
 
 async function createEmptyStepActionCollection(name) {
   var query = {"name": name},
-    update = { "name": name,  "wip_step_collection": []},
+    update = { "name": name,  "wip_step_collection": [], "published_step_collection": []},
     options = { upsert: true, new: true, setDefaultsOnInsert: true };
 
   await Gherkinstep.findOneAndUpdate(query, update, options, function(error, result) {
