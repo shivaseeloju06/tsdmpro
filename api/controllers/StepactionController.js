@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 
 exports.list_all_stepactions = function (req, res) {
   Stepaction.find({})
-    .populate('action')
+  .populate({path: 'wip_step_collection', populate: {path: "action", model: 'Action', populate: [{path: 'instruction', model: 'Instruction'}, {path: 'test_data.environments.environment', model: 'Environment'}, {path: 'test_data.environments.datapairs.valuename', model: 'Keyvaluepair', populate: {path: 'environment', model: 'Environment'}}]}})
     .exec(function (err, stepaction) {
       if (err) {
         res.send(err);
@@ -17,7 +17,9 @@ exports.list_all_stepactions = function (req, res) {
 };
 
 exports.read_a_stepaction_by_id = function (req, res) {
-  Stepaction.findById(req.params.id, function (err, stepaction) {
+  Stepaction.findById(req.params.id)
+  .populate({path: 'wip_step_collection', populate: {path: "action", model: 'Action', populate: [{path: 'instruction', model: 'Instruction'}, {path: 'test_data.environments.environment', model: 'Environment'}, {path: 'test_data.environments.datapairs.valuename', model: 'Keyvaluepair', populate: {path: 'environment', model: 'Environment'}}]}})
+  .exec( function (err, stepaction) {
     if (err) {
       res.send(err);
       console.log(err);
