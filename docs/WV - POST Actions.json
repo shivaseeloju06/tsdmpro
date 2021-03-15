@@ -1,0 +1,40 @@
+{
+    "action_id": null,
+    "mode": "view",
+    "index": 2,
+    "description": "Enter Password",
+    "expected_result": "PASS",
+    "instructionID": "604eebdb5bf2da0e48ef8d0f",
+    "instruction": {
+        "_id": "604eebdb5bf2da0e48ef8d0f",
+        "library": "SapGuiLibrary",
+        "name": "Input Password",
+        "arguments": [
+            {
+                "_id": "604eebdb5bf2da0e48ef8d10",
+                "argument": "element_id"
+            },
+            {
+                "_id": "604eebdb5bf2da0e48ef8d11",
+                "argument": "password"
+            }
+        ],
+        "created_date": "2021-03-15T05:08:43.283Z",
+        "__v": 0
+    },
+    "arguments": [
+        {
+            "argument": "element_id",
+            "type": null,
+            "value": null,
+            "defaultValue": null
+        },
+        {
+            "argument": "password",
+            "type": null,
+            "value": "Test123",
+            "defaultValue": null
+        }
+    ],
+    "test_data": null
+}

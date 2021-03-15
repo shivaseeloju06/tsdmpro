@@ -19,4 +19,6 @@ module.exports = function(app) {
     app.route('/stepaction/name/:name')
     .get(Stepaction.list_all_stepactions_by_name);
 
+    app.route('/stepaction/:id/action')
+    .post(Stepaction.create_a_step_by_stepaction);
   };

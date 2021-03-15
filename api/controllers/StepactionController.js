@@ -1,7 +1,8 @@
 'use strict';
 const JsonFind = require("json-find");
 var mongoose = require('mongoose'),
-  Stepaction = mongoose.model('Stepaction');
+  Stepaction = mongoose.model('Stepaction'),
+  Action = mongoose.model('Action');
 
 exports.list_all_stepactions = function (req, res) {
   Stepaction.find({})
@@ -89,3 +90,34 @@ exports.create_a_stepaction = function (req, res) {
     res.json(stepaction);
   });
 };
+
+exports.create_a_step_by_stepaction = async function (req, res) {
+  var this_Stepaction = await Stepaction.findById(req.params.id).exec();
+
+  var new_action_array = {
+    "description": req.body.description, 
+    "expected_result": req.body.expected_result,
+    "instruction": req.body.instructionID,
+    "test_data": req.body.test_data
+  };
+  var new_action = new Action(new_action_array);
+  new_action.save(function (err, action) {
+    if (err) {
+      res.send(err);
+      console.log(err);
+      return;
+    };
+  });
+
+  this_Stepaction.wip_step_collection.push({"index": req.body.index, "action": new_action});
+  this_Stepaction.save((e, updated) => {
+    if (e) {
+      res.send(e);
+      console.log(e);
+      return;
+    };
+  });
+
+  return res.json(new_action);
+};
+
