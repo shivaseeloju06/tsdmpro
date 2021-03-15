@@ -24,7 +24,8 @@ exports.create_a_gherkinstep = async function(req, res) {
         console.log(err);
         return;
       };
-      pushGherkinstepToTransaction(newBody.transaction, gherkinstep.id);
+      await pushGherkinstepToTransaction(newBody.transaction, gherkinstep.id);
+      await createEmptyStepActionCollection(gherkinstep.name);
       res.json(gherkinstep);
   });
 };
@@ -130,4 +131,14 @@ async function pushGherkinstepToTransaction(transactionId, gherkinstepId) {
   });
   parent_transaction.gherkinsteps.push(gherkinstepId);
   parent_transaction.save();
+};
+
+async function createEmptyStepActionCollection(name) {
+  var query = {"name": name},
+    update = { "name": name,  "wip_step_collection": []},
+    options = { upsert: true, new: true, setDefaultsOnInsert: true };
+
+  await Gherkinstep.findOneAndUpdate(query, update, options, function(error, result) {
+    if (error) return;
+  });
 };
