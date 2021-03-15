@@ -1,7 +1,7 @@
 'use strict';
 const JsonFind = require("json-find");
 var mongoose = require('mongoose'),
-    Stepaction = mongoose.model('Stepaction');
+  Stepaction = mongoose.model('Stepaction');
 
 exports.list_all_stepactions = function (req, res) {
   Stepaction.find({})
@@ -13,7 +13,7 @@ exports.list_all_stepactions = function (req, res) {
         return;
       };
       res.json(stepaction);
-  });
+    });
 };
 
 exports.read_a_stepaction_by_id = function (req, res) {
@@ -50,8 +50,9 @@ exports.delete_a_stepaction_by_id = function (req, res) {
 };
 
 exports.list_all_stepactions_by_wildcard = function (req, res) {
-  Stepaction.find({name: {$regex: req.params.description}})
-    .exec(function (err, result){
+  Stepaction.find({ name: { $regex: req.params.description } })
+    .populate('action')
+    .exec(function (err, result) {
       if (err) {
         res.send(err);
         console.log(err);
@@ -63,9 +64,9 @@ exports.list_all_stepactions_by_wildcard = function (req, res) {
 
 exports.list_all_stepactions_by_name = function (req, res) {
   console.log(req.params.name);
-  Stepaction.find({name: req.params.name})
+  Stepaction.find({ name: req.params.name })
     .populate('action')
-    .exec(function (err, result){
+    .exec(function (err, result) {
       if (err) {
         res.send(err);
         console.log(err);
