@@ -2402,6 +2402,207 @@
 			"description": "The RESTful API endpoints for **workflow (feature)**:"
 		},
 		{
+			"name": "Stepaction",
+			"item": [
+				{
+					"name": "/stepaction/",
+					"item": [
+						{
+							"name": "Get all Stepactions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/stepaction",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stepaction"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Stepaction",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{username} and {password} is entered\",\r\n    \"wip_step_collection\": [\r\n        {\r\n            \"index\": 1,\r\n            \"action\": \"604eee7e5bf2da0e48ef8d46\"\r\n        }\r\n    ],\r\n    \"published_step_collection\": []\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/stepaction",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stepaction"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/stepaction/<id>",
+					"item": [
+						{
+							"name": "Get a Stepaction by Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/stepaction/604df4a6ae1f0446948d8224",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stepaction",
+										"604df4a6ae1f0446948d8224"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Stepaction by Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"UAT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/stepaction/604df4a6ae1f0446948d8224",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stepaction",
+										"604df4a6ae1f0446948d8224"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Steaction by Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:3000/stepaction/604273a75aa4eb443cd7b586",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stepaction",
+										"604273a75aa4eb443cd7b586"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "The endpoint to CRUD **projects** to the **TSDM** engine with minimum information if you know the tsdm_id:"
+				},
+				{
+					"name": "/stepaction/search/<description>",
+					"item": [
+						{
+							"name": "Get Stepactions by Wildcard",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/stepaction/search/usern",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stepaction",
+										"search",
+										"usern"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/stepaction/name/<name>",
+					"item": [
+						{
+							"name": "Get Stepactions by Name",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/stepaction/name/%7Busername%7D%20and%20%7Bpassword%7D%20is%20entered",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stepaction",
+										"name",
+										"%7Busername%7D%20and%20%7Bpassword%7D%20is%20entered"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Action",
 			"item": [
 				{
