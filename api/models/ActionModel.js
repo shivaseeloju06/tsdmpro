@@ -19,7 +19,7 @@ var actionSchema = new Schema({
   },
   instruction: {
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Instruction',
+    ref: 'Instruction'
   },
   test_data:[
     {
@@ -31,7 +31,7 @@ var actionSchema = new Schema({
         {
           environment: {
             type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Environment',
+            ref: 'Environment'
           },
           datapairs: [
             {
@@ -41,7 +41,7 @@ var actionSchema = new Schema({
               },
               valuename: {
                 type: mongoose.Schema.Types.ObjectId, 
-                ref: 'Keyvaluepair',
+                ref: 'Keyvaluepair'
               }
             }
           ]

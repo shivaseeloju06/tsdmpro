@@ -1,11 +1,10 @@
 'use strict';
 var mongoose = require('mongoose');
-const StepsModel = require('./StepcollectionModel');
 var Schema = mongoose.Schema;
 
 // Defines the schema for the **Features**
 // in the customer ALM system
-var stepactionsSchema = new Schema({
+var stepactionSchema = new Schema({
   created_date: {
     type: Date,
     default: Date.now
@@ -27,24 +26,28 @@ var stepactionsSchema = new Schema({
     {
       index: {
         type: Number,
-        required: 'Please enter a sequence index number',
         unique: true
       },
-      action: ActionSchema
+      action: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Stepaction',
+      }
     }
   ],
   published_step_collection: [
     {
       index: {
         type: Number,
-        required: 'Please enter a sequence index number',
         unique: true
       },
-      action: ActionSchema
+      action: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Stepaction',
+      }
     }
   ]
 })
-stepactionsSchema.virtual('stepaction_id').get(function(){
+stepactionSchema.virtual('stepaction_id').get(function(){
   return this._id;
 });
-module.exports = mongoose.model('Stepactions', stepactionsSchema);
+module.exports = mongoose.model('Stepaction', stepactionSchema);

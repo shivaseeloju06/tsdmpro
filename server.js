@@ -12,6 +12,7 @@ var express = require('express'),
   Scenario = require('./api/models/ScenarioModel'),
   Transaction = require('./api/models/TransactionModel'),
   Gherkinstep = require('./api/models/GherkinstepModel'),
+  Stepaction = require('./api/models/StepactionModel'),
   Action = require('./api/models/ActionModel'),
   Instruction = require('./api/models/InstructionModel'),
   Environment = require('./api/models/EnvironmentModel'),
@@ -46,6 +47,8 @@ var ImportRoutes = require('./api/routes/ImportRoutes');
 ImportRoutes(app);
 var ActionRoutes = require('./api/routes/ActionRoutes');
 ActionRoutes(app);
+var StepactionRoutes = require('./api/routes/StepactionRoutes');
+StepactionRoutes(app);
 var InstructionRoutes = require('./api/routes/InstructionRoutes');
 InstructionRoutes(app);
 var EnvironmentRoutes = require('./api/routes/EnvironmentRoutes');
