@@ -2599,6 +2599,41 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "/stepaction/<id>/action",
+					"item": [
+						{
+							"name": "Add new action and link to stepaction",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"action_id\": null,\r\n    \"mode\": \"view\",\r\n    \"index\": 2,\r\n    \"description\": \"Enter Password\",\r\n    \"expected_result\": \"PASS\",\r\n    \"instructionID\": \"604eebdb5bf2da0e48ef8d0f\",\r\n    \"instruction\": {\r\n        \"_id\": \"604eebdb5bf2da0e48ef8d0f\",\r\n        \"library\": \"SapGuiLibrary\",\r\n        \"name\": \"Input Password\",\r\n        \"arguments\": [\r\n            {\r\n                \"_id\": \"604eebdb5bf2da0e48ef8d10\",\r\n                \"argument\": \"element_id\"\r\n            },\r\n            {\r\n                \"_id\": \"604eebdb5bf2da0e48ef8d11\",\r\n                \"argument\": \"password\"\r\n            }\r\n        ],\r\n        \"created_date\": \"2021-03-15T05:08:43.283Z\",\r\n        \"__v\": 0\r\n    },\r\n    \"arguments\": [\r\n        {\r\n            \"argument\": \"element_id\",\r\n            \"type\": null,\r\n            \"value\": null,\r\n            \"defaultValue\": null\r\n        },\r\n        {\r\n            \"argument\": \"password\",\r\n            \"type\": null,\r\n            \"value\": \"Test123\",\r\n            \"defaultValue\": null\r\n        }\r\n    ],\r\n    \"test_data\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/stepaction/604f661d0a178e2e98630ae9/action",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"stepaction",
+										"604f661d0a178e2e98630ae9",
+										"action"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -2679,7 +2714,7 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:3000/action/604df4a6ae1f0446948d8224",
+									"raw": "http://localhost:3000/action/604eee7e5bf2da0e48ef8d46",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -2687,7 +2722,7 @@
 									"port": "3000",
 									"path": [
 										"action",
-										"604df4a6ae1f0446948d8224"
+										"604eee7e5bf2da0e48ef8d46"
 									]
 								}
 							},
