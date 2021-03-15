@@ -18,7 +18,7 @@ exports.create_a_gherkinstep = async function(req, res) {
   var newBody = await getTransactionId(req.body);
   console.log(newBody);
   var new_gherkinstep = new Gherkinstep(newBody);
-    new_gherkinstep.save(function(err, gherkinstep) {
+    new_gherkinstep.save( async function(err, gherkinstep) {
       if (err) {
         res.send(err);
         console.log(err);
