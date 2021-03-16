@@ -94,19 +94,17 @@ exports.create_a_stepaction = function (req, res) {
 exports.create_a_step_by_stepaction = async function (req, res) {
   var this_Stepaction = await Stepaction.findById(req.params.id).exec();
 
+  var query = {"description": req.body.description},
+    options = { upsert: true, new: true, setDefaultsOnInsert: true };
   var new_action_array = {
     "description": req.body.description, 
     "expected_result": req.body.expected_result,
     "instruction": req.body.instructionID,
     "test_data": req.body.test_data
   };
-  var new_action = new Action(new_action_array);
-  new_action.save(function (err, action) {
-    if (err) {
-      res.send(err);
-      console.log(err);
-      return;
-    };
+  
+  var new_action = await Action.findOneAndUpdate(query, new_action_array, options, function(error, result) {
+  if (error) return;
   });
 
   this_Stepaction.wip_step_collection.push({"index": req.body.index, "action": new_action});
