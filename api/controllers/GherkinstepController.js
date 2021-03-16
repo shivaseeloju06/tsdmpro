@@ -18,7 +18,7 @@ exports.create_a_gherkinstep = async function(req, res) {
   var newBody = await getTransactionId(req.body);
   console.log(newBody);
   var new_gherkinstep = new Gherkinstep(newBody);
-    new_gherkinstep.save(function(err, gherkinstep) {
+    new_gherkinstep.save( async function(err, gherkinstep) {
       if (err) {
         res.send(err);
         console.log(err);
@@ -135,7 +135,7 @@ async function pushGherkinstepToTransaction(transactionId, gherkinstepId) {
 
 async function createEmptyStepActionCollection(name) {
   var query = {"name": name},
-    update = { "name": name,  "wip_step_collection": []},
+    update = { "name": name,  "wip_step_collection": [], "published_step_collection": []},
     options = { upsert: true, new: true, setDefaultsOnInsert: true };
 
   await Gherkinstep.findOneAndUpdate(query, update, options, function(error, result) {
