@@ -4,15 +4,15 @@ var mongoose = require('mongoose'),
 
 exports.list_all_keyvaluepairs = function (req, res) {
   Keyvaluepair.find({})
-  .populate('environment')
-  .exec( function (err, keyvaluepair) {
-    if (err) {
-      res.send(err);
-      console.log(err);
-      return;
-    };
-    res.json(keyvaluepair);
-  });
+    .populate('environment')
+    .exec(function (err, keyvaluepair) {
+      if (err) {
+        res.send(err);
+        console.log(err);
+        return;
+      };
+      res.json(keyvaluepair);
+    });
 };
 
 exports.create_a_keyvaluepair = async function (req, res) {
@@ -58,5 +58,18 @@ exports.delete_a_keyvaluepair_by_id = function (req, res) {
     };
     res.json({ message: 'Keyvaluepair successfully deleted' });
   });
+};
+
+exports.list_all_keyvaluepair_by_wildcard = function (req, res) {
+  Keyvaluepair.find({ name: { $regex: req.params.name, $options: 'i' } })
+    .populate('environment')
+    .exec(function (err, result) {
+      if (err) {
+        res.send(err);
+        console.log(err);
+        return;
+      };
+      res.json(result);
+    });
 };
 

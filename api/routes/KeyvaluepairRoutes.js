@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(app) {
+module.exports = function (app) {
   var Keyvaluepair = require('../controllers/KeyvaluepairController');
 
   // TSDM Routes
@@ -12,4 +12,7 @@ module.exports = function(app) {
     .get(Keyvaluepair.read_a_keyvaluepair_by_id)
     .put(Keyvaluepair.update_a_keyvaluepair_by_id)
     .delete(Keyvaluepair.delete_a_keyvaluepair_by_id);
+
+  app.route('/keyvaluepair/search/:name')
+    .get(Keyvaluepair.list_all_keyvaluepair_by_wildcard);
 };
