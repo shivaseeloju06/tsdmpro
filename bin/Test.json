@@ -1,0 +1,128 @@
+[
+	{
+		"ID": 45,
+		"ParentID": null,
+		"Data": {
+			"Work Item Type": "User Story",
+			"Title": "Login with Valid Username and Password"
+		},
+		"Children": []
+	},
+	{
+		"ID": 134,
+		"ParentID": 45,
+		"Data": {
+			"Work Item Type": "Test Case",
+			"Title": "AC 40 - Another Test"
+		},
+		"Children": [
+			{
+				"ID": null,
+				"ParentID": null,
+				"Data": {
+					"TransactionStep": "GIVEN I have navigated to the login page",
+					"Expected": "PASS"
+				},
+				"Children": []
+			},
+			{
+				"ID": null,
+				"ParentID": null,
+				"Data": {
+					"TransactionAction": "Navigate to login page",
+					"Expected": "PASS"
+				},
+				"Children": []
+			},
+			{
+				"ID": null,
+				"ParentID": null,
+				"Data": {
+					"TransactionStep": "WHEN {username} and {password} is entered",
+					"Expected": "PASS"
+				},
+				"Children": []
+			},
+			{
+				"ID": null,
+				"ParentID": null,
+				"Data": {
+					"TransactionAction": "Enter username in username field",
+					"Expected": "PASS"
+				},
+				"Children": []
+			},
+			{
+				"ID": null,
+				"ParentID": null,
+				"Data": {
+					"TransactionAction": "Enter password in password field",
+					"Expected": "PASS"
+				},
+				"Children": []
+			},
+			{
+				"ID": null,
+				"ParentID": null,
+				"Data": {
+					"TransactionStep": "AND Login button in clicked",
+					"Expected": "PASS"
+				},
+				"Children": []
+			},
+			{
+				"ID": null,
+				"ParentID": null,
+				"Data": {
+					"TransactionAction": "Click Login button",
+					"Expected": "PASS"
+				},
+				"Children": []
+			},
+			{
+				"ID": null,
+				"ParentID": null,
+				"Data": {
+					"TransactionStep": "THEN {username} is logged in",
+					"Expected": "PASS"
+				},
+				"Children": []
+			},
+			{
+				"ID": null,
+				"ParentID": null,
+				"Data": {
+					"TransactionAction": "Read username in logged in user label",
+					"Expected": "PASS"
+				},
+				"Children": []
+			}
+		]
+	},
+	{
+		"ParentID": 45,
+		"Data": {
+			"Work Item Type": "Test Case",
+			"Title": "New Test Case added"
+		},
+		"Children": [
+		{
+				"ID": null,
+				"ParentID": null,
+				"Data": {
+					"TransactionStep": "GIVEN I have navigated to the login page",
+					"Expected": "PASS"
+				},
+				"Children": []
+			},
+			{
+				"ID": null,
+				"ParentID": null,
+				"Data": {
+					"TransactionAction": "Navigate to login page",
+					"Expected": "PASS"
+				},
+				"Children": []
+			}]
+	},
+]
