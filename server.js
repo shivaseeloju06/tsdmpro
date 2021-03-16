@@ -55,6 +55,8 @@ var EnvironmentRoutes = require('./api/routes/EnvironmentRoutes');
 EnvironmentRoutes(app);
 var KeyvaluepairRoutes = require('./api/routes/KeyvaluepairRoutes');
 KeyvaluepairRoutes(app);
+var DownloadRoutes = require('./api/controllers/DownloadController');
+DownloadRoutes(app);
 
 // Error handling
 app.use((req, res, next) => {
