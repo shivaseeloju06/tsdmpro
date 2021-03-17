@@ -6,7 +6,7 @@ module.exports = function(app) {
   // Import
   app.route('/import/project')
     .get(Import.list_all_projects_and_children)
-    .post(Import.import__all_projects_and_children);
+    .post(Import.import_all_projects_and_children);
 
   app.route('/import/instruction')
     .post(Import.import_all_instructions);
