@@ -106,7 +106,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"The 1st Project (edited once)\",\r\n    \"alm_id\":1\r\n}",
+									"raw": "{\r\n    \"name\":\"The 1st Project (edited once)\",\r\n    \"alm_id\":1,\r\n    \"alm_type\": \"tfs\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -114,7 +114,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/project/id/6042738f5aa4eb443cd7b585",
+									"raw": "http://localhost:3000/project/id/6049f040ada0794850f0deca",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -123,7 +123,7 @@
 									"path": [
 										"project",
 										"id",
-										"6042738f5aa4eb443cd7b585"
+										"6049f040ada0794850f0deca"
 									]
 								}
 							},
@@ -2439,7 +2439,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"{username} and {password} is entered\",\r\n    \"wip_step_collection\": [\r\n        {\r\n            \"index\": 1,\r\n            \"action\": \"604eee7e5bf2da0e48ef8d46\"\r\n        }\r\n    ],\r\n    \"published_step_collection\": []\r\n}",
+									"raw": "{\r\n    \"name\": \"{username} and {password} is entered\",\r\n    \"wip_step_collection\": [],\r\n    \"published_step_collection\": []\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

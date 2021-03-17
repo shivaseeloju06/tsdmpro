@@ -31,6 +31,9 @@ var projectSchema = new Schema({
     required: 'Please enter the URL of the Project',
     unique: true
   },
+  alm_type: {
+    type: String
+  },
   alm_id: {
     type: String,
     required: 'Please enter the id for the Project from the ALM system',
