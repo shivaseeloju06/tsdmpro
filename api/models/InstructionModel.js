@@ -19,7 +19,11 @@ var instructionSchema = new Schema({
   },
   arguments: [
     {
-      argument: {type: String}
+      argument: {type: String},
+      default_argument: {
+        type: Boolean,
+        default: false
+      }
     }
   ]
 })
