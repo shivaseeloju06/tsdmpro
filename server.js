@@ -28,7 +28,7 @@ app.use(morgan('dev'));
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/tsdmDB', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/tsdmDB', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then(() => console.log("MongoDb Connected"))
   .catch(err => console.log(err));
 
