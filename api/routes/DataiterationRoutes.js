@@ -12,4 +12,7 @@ module.exports = function(app) {
     .get(Dataiteration.read_a_dataiteration_by_id)
     .put(Dataiteration.update_a_dataiteration_by_id)
     .delete(Dataiteration.delete_a_dataiteration_by_id);
+  
+  app.route('/dataiteration/stepaction/:stepaction_id')
+    .get(Dataiteration.list_all_dataiterations_for_stepactions);
 };
