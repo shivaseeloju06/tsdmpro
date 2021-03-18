@@ -9,6 +9,14 @@ var instructionSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  synced_date: {
+    type: Date,
+    default: Date.now
+  },
+  updated_date: {
+    type: Date,
+    default: Date.now
+  },
   library: {
     type: String,
     required: 'Please enter the library for the Instruction'
@@ -20,9 +28,9 @@ var instructionSchema = new Schema({
   arguments: [
     {
       argument: {type: String},
-      default_argument: {
+      required: {
         type: Boolean,
-        default: false
+        default: true
       }
     }
   ]

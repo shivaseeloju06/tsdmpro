@@ -9,6 +9,10 @@ var actionSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  updated_date: {
+    type: Date,
+    default: Date.now
+  },
   description: {
     type: String,
   },
@@ -21,34 +25,18 @@ var actionSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Instruction'
   },
-  test_data:[
+  argument_datatoken_pairs: [
     {
-      iteration: {
-          type: Number,
-          required: 'please enter an iteration number'
+      argument: {
+        type: String,
+        required: 'please enter an argument'
       },
-      environments: [
-        {
-          environment: {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Environment'
-          },
-          datapairs: [
-            {
-              argument: {
-                type: String,
-                required: 'please enter an argument'
-              },
-              valuename: {
-                type: mongoose.Schema.Types.ObjectId, 
-                ref: 'Keyvaluepair'
-              }
-            }
-          ]
-        }
-      ]
+      token_name: {
+        type: String
+      }
     }
   ]
+
 })
 actionSchema.virtual('action_id').get(function(){
   return this._id;
