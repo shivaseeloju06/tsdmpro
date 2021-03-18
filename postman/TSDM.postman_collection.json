@@ -3149,26 +3149,26 @@
 					"name": "/dataiteration/",
 					"item": [
 						{
-							"name": "Get all Environments",
+							"name": "Get all Dataiterations",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/environment",
+									"raw": "http://localhost:3000/dataiteration",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"environment"
+										"dataiteration"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Add an Environment",
+							"name": "Add a Dataiteration",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3180,7 +3180,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"UAT\"\r\n}",
+									"raw": "{\r\n    \"iteration\":2,\r\n    \"environment\": \"605335ad391998120821aa49\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3188,14 +3188,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/environment",
+									"raw": "http://localhost:3000/dataiteration",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"environment"
+										"dataiteration"
 									]
 								}
 							},
@@ -3208,7 +3208,7 @@
 					"name": "/dataiteration/<id>",
 					"item": [
 						{
-							"name": "Get an Environment by Id",
+							"name": "Get a Dataiteration by Id",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -3220,14 +3220,14 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:3000/environment/604df4a6ae1f0446948d8224",
+									"raw": "http://localhost:3000/dataiteration/604df4a6ae1f0446948d8224",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"environment",
+										"dataiteration",
 										"604df4a6ae1f0446948d8224"
 									]
 								}
@@ -3235,7 +3235,7 @@
 							"response": []
 						},
 						{
-							"name": "Update an Environment by Id",
+							"name": "Update a Dataiteration by Id",
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -3249,14 +3249,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/environment/604eecef5bf2da0e48ef8d42",
+									"raw": "http://localhost:3000/dataiteration/604eecef5bf2da0e48ef8d42",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"environment",
+										"dataiteration",
 										"604eecef5bf2da0e48ef8d42"
 									]
 								}
@@ -3264,7 +3264,7 @@
 							"response": []
 						},
 						{
-							"name": "Delete an Environment by Id",
+							"name": "Delete a Dataiteration by Id",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -3273,14 +3273,14 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:3000/environment/604273a75aa4eb443cd7b586",
+									"raw": "http://localhost:3000/dataiteration/604273a75aa4eb443cd7b586",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"environment",
+										"dataiteration",
 										"604273a75aa4eb443cd7b586"
 									]
 								}
