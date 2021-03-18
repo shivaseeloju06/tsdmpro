@@ -54,7 +54,7 @@ exports.delete_a_stepaction_by_id = function (req, res) {
 
 exports.list_all_stepactions_by_wildcard = function (req, res) {
   Stepaction.find({ name: { $regex: req.params.description } })
-    .populate('action')
+    .populate(({path: 'wip_step_collection', populate: {path: "action", model: 'Action', populate: [{path: 'instruction', model: 'Instruction'}, {path: 'test_data.environments.environment', model: 'Environment'}]}}))
     .exec(function (err, result) {
       if (err) {
         res.send(err);
