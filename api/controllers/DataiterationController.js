@@ -79,6 +79,7 @@ exports.list_all_dataiterations_for_stepactions = async function (req, res) {
         model: 'Keyvaluepair'
       }
     ])
+    .sort({ environment: 1, iteration: 1 })
     .exec( function (err, dataiterations) {
       if (err) {
         console.log(err);
