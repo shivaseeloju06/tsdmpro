@@ -72,15 +72,15 @@ exports.list_all_dataiterations_for_stepactions = async function (req, res) {
       {
         path: 'environment',
         model: 'Environment'
-      }, 
+      },
       {
         path: 'keyvaluepairs',
-        match: {token_name: {$in: usedTokens}},
+        match: { token_name: { $in: usedTokens } },
         model: 'Keyvaluepair'
       }
     ])
     .sort({ environment: 1, iteration: 1 })
-    .exec( function (err, dataiterations) {
+    .exec(function (err, dataiterations) {
       if (err) {
         console.log(err);
         return err
@@ -101,40 +101,43 @@ exports.list_all_dataiterations_for_stepactions = async function (req, res) {
 };
 
 exports.update_all_dataiterations_for_stepactions = async function (req, res) {
-  const keyvaluepairs = await buildKeyvaluepairs(req.body);
-  const environment = await Environment.findOne({ name: req.body.environment }).exec();
-  let dataiteration = await Dataiteration.findOne({ iteration: req.body.iteration, environment: environment._id }).exec();
-  const datapairsid = dataiteration.keyvaluepairs;
-  for (const thisDatapair of keyvaluepairs) {
-    await Keyvaluepair.findOneAndUpdate({ _id: {$in: datapairsid}, token_name: thisDatapair.token_name}, thisDatapair, { new: true }, function (err, thisRecord) {
-      if (err) {
-        res.send(err);
-        console.log(err);
-        return;
-      };
-    });
+
+
+  for (const di of req.body) {
+    const keyValuePairs = await buildKeyValuePairs(di);
+    const environment = await Environment.findOne({ name: di.environment }).exec();
+    let dataIteration = await Dataiteration.findOne({ iteration: di.iteration, environment: environment._id }).exec();
+
+    const keyValuePairIds = dataIteration.keyvaluepairs;
+    for (const kvp of keyValuePairs) {
+      await Keyvaluepair.findOneAndUpdate({ _id: { $in: keyValuePairIds }, token_name: kvp.token_name }, kvp, { new: true }, function (err, thisRecord) {
+        if (err) {
+          res.send(err);
+          console.log(err);
+          return;
+        };
+      });
+    }
   }
-  res.json(keyvaluepairs);
+
+  res.json(req.body);
 }
 
 // TODO MOve business logic into seperate controller
 
-function buildKeyvaluepairs(received) {
-  return new Promise( async function (resolve, reject) {
-    let returnArray = [];
-    for (const [key, value] of Object.entries(received)) {
-      console.log(`${key}: ${value}`);
-      if (key != "iteration" && key != "environment") {
-        let transposed = { "token_name": key, "value": value };
-        returnArray.push(transposed)
-      }
+function buildKeyValuePairs(data) {
+  let returnArray = [];
+  for (const key of Object.keys(data)) {
+    if (key !== "iteration" && key !== "environment") {
+      let transposed = { "token_name": key, "value": data[key] };
+      returnArray.push(transposed)
     }
-    resolve(returnArray)
-  })
+  }
+  return returnArray;
 }
 
 function fillIterationWithExistingTokens() {
-  return new Promise( async function (resolve, reject) {
+  return new Promise(async function (resolve, reject) {
     var returnCollection = [];
     var allTokens = await getallTokens();
     for (const element of allTokens) {
@@ -145,9 +148,9 @@ function fillIterationWithExistingTokens() {
   });
 };
 
-function createEmptyKeyvaluepair(token){
-  return new Promise( async function (resolve, reject) {
-    var new_keyvaluepair = new Keyvaluepair({"token_name": token.name, "value": ""});
+function createEmptyKeyvaluepair(token) {
+  return new Promise(async function (resolve, reject) {
+    var new_keyvaluepair = new Keyvaluepair({ "token_name": token.name, "value": "" });
     new_keyvaluepair.save(function (err, keyvaluepair) {
       if (err) {
         console.log(err);
@@ -159,7 +162,7 @@ function createEmptyKeyvaluepair(token){
 };
 
 function getallTokens() {
-  return new Promise( function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
     Tokenname.find({}, async function (err, tokenArray) {
       if (err) {
         console.log(err);
@@ -171,26 +174,26 @@ function getallTokens() {
 }
 
 function getAllUsedTokensByStepaction(stepaction_id) {
-  return new Promise( async function (resolve, reject) {
+  return new Promise(async function (resolve, reject) {
     Stepaction.findById(stepaction_id)
-      .populate({path: 'wip_step_collection.action', model: 'Action'})
-      .exec( async function (err, stepaction) {
-      if (err) {
-        console.log(err);
-        rejecct(err);
-      };
-      var wip_step_collection = stepaction.wip_step_collection;
-      var token_list = [];
-      for (const element of wip_step_collection) {
-        if (element.action != null) {
-          var argument_datatoken_pairs = element.action.argument_datatoken_pairs;
-          for (const pair of argument_datatoken_pairs) {
-            token_list.push(pair.token_name);
+      .populate({ path: 'wip_step_collection.action', model: 'Action' })
+      .exec(async function (err, stepaction) {
+        if (err) {
+          console.log(err);
+          rejecct(err);
+        };
+        var wip_step_collection = stepaction.wip_step_collection;
+        var token_list = [];
+        for (const element of wip_step_collection) {
+          if (element.action != null) {
+            var argument_datatoken_pairs = element.action.argument_datatoken_pairs;
+            for (const pair of argument_datatoken_pairs) {
+              token_list.push(pair.token_name);
+            }
           }
         }
-      }
-      resolve(token_list);
-    })
+        resolve(token_list);
+      })
   })
 }
 
