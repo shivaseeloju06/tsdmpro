@@ -32,9 +32,12 @@ exports.import_all_projects_and_children = async function(req, res) {
   const allGherkinsteps = doc.findValues('gherkinsteps');
   try {
     const projectResult = await addProjects(allProjects, res);
-    const testsuiteResult = await addTestsuites(allTestsuites, res);
+    /*const testsuiteResult = await addTestsuites(allTestsuites, res);
     const workflowResult = await addWorkflows(allWorkflows, res);
-    return {res, projectResult, testsuiteResult, workflowResult};
+    const scenarioResult = await addScenarios(allScenarios, res);
+    const transactionResult = await addTransactions(allTransactions, res);
+    const gherkinstepResult = await addTransactions(allGherkinsteps, res);*/
+    return {res, projectResult/*, testsuiteResult, workflowResult, scenarioResult, transactionResult, gherkinstepResult*/};
   }
   catch (err) {
     res.send(err);
@@ -44,19 +47,18 @@ exports.import_all_projects_and_children = async function(req, res) {
 };
 
 exports.import_all_instructions = async function(req, res) {
-  var arrayCollection = req.body;
-  var callback;
+  const arrayCollection = req.body;
+  let callback;
   const response = await Promise.all([
     addCollectionOfInstructions(arrayCollection, callback)
   ]);
-  console.log(callback);
   return res.json(callback).sendStatus(200);
-};
+}
 
 // nested import code
 async function addProjects(recJson, res) {
-  var arrayCollection = recJson.projects;
-  await arrayCollection.forEach(function(element) {
+  const arrayCollection = recJson.projects;
+  for (const element of arrayCollection) {
     element.testsuites = [];
     var new_project = new Project(element);
     new_project.save(function(err, project) {
@@ -67,12 +69,12 @@ async function addProjects(recJson, res) {
       };
       return res.json(project);
     })
-  })
-};
+  }
+}
 
 async function addTestsuites(recJson, res) {
   var arrayCollection = recJson.testsuites;
-  await arrayCollection.forEach(function(element) {
+  for (const element of arrayCollection) {
     element.workflows = [];
     var thisParent = Project.findOne({alm_id: element.parent}).then(async function(err, project) {
       if (err) {
@@ -92,7 +94,7 @@ async function addTestsuites(recJson, res) {
     })
     thisParent.testsuites.push(new_testsuite._id),
     thisParent.save();
-  });
+  };
   return;
 };
 

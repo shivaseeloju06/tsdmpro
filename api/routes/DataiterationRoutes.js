@@ -6,7 +6,8 @@ module.exports = function(app) {
   // Dataiterations
   app.route('/dataiteration')
     .get(Dataiteration.list_all_dataiterations)
-    .post(Dataiteration.create_a_dataiteration);
+    .post(Dataiteration.create_a_dataiteration)
+    .put(Dataiteration.update_all_dataiterations_for_stepactions);
 
   app.route('/dataiteration/:id')
     .get(Dataiteration.read_a_dataiteration_by_id)

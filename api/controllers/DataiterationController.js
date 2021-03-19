@@ -3,7 +3,8 @@ var mongoose = require('mongoose'),
   Dataiteration = mongoose.model('Dataiteration'),
   Tokenname = mongoose.model('Tokenname'),
   Keyvaluepair = mongoose.model('Keyvaluepair'),
-  Stepaction = mongoose.model('Stepaction');
+  Stepaction = mongoose.model('Stepaction'),
+  Environment = mongoose.model('Environment');
 
 exports.list_all_dataiterations = function (req, res) {
   Dataiteration.find({}, function (err, dataiteration) {
@@ -98,8 +99,38 @@ exports.list_all_dataiterations_for_stepactions = async function (req, res) {
     });
 };
 
+exports.update_all_dataiterations_for_stepactions = async function (req, res) {
+  const keyvaluepairs = await buildKeyvaluepairs(req.body);
+  const environment = await Environment.findOne({ name: req.body.environment }).exec();
+  let dataiteration = await Dataiteration.findOne({ iteration: req.body.iteration, environment: environment._id }).exec();
+  const datapairsid = dataiteration.keyvaluepairs;
+  for (const thisDatapair of keyvaluepairs) {
+    await Keyvaluepair.findOneAndUpdate({ _id: {$in: datapairsid}, token_name: thisDatapair.token_name}, thisDatapair, { new: true }, function (err, thisRecord) {
+      if (err) {
+        res.send(err);
+        console.log(err);
+        return;
+      };
+    });
+  }
+  res.json(keyvaluepairs);
+}
 
 // TODO MOve business logic into seperate controller
+
+function buildKeyvaluepairs(received) {
+  return new Promise( async function (resolve, reject) {
+    let returnArray = [];
+    for (const [key, value] of Object.entries(received)) {
+      console.log(`${key}: ${value}`);
+      if (key != "iteration" && key != "environment") {
+        let transposed = { "token_name": key, "value": value };
+        returnArray.push(transposed)
+      }
+    }
+    resolve(returnArray)
+  })
+}
 
 function fillIterationWithExistingTokens() {
   return new Promise( async function (resolve, reject) {

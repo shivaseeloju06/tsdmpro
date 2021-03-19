@@ -3200,6 +3200,35 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Update Dataiterations for a StepAction",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"environment\": \"DEV\",\r\n    \"iteration\": 1,\r\n    \"Username Value\": \"happyDog99\",\r\n    \"Username Field Locator\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/dataiteration/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"dataiteration",
+										""
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"description": "The default endpoint to CRUD **projects** to the **TSDM** engine with minimum information:"
