@@ -66,7 +66,7 @@ exports.delete_an_environment_by_id = function (req, res) {
 };
 
 // TODO Move business logic to seperate controller
-async function createDataiteration(env_id, iteration, keyvaluepairs) {
+function createDataiteration(env_id, iteration, keyvaluepairs) {
   return new Promise( function (resolve, reject) {
     var query = {$and: [{environment: env_id}, {iteration: iteration}]},
     update = { "environment": env_id, "iteration": iteration, "keyvaluepairs": keyvaluepairs },
@@ -81,7 +81,7 @@ async function createDataiteration(env_id, iteration, keyvaluepairs) {
   });
 };
 
-async function getEmptyKeyValuePairsFromTokens(tokenNames) {
+function getEmptyKeyValuePairsFromTokens(tokenNames) {
   return new Promise( async function (resolve, reject) {
     var returnArray = [];
     await tokenNames.forEach(async function (element) {
@@ -92,7 +92,7 @@ async function getEmptyKeyValuePairsFromTokens(tokenNames) {
   });
 };
 
-async function getallTokens() {
+function getallTokens() {
   return new Promise( function (resolve, reject) {
     Tokenname.find({}, async function (err, tokenArray) {
       if (err) {
@@ -104,7 +104,7 @@ async function getallTokens() {
   });
 };
 
-async function createEmptyKeyvaluepair(token){
+function createEmptyKeyvaluepair(token){
   return new Promise( async function (resolve, reject) {
     var new_keyvaluepair = new Keyvaluepair({"token_name": token.name, "value": ""});
     new_keyvaluepair.save(function (err, keyvaluepair) {

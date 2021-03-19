@@ -106,7 +106,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"TSDM\",\r\n    \"alm_id\":1,\r\n    \"alm_type\": \"tfs\"\r\n}",
+									"raw": "{\r\n    \"name\":\"TSDM\",\r\n    \"alm_id\":1,\r\n    \"alm_type\": \"ado\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2679,7 +2679,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"description\": \"Enter Username\",\r\n    \"expected_result\": \"PASS\",\r\n    \"instruction\": \"6051dfdceaa6ec1098a1ea07\",\r\n    \"argument_datatoken_pairs\": [\r\n        {\r\n            \"argument\": \"element_id\",\r\n            \"token_name\": \"Username Field Locator\"\r\n        },\r\n        {\r\n            \"argument\": \"text\",\r\n            \"token_name\": \"Username Value\"\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"description\": \"Enter Username\",\r\n    \"expected_result\": \"PASS\",\r\n    \"instruction\": \"\",\r\n    \"argument_datatoken_pairs\": [\r\n        {\r\n            \"argument\": \"element_id\",\r\n            \"token_name\": \"Username Field Locator\"\r\n        },\r\n        {\r\n            \"argument\": \"text\",\r\n            \"token_name\": \"Username Value\"\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2739,7 +2739,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"UAT\"\r\n}",
+									"raw": "{\r\n    \"description\": \"Enter Username\",\r\n    \"expected_result\": \"PASS\",\r\n    \"instruction\": \"60526a4e22ab1b4d9424d230\",\r\n    \"argument_datatoken_pairs\": [\r\n        {\r\n            \"argument\": \"element_id\",\r\n            \"token_name\": \"Username Field Locator\"\r\n        },\r\n        {\r\n            \"argument\": \"text\",\r\n            \"token_name\": \"Username Value\"\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2747,7 +2747,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/action/604df4a6ae1f0446948d8224",
+									"raw": "http://localhost:3000/action/60542c62f4b0bf52c8cef5e9",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -2755,7 +2755,7 @@
 									"port": "3000",
 									"path": [
 										"action",
-										"604df4a6ae1f0446948d8224"
+										"60542c62f4b0bf52c8cef5e9"
 									]
 								}
 							},
@@ -2854,7 +2854,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"DEV\",\r\n    \"project\": \"6049f040ada0794850f0deca\"\r\n}",
+									"raw": "{\r\n    \"name\":\"SIT\",\r\n    \"project\": \"6049f040ada0794850f0deca\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3005,7 +3005,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Admin Username Value\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Password Value\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3180,7 +3180,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"iteration\":2,\r\n    \"environment\": \"605335ad391998120821aa49\"\r\n}",
+									"raw": "{\r\n    \"iteration\":3,\r\n    \"environment\": \"60546e05e2805f310c220411\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3289,6 +3289,32 @@
 						}
 					],
 					"description": "The endpoint to CRUD **projects** to the **TSDM** engine with minimum information if you know the tsdm_id:"
+				},
+				{
+					"name": "/dataiteration/stepaction/<id>",
+					"item": [
+						{
+							"name": "Get all Dataiterations for a StepAction",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/dataiteration/stepaction/6050bffeb6124737e41c01b7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"dataiteration",
+										"stepaction",
+										"6050bffeb6124737e41c01b7"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			],
 			"description": "The RESTful API endpoints for **projects**:"
@@ -3540,7 +3566,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"projects\": [\r\n\t\t{\r\n\t\t\t\"name\": \"TSDM\",\r\n\t\t\t\"alm_id\": 1,\r\n\t\t\t\"is_active\": 1,\r\n\t\t\t\"url\": \"https://dev.azure.com/SQSDemos/TSDM\",\r\n\t\t\t\"testsuites\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"parent\": 1,\r\n\t\t\t\t\t\"name\": \"Regression\",\r\n\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\"alm_id\": 61,\r\n\t\t\t\t\t\"workflows\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"parent\": 61,\r\n\t\t\t\t\t\t\t\"name\": \"WEC Tagout - User Functions\",\r\n\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\"alm_id\": 43,\r\n\t\t\t\t\t\t\t\"scenarios\": [\r\n\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"parent\": 43,\r\n\t\t\t\t\t\t\t\t\t\"name\": \"Login with Valid Username and Password\",\r\n\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\"alm_id\": 45,\r\n\t\t\t\t\t\t\t\t\t\"requirement\": \"As an user type I have to log on to the system so I can perform my duties\",\r\n\t\t\t\t\t\t\t\t\t\"transactions\": [\r\n\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\"parent\": 45,\r\n\t\t\t\t\t\t\t\t\t\t\t\"name\": \"AC10 - Each user type can log in with valid Username and Password\",\r\n\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\"alm_id\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\"gherkinsteps\": [\r\n\t\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"parent\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"index\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"gherkin_keyword\": \"GIVEN\",\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"name\": \"I have navigated to the login page\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"parent\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"index\": 2,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"gherkin_keyword\": \"WHEN\",\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"name\": \"{username} and {password} is entered\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"parent\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"index\": 3,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"gherkin_keyword\": \"AND\",\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"name\": \"Login button is clicked\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"parent\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"index\": 4,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"gherkin_keyword\": \"THEN\",\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"name\": \"{username} is logged in\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\"parent\": 45,\r\n\t\t\t\t\t\t\t\t\t\t\t\"name\": \"AC20 - Each user type can log in with valid Username and Password and select Remember Me option \",\r\n\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\"alm_id\": 20,\r\n\t\t\t\t\t\t\t\t\t\t\t\"gherkinsteps\": []\r\n\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"parent\": 43,\r\n\t\t\t\t\t\t\t\t\t\"name\": \"Login with Invalid Username and Password\",\r\n\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\"alm_id\": 46,\r\n\t\t\t\t\t\t\t\t\t\"requirement\": \"As a invalid user type I cannot log on to the system\",\r\n\t\t\t\t\t\t\t\t\t\"transactions\": []\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"parent\": 61,\r\n\t\t\t\t\t\t\t\"name\": \"WEC Tagout - Other Functions\",\r\n\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\"alm_id\": 44,\r\n\t\t\t\t\t\t\t\"scenarios\": []\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"parent\": 1,\r\n\t\t\t\t\t\"name\": \"Smoke\",\r\n\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\"alm_id\": 62,\r\n\t\t\t\t\t\"workflows\": []\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"raw": "{\r\n\t\"projects\": [\r\n\t\t{\r\n\t\t\t\"name\": \"TSDM\",\r\n\t\t\t\"alm_id\": 1,\r\n            \"alm_type\": \"tfs\",\r\n\t\t\t\"is_active\": 1,\r\n\t\t\t\"url\": \"https://dev.azure.com/SQSDemos/TSDM\",\r\n\t\t\t\"testsuites\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"parent\": 1,\r\n\t\t\t\t\t\"name\": \"Regression\",\r\n\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\"alm_id\": 61,\r\n\t\t\t\t\t\"workflows\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"parent\": 61,\r\n\t\t\t\t\t\t\t\"name\": \"WEC Tagout - User Functions\",\r\n\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\"alm_id\": 43,\r\n\t\t\t\t\t\t\t\"scenarios\": [\r\n\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"parent\": 43,\r\n\t\t\t\t\t\t\t\t\t\"name\": \"Login with Valid Username and Password\",\r\n\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\"alm_id\": 45,\r\n\t\t\t\t\t\t\t\t\t\"requirement\": \"As an user type I have to log on to the system so I can perform my duties\",\r\n\t\t\t\t\t\t\t\t\t\"transactions\": [\r\n\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\"parent\": 45,\r\n\t\t\t\t\t\t\t\t\t\t\t\"name\": \"AC10 - Each user type can log in with valid Username and Password\",\r\n\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\"alm_id\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\"gherkinsteps\": [\r\n\t\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"parent\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"index\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"gherkin_keyword\": \"GIVEN\",\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"name\": \"I have navigated to the login page\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"parent\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"index\": 2,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"gherkin_keyword\": \"WHEN\",\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"name\": \"{username} and {password} is entered\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"parent\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"index\": 3,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"gherkin_keyword\": \"AND\",\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"name\": \"Login button is clicked\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"parent\": 10,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"index\": 4,\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"gherkin_keyword\": \"THEN\",\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\"name\": \"{username} is logged in\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\"parent\": 45,\r\n\t\t\t\t\t\t\t\t\t\t\t\"name\": \"AC20 - Each user type can log in with valid Username and Password and select Remember Me option \",\r\n\t\t\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\t\t\"alm_id\": 20,\r\n\t\t\t\t\t\t\t\t\t\t\t\"gherkinsteps\": []\r\n\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"parent\": 43,\r\n\t\t\t\t\t\t\t\t\t\"name\": \"Login with Invalid Username and Password\",\r\n\t\t\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\t\t\"alm_id\": 46,\r\n\t\t\t\t\t\t\t\t\t\"requirement\": \"As a invalid user type I cannot log on to the system\",\r\n\t\t\t\t\t\t\t\t\t\"transactions\": []\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"parent\": 61,\r\n\t\t\t\t\t\t\t\"name\": \"WEC Tagout - Other Functions\",\r\n\t\t\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\t\t\"alm_id\": 44,\r\n\t\t\t\t\t\t\t\"scenarios\": []\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"parent\": 1,\r\n\t\t\t\t\t\"name\": \"Smoke\",\r\n\t\t\t\t\t\"is_active\": 1,\r\n\t\t\t\t\t\"alm_id\": 62,\r\n\t\t\t\t\t\"workflows\": []\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
