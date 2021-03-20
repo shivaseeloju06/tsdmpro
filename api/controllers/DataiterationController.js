@@ -88,6 +88,7 @@ exports.list_all_dataiterations_for_stepactions = async function (req, res) {
       let returnArray = [];
       for (const iteration of dataiterations) {
         const record = {
+          "_id": iteration._id,
           "environment": iteration.environment.name,
           "iteration": iteration.iteration
         };
