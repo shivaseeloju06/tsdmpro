@@ -102,12 +102,20 @@ exports.list_all_dataiterations_for_stepactions = async function (req, res) {
 };
 
 exports.update_all_dataiterations_for_stepactions = async function (req, res) {
-
-
   for (const di of req.body) {
     const keyValuePairs = await buildKeyValuePairs(di);
-    const environment = await Environment.findOne({ name: di.environment }).exec();
-    let dataIteration = await Dataiteration.findOne({ iteration: di.iteration, environment: environment._id }).exec();
+    var environment = await Environment.findOne({ name: di.environment }).exec();
+    var dataIteration = await Dataiteration.findOne({ iteration: di.iteration, environment: environment._id }).exec();
+
+    if (!dataIteration) {
+      //New Iteration so create
+      dataIteration = new Dataiteration({
+        iteration: di.iteration,
+        environment: environment._id,
+        keyvaluepairs: await fillIterationWithExistingTokens()
+      });
+      await dataIteration.save();
+    }
 
     const keyValuePairIds = dataIteration.keyvaluepairs;
     for (const kvp of keyValuePairs) {
