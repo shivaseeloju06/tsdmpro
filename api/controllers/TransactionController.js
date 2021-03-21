@@ -136,9 +136,16 @@ exports.delete_a_transaction_by_name = function (req, res) {
       console.log(err);
       return;
     };
+    
     res.json({ message: 'Transaction successfully deleted' });
   });
-};
+}
+
+/*
+exports.publish_a_transaction = async function (req, res) {
+  const transaction_id = req.params.transaction_id;
+  let thisTransaction = await Transaction.findOn
+}*/
 
 async function getScenarioId(passedBody) {
   try {

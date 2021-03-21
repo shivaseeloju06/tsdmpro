@@ -25,6 +25,7 @@ exports.list_all_projects_and_children = function(req, res) {
 
 exports.import_all_projects_and_children = async function(req, res) {
   const doc = JsonFind(req.body);
+  //console.log(doc);
   const allProjects = doc.findValues("projects");
   const allTestsuites = doc.findValues("testsuites");
   const allWorkflows = doc.findValues('workflows');

@@ -63,6 +63,8 @@ var TokennameRoutes = require('./api/routes/TokennameRoutes');
 TokennameRoutes(app);
 var DownloadRoutes = require('./api/routes/DownloadRoutes');
 DownloadRoutes(app);
+var ExportRoutes = require('./api/routes/ExportRoutes');
+ExportRoutes(app);
 
 // Error handling
 app.use((req, res, next) => {

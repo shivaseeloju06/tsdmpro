@@ -67,6 +67,26 @@ exports.delete_an_environment_by_id = function (req, res) {
   });
 };
 
+exports.create_an_environment_by_project_almid = async function (req, res) {
+  try {
+    let newEnvironment = req.body;
+    console.log(req.params.almid);
+    var project = await Project.findOne({alm_id: req.params.almid}).exec();
+    console.log(project);
+    var tokenCollection = await getallTokens();
+    var emptyKeyValuePairs = await getEmptyKeyValuePairsFromTokens(tokenCollection);
+    newEnvironment.project = project._id;
+    var new_environment = new Environment(newEnvironment);
+    new_environment.project = project;
+    await new_environment.save();
+    await createDataiteration(new_environment._id, "1", emptyKeyValuePairs);
+    res.json(new_environment);
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+};
+
 // TODO Move business logic to seperate controller
 function createDataiteration(env_id, iteration, keyvaluepairs) {
   return new Promise(function (resolve, reject) {
