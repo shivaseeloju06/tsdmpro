@@ -9,7 +9,7 @@ const { execSync } = require("child_process");
 var Project = mongoose.model('Project'),
   Testsuite = mongoose.model('Testsuite');
 
-exports.downloadExcelDummy = async function (req, res) {
+exports.download_tfs_transaction_by_id = async function (req, res) {
 
   var file = __dirname + '../../../bin/TSDM.Excel.Exporter.exe';
   var output = __dirname + '../../../bin/TSDM.xlsx';

@@ -4,6 +4,6 @@ module.exports = function (app) {
 
   // TSDM Routes
   // Actions
-  app.route('/download/dummy')
-    .get(Download.downloadExcelDummy);
+  app.route('/download/tfs/transaction/:id')
+    .get(Download.download_tfs_transaction_by_id);
 };
