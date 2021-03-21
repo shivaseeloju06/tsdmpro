@@ -2093,6 +2093,41 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "/transaction/publish/<id>",
+					"item": [
+						{
+							"name": "/transaction/publish/<id>",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/transaction/publish/6057151d77aee960eec222d6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"transaction",
+										"publish",
+										"6057151d77aee960eec222d6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			],
 			"description": "The RESTful API endpoints for **workflow (feature)**:"
@@ -2854,7 +2889,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"SIT\",\r\n    \"project\": \"6049f040ada0794850f0deca\"\r\n}",
+									"raw": "{\r\n    \"name\":\"UAT\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2862,14 +2897,17 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/environment",
+									"raw": "http://localhost:3000/environment/project/almid/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"environment"
+										"environment",
+										"project",
+										"almid",
+										"1"
 									]
 								}
 							},
@@ -2963,9 +3001,52 @@
 						}
 					],
 					"description": "The endpoint to CRUD **projects** to the **TSDM** engine with minimum information if you know the tsdm_id:"
+				},
+				{
+					"name": "/environment/project/almid/<i>",
+					"item": [
+						{
+							"name": "Add an Environment by Project ALM ID",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"UAT\",\r\n    \"project\": \"6057371477aee960eec2634f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/environment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"environment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			],
 			"description": "The RESTful API endpoints for **projects**:"
+		},
+		{
+			"name": "New Folder",
+			"item": []
 		},
 		{
 			"name": "Token Name",
@@ -3646,6 +3727,46 @@
 									"path": [
 										"import",
 										"instruction"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Export Run Files",
+			"item": [
+				{
+					"name": "/export/transaction/<id>",
+					"item": [
+						{
+							"name": "Export by Transaction",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"transaction_id\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/export/transaction/6057151d77aee960eec222d6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"export",
+										"transaction",
+										"6057151d77aee960eec222d6"
 									]
 								}
 							},
