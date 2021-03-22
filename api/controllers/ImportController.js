@@ -69,7 +69,7 @@ async function addProjects(recJson) {
 
 async function createProject(project) {
   project.testsuites = [];
-  await Project.findOneAndUpdate({name: project.name}, project, {returnOriginal: false, upsert: true}).exec();
+  await Project.findOneAndUpdate({name: project.name}, project, {new: true, upsert: true}).exec();
 }
 
 async function addTestsuites(recJson) {
@@ -85,7 +85,7 @@ async function createTestsuite(testsuitesuite) {
   var thisParent = await Project.findOne({alm_id: testsuitesuite.parent}).exec();
   testsuitesuite.project = thisParent._id;
   delete testsuitesuite['parent'];
-  let addedtestsuite = await Testsuite.findOneAndUpdate( {name: testsuitesuite.name}, testsuitesuite, {returnOriginal: false, upsert: true}).exec()
+  let addedtestsuite = await Testsuite.findOneAndUpdate( {name: testsuitesuite.name}, testsuitesuite, {new: true, upsert: true}).exec()
   thisParent.testsuites.push(addedtestsuite._id),
   await thisParent.save();
 }
@@ -103,7 +103,7 @@ async function createWorkflow(workflow) {
   var thisParent = await Testsuite.findOne({alm_id: workflow.parent}).exec()
   workflow.testsuite = thisParent._id;
   delete workflow['parent'];
-  let addedworkflow = await Workflow.findOneAndUpdate( {name: workflow.name}, workflow, {returnOriginal: false, upsert: true}).exec()
+  let addedworkflow = await Workflow.findOneAndUpdate( {name: workflow.name}, workflow, {new: true, upsert: true}).exec()
   thisParent.workflows.push(addedworkflow._id),
   await thisParent.save();
 
@@ -111,6 +111,7 @@ async function createWorkflow(workflow) {
 
 async function addScenarios(recJson) {
     var arrayCollection = recJson.scenarios;
+    console.log(arrayCollection);
     await Promise.all(arrayCollection.map(x => createScenario(x)));
     let counter = {};
     counter.scenarios_added = arrayCollection.length;
@@ -122,7 +123,7 @@ async function createScenario(scenario) {
   var thisParent = await Workflow.findOne({alm_id: scenario.parent}).exec();
   scenario.workflow = thisParent._id;
   delete scenario['parent'];
-  let addedscenario = await Scenario.findOneAndUpdate( {name: scenario.name}, scenario, {returnOriginal: false, upsert: true}).exec()
+  let addedscenario = await Scenario.findOneAndUpdate( {name: scenario.name}, scenario, {new: true, upsert: true}).exec()
   thisParent.scenarios.push(addedscenario._id),
   await thisParent.save();
 }
@@ -140,7 +141,7 @@ async function createTransaction(transaction) {
   var thisParent = await Scenario.findOne({alm_id: transaction.parent}).exec()
   transaction.scenario = thisParent._id;
   delete transaction['parent'];
-  let addedtransaction = await Transaction.findOneAndUpdate( {name: transaction.name}, transaction, {returnOriginal: false, upsert: true}).exec()
+  let addedtransaction = await Transaction.findOneAndUpdate( {name: transaction.name}, transaction, {new: true, upsert: true}).exec()
   thisParent.transactions.push(addedtransaction._id),
   await thisParent.save();
 }
@@ -157,7 +158,7 @@ async function creategherkinstep(gherkinstep) {
   var thisParent = await Transaction.findOne({alm_id: gherkinstep.parent}).exec()
   gherkinstep.transaction = thisParent._id;
   delete gherkinstep['parent'];
-  let addedgherkinstep = await Gherkinstep.findOneAndUpdate( {name: gherkinstep.name}, gherkinstep, {returnOriginal: false, upsert: true}).exec()
+  let addedgherkinstep = await Gherkinstep.findOneAndUpdate( {name: gherkinstep.name}, gherkinstep, {new: true, upsert: true}).exec()
   thisParent.gherkinsteps.push(addedgherkinstep._id),
   await thisParent.save();
 
