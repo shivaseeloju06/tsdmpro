@@ -79,10 +79,15 @@ exports.download_tfs_transaction_by_id = async function (req, res) {
       .populate('gherkinsteps')
       .exec();
 
+    var tempPath = path.normalize(__dirname + `../../../temp`);
     var exporterFilePath = path.normalize(__dirname + '../../../bin/TSDM.Excel.Exporter.exe');
-    var outputFilePath = path.normalize(__dirname + `../../../temp/WorkItem_${transaction.alm_id}.xlsx`);
-    var inputFilePath = path.normalize(__dirname + `../../../temp/WorkItem_${transaction.alm_id}.json`);
+    var outputFilePath = path.normalize(tempPath + `/WorkItem_${transaction.alm_id}.xlsx`);
+    var inputFilePath = path.normalize(tempPath + `/WorkItem_${transaction.alm_id}.json`);
     var items = [];
+
+    if (!fs.existsSync(tempPath)) {
+      fs.mkdirSync(tempPath);
+    }
 
     items.push({
       "ID": transaction.scenario.alm_id,
