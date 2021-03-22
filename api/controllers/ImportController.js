@@ -111,7 +111,6 @@ async function createWorkflow(workflow) {
 
 async function addScenarios(recJson) {
     var arrayCollection = recJson.scenarios;
-    console.log(arrayCollection);
     await Promise.all(arrayCollection.map(x => createScenario(x)));
     let counter = {};
     counter.scenarios_added = arrayCollection.length;
