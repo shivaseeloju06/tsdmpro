@@ -10,15 +10,18 @@ var Project = mongoose.model('Project'),
   Testsuite = mongoose.model('Testsuite'),
   Transaction = mongoose.model('Transaction'),
   Scenario = mongoose.model('Scenario'),
-  Gherkinstep = mongoose.model('Gherkinstep');
+  Gherkinstep = mongoose.model('Gherkinstep'),
+  Stepaction = mongoose.model('Stepaction'),
+  Action = mongoose.model('Action');
 
 const generateTransactionChildren = async function (transaction) {
   var items = []
 
   var steps = await Gherkinstep.find({ transaction: transaction._id }).exec();
 
+  //Expected needs to be looked at as always PASS as value is at parent level
   for (var step of steps) {
-    items.push({
+    var item = {
       "ID": null,
       "ParentID": null,
       "Data": {
@@ -26,7 +29,43 @@ const generateTransactionChildren = async function (transaction) {
         "Expected": "PASS"
       },
       "Children": []
-    });
+    };
+
+    //Find associated Step Action by name
+    var stepAction = await Stepaction.find({ name: step.name })
+      .populate('action')
+      .populate('action.wip_step_collection', 'Action')
+      .exec();
+
+    if (stepAction && stepAction.length > 0) {
+      item.Children = await generateStepActionChildren(stepAction[0]);
+    }
+
+    items.push(item);
+  }
+  return items;
+}
+
+const generateStepActionChildren = async function (stepAction) {
+  var items = []
+
+  var actionRefs = stepAction.wip_step_collection;
+
+  for (var actionRef of actionRefs) {
+    var action = await Action.findById(actionRef.action).exec();
+
+    if (action) {
+      items.push({
+        "ID": null,
+        "ParentID": null,
+        "Data": {
+          "StepAction": `${action.description}`,
+          "Expected": `${action.expected_result}`
+        },
+        "Children": []
+      });
+    }
+
   }
   return items;
 }
