@@ -85,128 +85,82 @@ async function createTestsuite(testsuitesuite) {
   var thisParent = await Project.findOne({alm_id: testsuitesuite.parent}).exec();
   testsuitesuite.project = thisParent._id;
   delete testsuitesuite['parent'];
-  let addedtestsuite = await Testsuite.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}).exec()
+  let addedtestsuite = await Testsuite.findOneAndUpdate( {name: testsuitesuite.name}, testsuitesuite, {returnOriginal: false, upsert: true}).exec()
   thisParent.testsuites.push(addedtestsuite._id),
   await thisParent.save();
 }
 
-function addWorkflows(recJson) {
-  return new Promise(async function (resolve, reject) {
+async function addWorkflows(recJson) {
     var arrayCollection = recJson.workflows;
-    console.log("***Workflows to import***");
-    console.log(arrayCollection);
-    for (const element of arrayCollection) {
-      element.scenarios = [];
-      var thisParent = await Testsuite.findOne({alm_id: element.parent}, async function (err) {
-        if (err) {
-          console.log(err);
-          reject(err)
-        }
-      }).exec()
-      element.testsuite = thisParent._id;
-      delete element['parent'];
-      let addedworkflow = await Workflow.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err) {
-        if (err) {
-          console.log(err);
-          reject( err)
-        };
-      }).exec()
-      thisParent.workflows.push(addedworkflow._id),
-      await thisParent.save();
-    };
+    await Promise.all(arrayCollection.map(x => createWorkflow(x)));
     let counter = {};
     counter.workflows_added = arrayCollection.length;
-    resolve(counter)
-  })
+    return counter
 }
 
-function addScenarios(recJson) {
-  return new Promise(async function (resolve, reject) {
+async function createWorkflow(workflow) {
+  workflow.scenarios = [];
+  var thisParent = await Testsuite.findOne({alm_id: workflow.parent}).exec()
+  workflow.testsuite = thisParent._id;
+  delete workflow['parent'];
+  let addedworkflow = await Workflow.findOneAndUpdate( {name: workflow.name}, workflow, {returnOriginal: false, upsert: true}).exec()
+  thisParent.workflows.push(addedworkflow._id),
+  await thisParent.save();
+
+}
+
+async function addScenarios(recJson) {
     var arrayCollection = recJson.scenarios;
-    console.log("***Scenarios to import***");
-    console.log(arrayCollection);
-    for (const element of arrayCollection) {
-      element.transactions = [];
-      var thisParent = await Workflow.findOne({alm_id: element.parent}, async function (err) {
-        if (err) {
-          console.log(err);
-          reject(err)
-        }
-      }).exec()
-      element.workflow = thisParent._id;
-      delete element['parent'];
-      let addedscenario = await Scenario.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err) {
-        if (err) {
-          console.log(err);
-          reject( err)
-        };
-      }).exec()
-      thisParent.scenarios.push(addedscenario._id),
-      await thisParent.save();
-    };
+    await Promise.all(arrayCollection.map(x => createScenario(x)));
     let counter = {};
     counter.scenarios_added = arrayCollection.length;
-    resolve(counter)
-  })
+    return counter
 }
 
-function addTransactions(recJson) {
-  return new Promise(async function (resolve, reject) {
+async function createScenario(scenario) {
+  scenario.transactions = [];
+  var thisParent = await Workflow.findOne({alm_id: scenario.parent}).exec();
+  scenario.workflow = thisParent._id;
+  delete scenario['parent'];
+  let addedscenario = await Scenario.findOneAndUpdate( {name: scenario.name}, scenario, {returnOriginal: false, upsert: true}).exec()
+  thisParent.scenarios.push(addedscenario._id),
+  await thisParent.save();
+}
+
+async function addTransactions(recJson) {
     var arrayCollection = recJson.transactions;
-    console.log("***Transactions to import***");
-    console.log(arrayCollection);
-    for (const element of arrayCollection) {
-      element.gherkinsteps = [];
-      var thisParent = await Scenario.findOne({alm_id: element.parent}, async function (err) {
-        if (err) {
-          console.log(err);
-          reject(err)
-        }
-      }).exec()
-      element.scenario = thisParent._id;
-      delete element['parent'];
-      let addedtransaction = await Transaction.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err) {
-        if (err) {
-          console.log(err);
-          reject( err)
-        };
-      }).exec()
-      thisParent.transactions.push(addedtransaction._id),
-      await thisParent.save();
-    };
+    await Promise.all(arrayCollection.map(x => createTransaction(x)));
     let counter = {};
     counter.transactions_added = arrayCollection.length;
-    resolve(counter)
-  })
+    return counter
 }
 
-function addGherkinsteps(recJson) {
-  return new Promise(async function (resolve, reject) {
+async function createTransaction(transaction) {
+  transaction.gherkinsteps = [];
+  var thisParent = await Scenario.findOne({alm_id: transaction.parent}).exec()
+  transaction.scenario = thisParent._id;
+  delete transaction['parent'];
+  let addedtransaction = await Transaction.findOneAndUpdate( {name: transaction.name}, transaction, {returnOriginal: false, upsert: true}).exec()
+  thisParent.transactions.push(addedtransaction._id),
+  await thisParent.save();
+}
+
+async function addGherkinsteps(recJson) {
     var arrayCollection = recJson.gherkinsteps;
-    console.log("***Gherkinsteps to import***");
-    console.log(arrayCollection);
-    for (const element of arrayCollection) {
-      var thisParent = await Transaction.findOne({alm_id: element.parent}, async function (err) {
-        if (err) {
-          console.log(err);
-          reject(err)
-        }
-      }).exec()
-      element.transaction = thisParent._id;
-      delete element['parent'];
-      let addedgherkinstep = await Gherkinstep.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err) {
-        if (err) {
-          console.log(err);
-          reject( err)
-        };
-      }).exec()
-      thisParent.gherkinsteps.push(addedgherkinstep._id),
-      await thisParent.save();
-    };
+    await Promise.all(arrayCollection.map(x => creategherkinstep(x)));
     let counter = {};
     counter.gherkinsteps_added = arrayCollection.length;
-    resolve(counter)
-  })
+    return counter
+}
+
+async function creategherkinstep(gherkinstep) {
+  var thisParent = await Transaction.findOne({alm_id: gherkinstep.parent}).exec()
+  gherkinstep.transaction = thisParent._id;
+  delete gherkinstep['parent'];
+  let addedgherkinstep = await Gherkinstep.findOneAndUpdate( {name: gherkinstep.name}, gherkinstep, {returnOriginal: false, upsert: true}).exec()
+  thisParent.gherkinsteps.push(addedgherkinstep._id),
+  await thisParent.save();
+
 }
 
 function addCollectionOfInstructions(collection) {
