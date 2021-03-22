@@ -26,13 +26,13 @@ exports.list_all_projects_and_children = function(req, res) {
 exports.import_all_projects_and_children = async function(req, res) {
   const doc = JsonFind(req.body);
   //console.log(doc);
-  const allProjects = doc.findValues("projects");
-  const allTestsuites = doc.findValues("testsuites");
-  const allWorkflows = doc.findValues('workflows');
-  const allScenarios = doc.findValues('scenarios');
-  const allTransactions = doc.findValues('transactions');
-  const allGherkinsteps = doc.findValues('gherkinsteps');
-  const projectResult = await addProjects(allProjects)
+  const allProjects = await doc.findValues("projects");
+  const allTestsuites = await doc.findValues("testsuites");
+  const allWorkflows = await doc.findValues('workflows');
+  const allScenarios = await doc.findValues('scenarios');
+  const allTransactions = await doc.findValues('transactions');
+  const allGherkinsteps = await doc.findValues('gherkinsteps');
+  const projectResult = await addProjects(allProjects);
   const testsuiteResult = await addTestsuites(allTestsuites);
   const workflowResult = await addWorkflows(allWorkflows);
   const scenarioResult = await addScenarios(allScenarios);
@@ -59,58 +59,45 @@ exports.import_all_instructions = async function(req, res) {
 }
 
 // nested import code
-function addProjects(recJson) {
-  return new Promise(async function (resolve, reject) {
-    const arrayCollection = recJson.projects;
-    for (const element of arrayCollection) {
-      element.testsuites = [];
-      let addedProject = await Project.findOneAndUpdate({name: element.name}, element, {returnOriginal: false, upsert: true}, function (err, project) {
-        if (err) {
-          console.log(err);
-          reject(err)
-        }
-      }).exec()
-    }
-    let counter = {};
-    counter.projects_added = arrayCollection.length;
-    resolve(counter)
-  })
+async function addProjects(recJson) {
+  const arrayCollection = recJson.projects;
+  await Promise.all(arrayCollection.map(x => createProject(x)));
+  let counter = {};
+  counter.projects_added = arrayCollection.length;
+  return counter
 }
 
-function addTestsuites(recJson) {
-  return new Promise(async function (resolve, reject) {
+async function createProject(project) {
+  project.testsuites = [];
+  await Project.findOneAndUpdate({name: project.name}, project, {returnOriginal: false, upsert: true}).exec();
+}
+
+async function addTestsuites(recJson) {
     var arrayCollection = recJson.testsuites;
-    for (const element of arrayCollection) {
-      element.workflows = [];
-      var thisParent = await Project.findOne({alm_id: element.parent}, async function (err, project) {
-        if (err) {
-          console.log(err);
-          reject(err)
-        }
-      }).exec()
-      element.project = thisParent._id;
-      delete element['parent'];
-      let addedtestsuite = await Testsuite.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err, testsuite) {
-        if (err) {
-          console.log(err);
-          reject( err)
-        };
-      }).exec()
-      thisParent.testsuites.push(addedtestsuite._id),
-      await thisParent.save();
-    };
+    await Promise.all(arrayCollection.map(x => createTestsuite(x)));
     let counter = {};
     counter.testsuites_added = arrayCollection.length;
-    resolve(counter)
-  })
+    return counter
+}
+
+async function createTestsuite(testsuitesuite) {
+  testsuitesuite.workflows = [];
+  var thisParent = await Project.findOne({alm_id: testsuitesuite.parent}).exec();
+  testsuitesuite.project = thisParent._id;
+  delete testsuitesuite['parent'];
+  let addedtestsuite = await Testsuite.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}).exec()
+  thisParent.testsuites.push(addedtestsuite._id),
+  await thisParent.save();
 }
 
 function addWorkflows(recJson) {
   return new Promise(async function (resolve, reject) {
     var arrayCollection = recJson.workflows;
+    console.log("***Workflows to import***");
+    console.log(arrayCollection);
     for (const element of arrayCollection) {
       element.scenarios = [];
-      var thisParent = await Testsuite.findOne({alm_id: element.parent}, async function (err, testsuite) {
+      var thisParent = await Testsuite.findOne({alm_id: element.parent}, async function (err) {
         if (err) {
           console.log(err);
           reject(err)
@@ -118,7 +105,7 @@ function addWorkflows(recJson) {
       }).exec()
       element.testsuite = thisParent._id;
       delete element['parent'];
-      let addedworkflow = await Workflow.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err, workflow) {
+      let addedworkflow = await Workflow.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err) {
         if (err) {
           console.log(err);
           reject( err)
@@ -136,9 +123,11 @@ function addWorkflows(recJson) {
 function addScenarios(recJson) {
   return new Promise(async function (resolve, reject) {
     var arrayCollection = recJson.scenarios;
+    console.log("***Scenarios to import***");
+    console.log(arrayCollection);
     for (const element of arrayCollection) {
       element.transactions = [];
-      var thisParent = await Workflow.findOne({alm_id: element.parent}, async function (err, workflow) {
+      var thisParent = await Workflow.findOne({alm_id: element.parent}, async function (err) {
         if (err) {
           console.log(err);
           reject(err)
@@ -146,7 +135,7 @@ function addScenarios(recJson) {
       }).exec()
       element.workflow = thisParent._id;
       delete element['parent'];
-      let addedscenario = await Scenario.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err, scenario) {
+      let addedscenario = await Scenario.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err) {
         if (err) {
           console.log(err);
           reject( err)
@@ -164,9 +153,11 @@ function addScenarios(recJson) {
 function addTransactions(recJson) {
   return new Promise(async function (resolve, reject) {
     var arrayCollection = recJson.transactions;
+    console.log("***Transactions to import***");
+    console.log(arrayCollection);
     for (const element of arrayCollection) {
       element.gherkinsteps = [];
-      var thisParent = await Scenario.findOne({alm_id: element.parent}, async function (err, scenario) {
+      var thisParent = await Scenario.findOne({alm_id: element.parent}, async function (err) {
         if (err) {
           console.log(err);
           reject(err)
@@ -174,7 +165,7 @@ function addTransactions(recJson) {
       }).exec()
       element.scenario = thisParent._id;
       delete element['parent'];
-      let addedtransaction = await Transaction.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err, transaction) {
+      let addedtransaction = await Transaction.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err) {
         if (err) {
           console.log(err);
           reject( err)
@@ -192,8 +183,10 @@ function addTransactions(recJson) {
 function addGherkinsteps(recJson) {
   return new Promise(async function (resolve, reject) {
     var arrayCollection = recJson.gherkinsteps;
+    console.log("***Gherkinsteps to import***");
+    console.log(arrayCollection);
     for (const element of arrayCollection) {
-      var thisParent = await Transaction.findOne({alm_id: element.parent}, async function (err, transaction) {
+      var thisParent = await Transaction.findOne({alm_id: element.parent}, async function (err) {
         if (err) {
           console.log(err);
           reject(err)
@@ -201,7 +194,7 @@ function addGherkinsteps(recJson) {
       }).exec()
       element.transaction = thisParent._id;
       delete element['parent'];
-      let addedgherkinstep = await Gherkinstep.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err, gherkinstep) {
+      let addedgherkinstep = await Gherkinstep.findOneAndUpdate( {name: element.name}, element, {returnOriginal: false, upsert: true}, function (err) {
         if (err) {
           console.log(err);
           reject( err)
@@ -232,3 +225,4 @@ function addCollectionOfInstructions(collection) {
     resolve(counter)
   })
 }
+
