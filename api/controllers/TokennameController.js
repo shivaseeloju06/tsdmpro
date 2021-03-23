@@ -87,14 +87,14 @@ async function addTokenToAllDataiterations(name) {
       new_keyvaluepair.save(function (err, keyvaluepair) {
         if (err) {
           console.log(err);
-          reject(err);
+          return err
         };
         Dataiteration.findByIdAndUpdate({ _id: element._id }, {$push: {keyvaluepairs: keyvaluepair._id}},
           function(err, result) {
             if (err) {
               console.log(err);
             }; 
-            console.log(result);
+            //console.log(result);
         });
       });
     });

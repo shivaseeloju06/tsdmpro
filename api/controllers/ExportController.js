@@ -1,10 +1,7 @@
 'use strict';
-const JsonFind = require("json-find");
 var mongoose = require('mongoose');
 var path = require('path');
-var mime = require('mime');
 var fs = require('fs');
-const { execSync } = require("child_process");
 
 var Project = mongoose.model('Project'),
     Testsuite = mongoose.model('Testsuite'),
@@ -13,7 +10,10 @@ var Project = mongoose.model('Project'),
     Transaction = mongoose.model('Transaction'),
     Gherkinstep = mongoose.model('Gherkinstep'),
     Instruction = mongoose.model('Instruction'),
-    Stepaction = mongoose.model('Stepaction');
+    Stepaction = mongoose.model('Stepaction'),
+    Dataiteration = mongoose.model('Dataiteration'),
+    Action = mongoose.model('Action'),
+    Keyvaluepair = mongoose.model('Keyvaluepair');
 
 exports.generate_run_file_for_transaction = async function (req, res) {
     const transaction_id = req.params.transaction_id;
@@ -28,6 +28,7 @@ exports.generate_run_file_for_transaction = async function (req, res) {
 async function wipToPublishTransaction(transactionId) {
     let thisGherkinsteps = await Gherkinstep.find({transaction: transactionId}).exec();
     await Promise.all(thisGherkinsteps.map(x => moveWipToPublish(x)));
+    return "Published: " + transactionId
 }
 
 async function moveWipToPublish(gherkinStep) {
@@ -39,105 +40,95 @@ async function moveWipToPublish(gherkinStep) {
 }
 
 async function buildTransactionRunfiles(transactionId) {
-    try {
-        let thisTransaction = await Transaction.findById(transactionId).exec();
-        let thisGherkinsteps = await Gherkinstep.find({transaction: transactionId}).exec();
-        for (const gherkinstep of thisGherkinsteps) {
-            console.log(gherkinstep);
+  try {
+    // Create the output directory
+    var tempPath = path.normalize(__dirname + `../../../published`);
+    if (!fs.existsSync(tempPath)) {
+      fs.mkdirSync(tempPath);
+    }
+
+    // Get the full tree structure for the transaction
+    let thisTransaction = await Transaction.findById(transactionId).exec();
+    let thisScenario = await Scenario.findById(thisTransaction.scenario).exec();
+    let thisWorkflow = await Workflow.findById(thisScenario.workflow).exec();
+    let thisTestsuite = await Testsuite.findById(thisWorkflow.testsuite).exec();
+    let thisProject = await Project.findById(thisTestsuite.project).exec();
+    let thisGherkinsteps = await Gherkinstep.find({transaction: transactionId}).sort({index: 1}).exec();
+    let dataIterations = await Dataiteration.find().populate('environment').populate('keyvaluepairs').sort({environment: 1, iteration: 1}).exec();
+
+    // Create an empty driver file
+    let driverFile;
+    let driverFileContent = {"Driver": []};
+    console.log(driverFileContent);
+
+    for (const thisDataiteration of dataIterations) {
+      // Set driver file name to
+      driverFile = 'ENV_' + thisDataiteration.environment.name + '_TC_' + thisTransaction.alm_id  + '_DriverSerial.json';
+      // Create an empty instruction file
+      let instructionFile = 'ENV_' + thisDataiteration.environment.name + '_TC_' + thisTransaction.alm_id + '_IT_' + thisDataiteration.iteration + '_Script.json';
+      let instructionFileResult = 'ENV_' + thisDataiteration.environment.name + '_TC_' + thisTransaction.alm_id + '_IT_' + thisDataiteration.iteration + '_Output.txt';
+      let instructionFileContent = [];
+
+      // Build all the instructions for this instrtuction file
+      for (const gherkinstep of thisGherkinsteps) {
+        let counter = 1;
+        const thisStepaction = await Stepaction.findOne({name: gherkinstep.name}).populate({path: 'published_step_collection.action', model: 'Action'}).exec();
+        if (thisStepaction.published_step_collection !== null) {
+          for (const step of thisStepaction.published_step_collection) {
+            const instruction = await Instruction.findById(step.action.instruction).exec();
+            const stepJason = {};
+            stepJason.rowID = counter;
+            stepJason.testCaseID = 'ENV_' + thisDataiteration.environment.name + '_TC_' + thisTransaction.alm_id + '_IT_' + thisDataiteration.iteration + '_STEP_' + gherkinstep.index + '_ROW_' + step.index;
+            stepJason.expectedResult = step.action.expected_result;
+            stepJason.stepDescription = gherkinstep.name;
+            stepJason.notes = gherkinstep.gherkin_keyword + ' ' + gherkinstep.name;
+            stepJason.actionDescription = step.action.description;
+            stepJason.instructionLibrary = instruction.library;
+            stepJason.instruction = instruction.name;
+            const validKeyvaluepairs = thisDataiteration.keyvaluepairs;
+            let keyvaluepairFilter = [];
+            for (const validkeyvaluepair of validKeyvaluepairs) {
+              keyvaluepairFilter.push(validkeyvaluepair._id);
+            }
+            //console.log(keyvaluepairFilter);
+            let x = 1;
+            for (const args of step.action.argument_datatoken_pairs) {
+              const keyvaluepair = await Keyvaluepair.findOne({'token_name': args.token_name, '_id': {$in: keyvaluepairFilter}}).exec();
+              let argKey = 'arg' + x;
+              stepJason[argKey] = keyvaluepair.value;
+              x ++;
+            }
+            stepJason.acceptanceCriteria = thisTransaction.name;
+            instructionFileContent.push(stepJason);
+            counter ++;
+          }
         }
-        
-        /*var tempPath = path.normalize(__dirname + `../../../published`);
-        var outputFilePath = path.normalize(tempPath + `/${transaction.alm_id}.json`);
-        var items = [];*/
-    
-        if (!fs.existsSync(tempPath)) {
-          fs.mkdirSync(tempPath);
-        }
-    
-       /* items.push({
-          "ID": transaction.scenario.alm_id,
-          "ParentID": null,
-          "Data": {
-            "Work Item Type": "User Story",
-            "Title": transaction.scenario.name
-          },
-          "Children": []
-        });
-    
-        items.push({
-          "ID": transaction.alm_id,
-          "ParentID": transaction.scenario.alm_id,
-          "Data": {
-            "Work Item Type": "Test Case",
-            "Title": transaction.name
-          },
-          "Children": await generateTransactionChildren(transaction)
-        });
-        fs.writeFileSync(inputFilePath, JSON.stringify(items));
-    
-        var test = execSync(`TSDM.Excel.Exporter.exe "${inputFilePath}" "${outputFilePath}"`, { cwd: path.dirname(exporterFilePath) });
-        console.log(test.toString());
-    
-        var outputname = path.basename(outputFilePath);
-        var outputFile = path.normalize(outputFilePath);*/
-    
-      } catch (err) {
-       return err
       }
-}
 
-const generateTransactionChildren = async function (transaction) {
-  var items = []
-
-  var steps = await Gherkinstep.find({ transaction: transaction._id }).exec();
-
-  //Expected needs to be looked at as always PASS as value is at parent level
-  for (var step of steps) {
-    var item = {
-      "ID": null,
-      "ParentID": null,
-      "Data": {
-        "TransactionStep": `${step.gherkin_keyword} ${step.name}`,
-        "Expected": "PASS"
-      },
-      "Children": []
-    };
-
-    //Find associated Step Action by name
-    var stepAction = await Stepaction.find({ name: step.name })
-      .populate('action')
-      .populate('action.wip_step_collection', 'Action')
-      .exec();
-
-    if (stepAction && stepAction.length > 0) {
-      item.Children = await generateStepActionChildren(stepAction[0]);
-    }
-
-    items.push(item);
-  }
-  return items;
-}
-
-const generateStepActionChildren = async function (stepAction) {
-  var items = []
-
-  var actionRefs = stepAction.wip_step_collection;
-
-  for (var actionRef of actionRefs) {
-    var action = await Action.findById(actionRef.action).exec();
-
-    if (action) {
-      items.push({
-        "ID": null,
-        "ParentID": null,
-        "Data": {
-          "StepAction": `${action.description}`,
-          "Expected": `${action.expected_result}`
-        },
-        "Children": []
+      // Write Content to instruction file
+      let thisInstructionFile = tempPath + '/' + instructionFile;
+      fs.writeFile(thisInstructionFile, JSON.stringify(instructionFileContent), function (err) {
+        if (err) throw err;
       });
-    }
 
+      let tempContent = {
+        "Transaction": instructionFile,
+        "OutputFileName": instructionFileResult
+      }
+      driverFileContent.Driver.push(tempContent)
+
+    }  
+
+    let thisDriverFile = tempPath + '/' + driverFile;
+    fs.writeFile(thisDriverFile, JSON.stringify(driverFileContent), function (err) {
+      if (err) throw err;
+    });
+
+    return 'Built Instruction files for: ' + transactionId
+
+  } catch (err) {
+    console.log(err);
+      return err
   }
-  return items;
 }
+
