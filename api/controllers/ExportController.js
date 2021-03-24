@@ -44,11 +44,8 @@ async function moveWipToPublish(gherkinStep) {
 
 async function buildTransactionRunfiles(transactionId) {
   try {
-    // Create the output directory
-    var tempPath = path.normalize(__dirname + `../../../published`);
-    if (!fs.existsSync(tempPath)) {
-      fs.mkdirSync(tempPath);
-    }
+    let publishDir = await createPublishedDir();
+    await createEnvSubDirs();
 
     // Get the full tree structure for the transaction
     let thisTransaction = await Transaction.findById(transactionId).exec();
@@ -63,12 +60,11 @@ async function buildTransactionRunfiles(transactionId) {
       // Create an empty driver file
       let driverFile;
       let driverFileContent = {"Driver": []};
-      console.log(driverFileContent);      
       // Set driver file name to
-      driverFile = thisDataiteration.environment.name + '_05_TC_' + thisTransaction.alm_id  + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_DriverSerial.json';
+      driverFile = thisDataiteration.environment.name + '_06_TC_' + thisTransaction.alm_id  + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_DriverSerial.json';
       // Create an empty instruction file
-      let instructionFile = thisDataiteration.environment.name + '_05_TC_' + thisTransaction.alm_id + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_Script.json';
-      let instructionFileResult = thisDataiteration.environment.name + '_05_TC_' + thisTransaction.alm_id + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_Output.txt';
+      let instructionFile = thisDataiteration.environment.name + '_06_TC_' + thisTransaction.alm_id + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_Script.json';
+      let instructionFileResult = thisDataiteration.environment.name + '_06_TC_' + thisTransaction.alm_id + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_Output.txt';
       let instructionFileContent = [];
 
       // Build all the instructions for this instrtuction file
@@ -77,40 +73,45 @@ async function buildTransactionRunfiles(transactionId) {
         const thisStepaction = await Stepaction.findOne({name: gherkinstep.name}).populate({path: 'published_step_collection.action', model: 'Action'}).exec();
         if (thisStepaction.published_step_collection !== null) {
           for (const step of thisStepaction.published_step_collection) {
-            const instruction = await Instruction.findById(step.action.instruction).exec();
-            const stepJason = {};
-            stepJason.rowID = counter;
-            stepJason.testCaseID = thisDataiteration.environment.name + '_TC_' + thisTransaction.alm_id + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_STEP_' + gherkinstep.index + '_ROW_' + step.index;
-            stepJason.expectedResult = step.action.expected_result;
-            stepJason.stepDescription = gherkinstep.name;
-            stepJason.notes = gherkinstep.gherkin_keyword + ' ' + gherkinstep.name;
-            stepJason.actionDescription = step.action.description;
-            stepJason.instructionLibrary = instruction.library;
-            stepJason.instruction = instruction.name;
-            const validKeyvaluepairs = thisDataiteration.keyvaluepairs;
-            let keyvaluepairFilter = [];
-            for (const validkeyvaluepair of validKeyvaluepairs) {
-              keyvaluepairFilter.push(validkeyvaluepair._id);
+            if (step.action !== null) {
+              const instruction = await Instruction.findById(step.action.instruction).exec();
+              const stepJason = {};
+              stepJason.rowID = counter;
+              stepJason.testCaseID = thisDataiteration.environment.name + '_TC_' + thisTransaction.alm_id + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_STEP_' + gherkinstep.index + '_ROW_' + step.index;
+              stepJason.expectedResult = step.action.expected_result;
+              stepJason.stepDescription = gherkinstep.name;
+              stepJason.notes = gherkinstep.gherkin_keyword + ' ' + gherkinstep.name;
+              stepJason.actionDescription = step.action.description;
+              stepJason.instructionLibrary = instruction.library;
+              stepJason.instruction = instruction.name;
+              const validKeyvaluepairs = thisDataiteration.keyvaluepairs;
+              let keyvaluepairFilter = [];
+              for (const validkeyvaluepair of validKeyvaluepairs) {
+                keyvaluepairFilter.push(validkeyvaluepair._id);
+              }
+              //console.log(keyvaluepairFilter);
+              let x = 1;
+              for (const args of step.action.argument_datatoken_pairs) {
+                const keyvaluepair = await Keyvaluepair.findOne({'token_name': args.token_name, '_id': {$in: keyvaluepairFilter}}).exec();
+                let argKey = 'arg' + x;
+                stepJason[argKey] = keyvaluepair.value;
+                x ++;
+              }
+              stepJason.acceptanceCriteria = thisTransaction.name;
+              instructionFileContent.push(stepJason);
+              counter ++;
             }
-            //console.log(keyvaluepairFilter);
-            let x = 1;
-            for (const args of step.action.argument_datatoken_pairs) {
-              const keyvaluepair = await Keyvaluepair.findOne({'token_name': args.token_name, '_id': {$in: keyvaluepairFilter}}).exec();
-              let argKey = 'arg' + x;
-              stepJason[argKey] = keyvaluepair.value;
-              x ++;
-            }
-            stepJason.acceptanceCriteria = thisTransaction.name;
-            instructionFileContent.push(stepJason);
-            counter ++;
           }
         }
       }
 
       // Write Content to instruction file
-      let thisInstructionFile = tempPath + '/' + instructionFile;
+      let thisInstructionFile = publishDir + '/' + thisDataiteration.environment.name + '/' + instructionFile;
+      //let thisInstructionFileTxt = JSON.stringify(instructionFileContent)
       fs.writeFile(thisInstructionFile, JSON.stringify(instructionFileContent), function (err) {
-        if (err) throw err;
+        if (err)
+        console.log(err);
+          return err;
       });
 
       let tempContent = {
@@ -119,14 +120,15 @@ async function buildTransactionRunfiles(transactionId) {
       }
 
       driverFileContent.Driver.push(tempContent)
-      let thisDriverFile = tempPath + '/' + driverFile;
+      let thisDriverFile = publishDir + '/' + thisDataiteration.environment.name + '/' + driverFile;
       fs.writeFile(thisDriverFile, JSON.stringify(driverFileContent), function (err) {
-        if (err) throw err;
+        if (err)
+        console.log(err);
+          return err;
       });
-  
-
-
     }  
+
+    // await buildL5DriverSerial();
 
     return 'Built Instruction files for: ' + transactionId
 
@@ -136,3 +138,35 @@ async function buildTransactionRunfiles(transactionId) {
   }
 }
 
+async function createPublishedDir() {
+  try {
+    // Create the output directory
+    let tempPath = path.normalize(__dirname + `../../../published`);
+    if (!fs.existsSync(tempPath)) {
+      fs.mkdirSync(tempPath);
+    } 
+    return tempPath
+  } catch (err) {
+    if (err) throw err
+  }
+}
+
+async function createEnvSubDirs() {
+  try {
+    // Create output directory for each environment 
+    let tempPath = path.normalize(__dirname + `../../../published`);
+    const allEnvironments = await Environment.find().exec();
+    for (const env of allEnvironments) {
+      let envPath = path.normalize(tempPath + '/' + env.name);
+      if (!fs.existsSync(envPath)) {
+        fs.mkdirSync(envPath);
+      } 
+    }
+  } catch (err) {
+    if (err) throw err
+  }
+}
+
+async function buildL5DriverSerial() {
+
+}

@@ -3,7 +3,11 @@
     "ignore": [
         "*.test.js",
         "temp/*",
-        "bin/*"
+        "bin/*",
+        "published/",
+        "published/DEV",
+        "published/SIT",
+        "published/UAT"
     ],
     "env": {
         "NODE_ENV": "development"
