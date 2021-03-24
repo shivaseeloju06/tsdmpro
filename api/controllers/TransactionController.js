@@ -64,7 +64,7 @@ exports.delete_a_transaction_by_id = function (req, res) {
 };
 
 exports.list_gherkinsteps_by_transaction_id = function (req, res) {
-  Gherkinstep.find({ transaction: req.params.transactionId }, function (err, gherkinsteps) {
+  Gherkinstep.find({ transaction: req.params.transactionId }).sort({index: 1}).exec( function (err, gherkinsteps) {
     if (err) {
       res.send(err);
       console.log(err);

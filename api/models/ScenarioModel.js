@@ -30,8 +30,7 @@ var scenarioSchema = new Schema({
     required: 'Please enter the name of the Scenario'
   },
   requirement: {
-    type: String,
-    required: 'Please enter the requirement of the Scenario'
+    type: String
   },
   alm_id: {
     type: String,

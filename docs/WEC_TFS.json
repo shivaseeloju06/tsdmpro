@@ -1,0 +1,1021 @@
+{
+	"projects": [
+		{
+			"is_active": true,
+			"testsuites": [
+				{
+					"is_active": true,
+					"workflows": [
+						{
+							"is_active": true,
+							"name": "Login to SAP systems",
+							"alm_id": "129",
+							"parent": "134",
+							"scenarios": [
+								{
+									"is_active": true,
+									"transactions": [
+										{
+											"is_active": true,
+											"gherkinsteps": [
+												{
+													"is_active": true,
+													"name": "No instance of Chrome is open",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 10",
+													"alm_id": "No instance of Chrome is open"
+												},
+												{
+													"is_active": true,
+													"name": "No instance of Chrome is open",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 10",
+													"alm_id": "No instance of Chrome is open"
+												},
+												{
+													"is_active": true,
+													"name": "User performs Shift-Right Click on Chrome icon on Taskbar or Desktop",
+													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "AC 10",
+													"alm_id": "User performs Shift-Right Click on Chrome icon on Taskbar or Desktop"
+												},
+												{
+													"is_active": true,
+													"name": "User performs Shift-Right Click on Chrome icon on Taskbar or Desktop",
+													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "AC 10",
+													"alm_id": "User performs Shift-Right Click on Chrome icon on Taskbar or Desktop"
+												},
+												{
+													"is_active": true,
+													"name": "Selects 'Run as Different User' option",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 10",
+													"alm_id": "Selects 'Run as Different User' option"
+												},
+												{
+													"is_active": true,
+													"name": "Selects 'Run as Different User' option",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 10",
+													"alm_id": "Selects 'Run as Different User' option"
+												},
+												{
+													"is_active": true,
+													"name": "Login popup is displayed",
+													"gherkin_keyword": "WHEN",
+													"index": 4,
+													"parent": "AC 10",
+													"alm_id": "Login popup is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "Login popup is displayed",
+													"gherkin_keyword": "WHEN",
+													"index": 4,
+													"parent": "AC 10",
+													"alm_id": "Login popup is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "User enters valid Username and password for alternate user that has access to .NET Timesheet",
+													"gherkin_keyword": "AND",
+													"index": 5,
+													"parent": "AC 10",
+													"alm_id": "User enters valid Username and password for alternate user that has access to .NET Timesheet"
+												},
+												{
+													"is_active": true,
+													"name": "User enters valid Username and password for alternate user that has access to .NET Timesheet",
+													"gherkin_keyword": "AND",
+													"index": 5,
+													"parent": "AC 10",
+													"alm_id": "User enters valid Username and password for alternate user that has access to .NET Timesheet"
+												},
+												{
+													"is_active": true,
+													"name": "Chrome browser window opens to Employee Central for the alternate user",
+													"gherkin_keyword": "THEN",
+													"index": 6,
+													"parent": "AC 10",
+													"alm_id": "Chrome browser window opens to Employee Central for the alternate user"
+												},
+												{
+													"is_active": true,
+													"name": "Chrome browser window opens to Employee Central for the alternate user",
+													"gherkin_keyword": "THEN",
+													"index": 6,
+													"parent": "AC 10",
+													"alm_id": "Chrome browser window opens to Employee Central for the alternate user"
+												}
+											],
+											"name": "Open Chrome browser as different user",
+											"alm_id": "AC 10",
+											"parent": "130"
+										},
+										{
+											"is_active": true,
+											"gherkinsteps": [
+												{
+													"is_active": true,
+													"name": "Alternate user has opened Chrome browser",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 20",
+													"alm_id": "Alternate user has opened Chrome browser"
+												},
+												{
+													"is_active": true,
+													"name": "Alternate user has opened Chrome browser",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 20",
+													"alm_id": "Alternate user has opened Chrome browser"
+												},
+												{
+													"is_active": true,
+													"name": "Employee Central landing page is displayed",
+													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "AC 20",
+													"alm_id": "Employee Central landing page is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "Employee Central landing page is displayed",
+													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "AC 20",
+													"alm_id": "Employee Central landing page is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "User navigates tohttps://webappsstg.corp.dirsrv.com/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html#Shell-home",
+													"gherkin_keyword": "WHEN",
+													"index": 3,
+													"parent": "AC 20",
+													"alm_id": "User navigates tohttps://webappsstg.corp.dirsrv.com/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html#Shell-home"
+												},
+												{
+													"is_active": true,
+													"name": "User navigates tohttps://webappsstg.corp.dirsrv.com/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html#Shell-home",
+													"gherkin_keyword": "WHEN",
+													"index": 3,
+													"parent": "AC 20",
+													"alm_id": "User navigates tohttps://webappsstg.corp.dirsrv.com/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html#Shell-home"
+												},
+												{
+													"is_active": true,
+													"name": "Fiori Launchpad is displayed",
+													"gherkin_keyword": "THEN",
+													"index": 4,
+													"parent": "AC 20",
+													"alm_id": "Fiori Launchpad is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "Fiori Launchpad is displayed",
+													"gherkin_keyword": "THEN",
+													"index": 4,
+													"parent": "AC 20",
+													"alm_id": "Fiori Launchpad is displayed"
+												}
+											],
+											"name": "Navigate to Fiori Launchpad as alternate user",
+											"alm_id": "AC 20",
+											"parent": "130"
+										},
+										{
+											"is_active": true,
+											"gherkinsteps": [
+												{
+													"is_active": true,
+													"name": "Fiori Launchpad is displayed for user with access to .NET Timesheet tile",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 30",
+													"alm_id": "Fiori Launchpad is displayed for user with access to .NET Timesheet tile"
+												},
+												{
+													"is_active": true,
+													"name": "Fiori Launchpad is displayed for user with access to .NET Timesheet tile",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 30",
+													"alm_id": "Fiori Launchpad is displayed for user with access to .NET Timesheet tile"
+												},
+												{
+													"is_active": true,
+													"name": "My Timesheets tile is selected",
+													"gherkin_keyword": "WHEN",
+													"index": 2,
+													"parent": "AC 30",
+													"alm_id": "My Timesheets tile is selected"
+												},
+												{
+													"is_active": true,
+													"name": "My Timesheets tile is selected",
+													"gherkin_keyword": "WHEN",
+													"index": 2,
+													"parent": "AC 30",
+													"alm_id": "My Timesheets tile is selected"
+												},
+												{
+													"is_active": true,
+													"name": "My Timesheet - Welcome to My Timesheet page is displayed",
+													"gherkin_keyword": "THEN",
+													"index": 3,
+													"parent": "AC 30",
+													"alm_id": "My Timesheet - Welcome to My Timesheet page is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "My Timesheet - Welcome to My Timesheet page is displayed",
+													"gherkin_keyword": "THEN",
+													"index": 3,
+													"parent": "AC 30",
+													"alm_id": "My Timesheet - Welcome to My Timesheet page is displayed"
+												}
+											],
+											"name": "Open My Timesheets tile from Fiori Launchpad",
+											"alm_id": "AC 30",
+											"parent": "130"
+										},
+										{
+											"is_active": true,
+											"gherkinsteps": [
+												{
+													"is_active": true,
+													"name": "Alternate user has opened Chrome browser",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 40",
+													"alm_id": "Alternate user has opened Chrome browser"
+												},
+												{
+													"is_active": true,
+													"name": "Alternate user has opened Chrome browser",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 40",
+													"alm_id": "Alternate user has opened Chrome browser"
+												},
+												{
+													"is_active": true,
+													"name": "Employee Central landing page is displayed",
+													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "AC 40",
+													"alm_id": "Employee Central landing page is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "Employee Central landing page is displayed",
+													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "AC 40",
+													"alm_id": "Employee Central landing page is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "User navigates tohttps://webappsstg.corp.dirsrv.com/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html#Shell-home",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 40",
+													"alm_id": "User navigates tohttps://webappsstg.corp.dirsrv.com/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html#Shell-home"
+												},
+												{
+													"is_active": true,
+													"name": "User navigates tohttps://webappsstg.corp.dirsrv.com/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html#Shell-home",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 40",
+													"alm_id": "User navigates tohttps://webappsstg.corp.dirsrv.com/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html#Shell-home"
+												},
+												{
+													"is_active": true,
+													"name": "Fiori Launchpad is displayed",
+													"gherkin_keyword": "AND",
+													"index": 4,
+													"parent": "AC 40",
+													"alm_id": "Fiori Launchpad is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "Fiori Launchpad is displayed",
+													"gherkin_keyword": "AND",
+													"index": 4,
+													"parent": "AC 40",
+													"alm_id": "Fiori Launchpad is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "My Timesheets tile is selected",
+													"gherkin_keyword": "AND",
+													"index": 5,
+													"parent": "AC 40",
+													"alm_id": "My Timesheets tile is selected"
+												},
+												{
+													"is_active": true,
+													"name": "My Timesheets tile is selected",
+													"gherkin_keyword": "AND",
+													"index": 5,
+													"parent": "AC 40",
+													"alm_id": "My Timesheets tile is selected"
+												},
+												{
+													"is_active": true,
+													"name": "My Timesheet - Welcome to My Timesheet page is displayed",
+													"gherkin_keyword": "AND",
+													"index": 6,
+													"parent": "AC 40",
+													"alm_id": "My Timesheet - Welcome to My Timesheet page is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "My Timesheet - Welcome to My Timesheet page is displayed",
+													"gherkin_keyword": "AND",
+													"index": 6,
+													"parent": "AC 40",
+													"alm_id": "My Timesheet - Welcome to My Timesheet page is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "User selects Go to Timesheet/Expense Entry link",
+													"gherkin_keyword": "WHEN",
+													"index": 7,
+													"parent": "AC 40",
+													"alm_id": "User selects Go to Timesheet/Expense Entry link"
+												},
+												{
+													"is_active": true,
+													"name": "User selects Go to Timesheet/Expense Entry link",
+													"gherkin_keyword": "WHEN",
+													"index": 7,
+													"parent": "AC 40",
+													"alm_id": "User selects Go to Timesheet/Expense Entry link"
+												},
+												{
+													"is_active": true,
+													"name": "Time entry page opens to current week",
+													"gherkin_keyword": "THEN",
+													"index": 8,
+													"parent": "AC 40",
+													"alm_id": "Time entry page opens to current week"
+												},
+												{
+													"is_active": true,
+													"name": "Time entry page opens to current week",
+													"gherkin_keyword": "THEN",
+													"index": 8,
+													"parent": "AC 40",
+													"alm_id": "Time entry page opens to current week"
+												}
+											],
+											"name": "Navigate to time entry page of .NET My Timesheet",
+											"alm_id": "AC 40",
+											"parent": "130"
+										}
+									],
+									"name": "Login to .NET My Timesheet",
+									"alm_id": "130",
+									"requirement": "None Given",
+									"parent": "129"
+								},
+								{
+									"is_active": true,
+									"transactions": [
+										{
+											"is_active": true,
+											"gherkinsteps": [
+												{
+													"is_active": true,
+													"name": "User navigates to the following:  https://urldefense.proofpoint.com/v2/url?u=https-3A__sts.wecenergygroup.com_adfs_ls_idpinitiatedsignon-2522-2C-2522gherkin-5Fkeyword-2522-3A-2522GIVEN-2522-2C-2522index-2522-3A1-2C-2522parent-2522-3A-2522AC&d=DwIGAw&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=pWKumEyWP5u7RWXi7mYeRStbHIK4rYclo8EhL79ej9k&s=r8PuhZE7LVGSzeSFoL_wax7sb7QOGTt67U3zw-xFOKo&e=  10",
+													"alm_id": "User navigates to the following:  https://urldefense.proofpoint.com/v2/url?u=https-3A__sts.wecenergygroup.com_adfs_ls_idpinitiatedsignon-2522-257D-2C-257B-2522is-5Factive-2522-3Atrue-2C-2522name-2522-3A-2522User&d=DwIGAw&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=pWKumEyWP5u7RWXi7mYeRStbHIK4rYclo8EhL79ej9k&s=BZTiIIRDkFUJx4M1TdLoXAgvFnuBKBsANe6AWKD-MwQ&e=  navigates to the following:  https://urldefense.proofpoint.com/v2/url?u=https-3A__sts.wecenergygroup.com_adfs_ls_idpinitiatedsignon-2522-2C-2522gherkin-5Fkeyword-2522-3A-2522GIVEN-2522-2C-2522index-2522-3A1-2C-2522parent-2522-3A-2522AC&d=DwIGAw&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=pWKumEyWP5u7RWXi7mYeRStbHIK4rYclo8EhL79ej9k&s=r8PuhZE7LVGSzeSFoL_wax7sb7QOGTt67U3zw-xFOKo&e=  10",
+													"alm_id": "User navigates to the following:  https://urldefense.proofpoint.com/v2/url?u=https-3A__sts.wecenergygroup.com_adfs_ls_idpinitiatedsignon-2522-257D-2C-257B-2522is-5Factive-2522-3Atrue-2C-2522name-2522-3A-2522selects&d=DwIGAw&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=pWKumEyWP5u7RWXi7mYeRStbHIK4rYclo8EhL79ej9k&s=j-S7NnUGdPCYzBnQErLbJi3CSkXZ09HTxwwlLFBz9vE&e=  'Sign in to one of the following sites' radio button",
+													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "AC 10",
+													"alm_id": "selects 'Sign in to one of the following sites' radio button"
+												},
+												{
+													"is_active": true,
+													"name": "selects 'Sign in to one of the following sites' radio button",
+													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "AC 10",
+													"alm_id": "selects 'Sign in to one of the following sites' radio button"
+												},
+												{
+													"is_active": true,
+													"name": "selects 'SuccessFactors Stage' option from the drop down",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 10",
+													"alm_id": "selects 'SuccessFactors Stage' option from the drop down"
+												},
+												{
+													"is_active": true,
+													"name": "selects 'SuccessFactors Stage' option from the drop down",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 10",
+													"alm_id": "selects 'SuccessFactors Stage' option from the drop down"
+												},
+												{
+													"is_active": true,
+													"name": "Sign In button is selected",
+													"gherkin_keyword": "WHEN",
+													"index": 4,
+													"parent": "AC 10",
+													"alm_id": "Sign In button is selected"
+												},
+												{
+													"is_active": true,
+													"name": "Sign In button is selected",
+													"gherkin_keyword": "WHEN",
+													"index": 4,
+													"parent": "AC 10",
+													"alm_id": "Sign In button is selected"
+												},
+												{
+													"is_active": true,
+													"name": "Employee Central landing page is displayed",
+													"gherkin_keyword": "THEN",
+													"index": 5,
+													"parent": "AC 10",
+													"alm_id": "Employee Central landing page is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "Employee Central landing page is displayed",
+													"gherkin_keyword": "THEN",
+													"index": 5,
+													"parent": "AC 10",
+													"alm_id": "Employee Central landing page is displayed"
+												}
+											],
+											"name": "User can access Employee Central (MUST be a user with Proxy Now permissions)",
+											"alm_id": "AC 10",
+											"parent": "132"
+										},
+										{
+											"is_active": true,
+											"gherkinsteps": [
+												{
+													"is_active": true,
+													"name": "User is on Employee Central landing page",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 20",
+													"alm_id": "User is on Employee Central landing page"
+												},
+												{
+													"is_active": true,
+													"name": "User is on Employee Central landing page",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 20",
+													"alm_id": "User is on Employee Central landing page"
+												},
+												{
+													"is_active": true,
+													"name": "User selects user icon in upper right corner",
+													"gherkin_keyword": "WHEN",
+													"index": 2,
+													"parent": "AC 20",
+													"alm_id": "User selects user icon in upper right corner"
+												},
+												{
+													"is_active": true,
+													"name": "User selects user icon in upper right corner",
+													"gherkin_keyword": "WHEN",
+													"index": 2,
+													"parent": "AC 20",
+													"alm_id": "User selects user icon in upper right corner"
+												},
+												{
+													"is_active": true,
+													"name": "selects Proxy Now option",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 20",
+													"alm_id": "selects Proxy Now option"
+												},
+												{
+													"is_active": true,
+													"name": "selects Proxy Now option",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 20",
+													"alm_id": "selects Proxy Now option"
+												},
+												{
+													"is_active": true,
+													"name": "Popup is displayed prompting user to Select Target User",
+													"gherkin_keyword": "AND",
+													"index": 4,
+													"parent": "AC 20",
+													"alm_id": "Popup is displayed prompting user to Select Target User"
+												},
+												{
+													"is_active": true,
+													"name": "Popup is displayed prompting user to Select Target User",
+													"gherkin_keyword": "AND",
+													"index": 4,
+													"parent": "AC 20",
+													"alm_id": "Popup is displayed prompting user to Select Target User"
+												},
+												{
+													"is_active": true,
+													"name": "Target User Name is entered",
+													"gherkin_keyword": "AND",
+													"index": 5,
+													"parent": "AC 20",
+													"alm_id": "Target User Name is entered"
+												},
+												{
+													"is_active": true,
+													"name": "Target User Name is entered",
+													"gherkin_keyword": "AND",
+													"index": 5,
+													"parent": "AC 20",
+													"alm_id": "Target User Name is entered"
+												},
+												{
+													"is_active": true,
+													"name": "OK button selected",
+													"gherkin_keyword": "AND",
+													"index": 6,
+													"parent": "AC 20",
+													"alm_id": "OK button selected"
+												},
+												{
+													"is_active": true,
+													"name": "OK button selected",
+													"gherkin_keyword": "AND",
+													"index": 6,
+													"parent": "AC 20",
+													"alm_id": "OK button selected"
+												},
+												{
+													"is_active": true,
+													"name": "User hovers over user icon in upper right corner",
+													"gherkin_keyword": "AND",
+													"index": 7,
+													"parent": "AC 20",
+													"alm_id": "User hovers over user icon in upper right corner"
+												},
+												{
+													"is_active": true,
+													"name": "User hovers over user icon in upper right corner",
+													"gherkin_keyword": "AND",
+													"index": 7,
+													"parent": "AC 20",
+													"alm_id": "User hovers over user icon in upper right corner"
+												},
+												{
+													"is_active": true,
+													"name": "Hover text is displayed to notify that User is navigating on behalf of the Proxy user",
+													"gherkin_keyword": "THEN",
+													"index": 8,
+													"parent": "AC 20",
+													"alm_id": "Hover text is displayed to notify that User is navigating on behalf of the Proxy user"
+												},
+												{
+													"is_active": true,
+													"name": "Hover text is displayed to notify that User is navigating on behalf of the Proxy user",
+													"gherkin_keyword": "THEN",
+													"index": 8,
+													"parent": "AC 20",
+													"alm_id": "Hover text is displayed to notify that User is navigating on behalf of the Proxy user"
+												}
+											],
+											"name": "Proxy into Employee Central as a different user",
+											"alm_id": "AC 20",
+											"parent": "132"
+										}
+									],
+									"name": "Login to Employee Central",
+									"alm_id": "132",
+									"requirement": "Details go here",
+									"parent": "129"
+								},
+								{
+									"is_active": true,
+									"transactions": [
+										{
+											"is_active": true,
+											"gherkinsteps": [
+												{
+													"is_active": true,
+													"name": "User selects SAP Front End > SAP Logon from the windows Start Menu",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 10",
+													"alm_id": "User selects SAP Front End > SAP Logon from the windows Start Menu"
+												},
+												{
+													"is_active": true,
+													"name": "User selects SAP Front End > SAP Logon from the windows Start Menu",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 10",
+													"alm_id": "User selects SAP Front End > SAP Logon from the windows Start Menu"
+												},
+												{
+													"is_active": true,
+													"name": "User Right clicks on Q10 ERP QA/Training",
+													"gherkin_keyword": "WHEN",
+													"index": 2,
+													"parent": "AC 10",
+													"alm_id": "User Right clicks on Q10 ERP QA/Training"
+												},
+												{
+													"is_active": true,
+													"name": "User Right clicks on Q10 ERP QA/Training",
+													"gherkin_keyword": "WHEN",
+													"index": 2,
+													"parent": "AC 10",
+													"alm_id": "User Right clicks on Q10 ERP QA/Training"
+												},
+												{
+													"is_active": true,
+													"name": "chooses 'SNC Logon Without Single Sign-on' option",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 10",
+													"alm_id": "chooses 'SNC Logon Without Single Sign-on' option"
+												},
+												{
+													"is_active": true,
+													"name": "chooses 'SNC Logon Without Single Sign-on' option",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 10",
+													"alm_id": "chooses 'SNC Logon Without Single Sign-on' option"
+												},
+												{
+													"is_active": true,
+													"name": "Login fields are displayed",
+													"gherkin_keyword": "THEN",
+													"index": 4,
+													"parent": "AC 10",
+													"alm_id": "Login fields are displayed"
+												},
+												{
+													"is_active": true,
+													"name": "Login fields are displayed",
+													"gherkin_keyword": "THEN",
+													"index": 4,
+													"parent": "AC 10",
+													"alm_id": "Login fields are displayed"
+												}
+											],
+											"name": "Navigate to Login prompt on ECC system without SSO enabled",
+											"alm_id": "AC 10",
+											"parent": "133"
+										},
+										{
+											"is_active": true,
+											"gherkinsteps": [
+												{
+													"is_active": true,
+													"name": "User has navigated to the Login prompt on the HANA system",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 20",
+													"alm_id": "User has navigated to the Login prompt on the HANA system"
+												},
+												{
+													"is_active": true,
+													"name": "User has navigated to the Login prompt on the HANA system",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 20",
+													"alm_id": "User has navigated to the Login prompt on the HANA system"
+												},
+												{
+													"is_active": true,
+													"name": "Username and Password is entered",
+													"gherkin_keyword": "WHEN",
+													"index": 2,
+													"parent": "AC 20",
+													"alm_id": "Username and Password is entered"
+												},
+												{
+													"is_active": true,
+													"name": "Username and Password is entered",
+													"gherkin_keyword": "WHEN",
+													"index": 2,
+													"parent": "AC 20",
+													"alm_id": "Username and Password is entered"
+												},
+												{
+													"is_active": true,
+													"name": "Enter",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 20",
+													"alm_id": "Enter"
+												},
+												{
+													"is_active": true,
+													"name": "Enter",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 20",
+													"alm_id": "Enter"
+												},
+												{
+													"is_active": true,
+													"name": "Closes system message popup",
+													"gherkin_keyword": "AND",
+													"index": 4,
+													"parent": "AC 20",
+													"alm_id": "Closes system message popup"
+												},
+												{
+													"is_active": true,
+													"name": "Closes system message popup",
+													"gherkin_keyword": "AND",
+													"index": 4,
+													"parent": "AC 20",
+													"alm_id": "Closes system message popup"
+												},
+												{
+													"is_active": true,
+													"name": "ECC system landing page is displayed with username in banner (SAP Easy Access - User Menu for [username])",
+													"gherkin_keyword": "THEN",
+													"index": 5,
+													"parent": "AC 20",
+													"alm_id": "ECC system landing page is displayed with username in banner (SAP Easy Access - User Menu for [username])"
+												},
+												{
+													"is_active": true,
+													"name": "ECC system landing page is displayed with username in banner (SAP Easy Access - User Menu for [username])",
+													"gherkin_keyword": "THEN",
+													"index": 5,
+													"parent": "AC 20",
+													"alm_id": "ECC system landing page is displayed with username in banner (SAP Easy Access - User Menu for [username])"
+												}
+											],
+											"name": "Login to ECC system",
+											"alm_id": "AC 20",
+											"parent": "133"
+										}
+									],
+									"name": "Login to SAP ECC",
+									"alm_id": "133",
+									"requirement": "None Given",
+									"parent": "129"
+								},
+								{
+									"is_active": true,
+									"transactions": [
+										{
+											"is_active": true,
+											"gherkinsteps": [
+												{
+													"is_active": true,
+													"name": "No instance of Chrome is open",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 10",
+													"alm_id": "No instance of Chrome is open"
+												},
+												{
+													"is_active": true,
+													"name": "No instance of Chrome is open",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 10",
+													"alm_id": "No instance of Chrome is open"
+												},
+												{
+													"is_active": true,
+													"name": "User performs Shift-Right Click on Chrome icon on Taskbar or Desktop",
+													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "AC 10",
+													"alm_id": "User performs Shift-Right Click on Chrome icon on Taskbar or Desktop"
+												},
+												{
+													"is_active": true,
+													"name": "User performs Shift-Right Click on Chrome icon on Taskbar or Desktop",
+													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "AC 10",
+													"alm_id": "User performs Shift-Right Click on Chrome icon on Taskbar or Desktop"
+												},
+												{
+													"is_active": true,
+													"name": "Selects 'Run as Different User' option",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 10",
+													"alm_id": "Selects 'Run as Different User' option"
+												},
+												{
+													"is_active": true,
+													"name": "Selects 'Run as Different User' option",
+													"gherkin_keyword": "AND",
+													"index": 3,
+													"parent": "AC 10",
+													"alm_id": "Selects 'Run as Different User' option"
+												},
+												{
+													"is_active": true,
+													"name": "Login popup is displayed",
+													"gherkin_keyword": "WHEN",
+													"index": 4,
+													"parent": "AC 10",
+													"alm_id": "Login popup is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "Login popup is displayed",
+													"gherkin_keyword": "WHEN",
+													"index": 4,
+													"parent": "AC 10",
+													"alm_id": "Login popup is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "User enters valid Username and password for alternate user that has access to Fiori Timesheet",
+													"gherkin_keyword": "AND",
+													"index": 5,
+													"parent": "AC 10",
+													"alm_id": "User enters valid Username and password for alternate user that has access to Fiori Timesheet"
+												},
+												{
+													"is_active": true,
+													"name": "User enters valid Username and password for alternate user that has access to Fiori Timesheet",
+													"gherkin_keyword": "AND",
+													"index": 5,
+													"parent": "AC 10",
+													"alm_id": "User enters valid Username and password for alternate user that has access to Fiori Timesheet"
+												},
+												{
+													"is_active": true,
+													"name": "Chrome browser window opens to Employee Central for the alternate user",
+													"gherkin_keyword": "THEN",
+													"index": 6,
+													"parent": "AC 10",
+													"alm_id": "Chrome browser window opens to Employee Central for the alternate user"
+												},
+												{
+													"is_active": true,
+													"name": "Chrome browser window opens to Employee Central for the alternate user",
+													"gherkin_keyword": "THEN",
+													"index": 6,
+													"parent": "AC 10",
+													"alm_id": "Chrome browser window opens to Employee Central for the alternate user"
+												}
+											],
+											"name": "Open Chrome browser as different user",
+											"alm_id": "AC 10",
+											"parent": "135"
+										},
+										{
+											"is_active": true,
+											"gherkinsteps": [
+												{
+													"is_active": true,
+													"name": "Alternate user has opened Chrome browser",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 20",
+													"alm_id": "Alternate user has opened Chrome browser"
+												},
+												{
+													"is_active": true,
+													"name": "Alternate user has opened Chrome browser",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 20",
+													"alm_id": "Alternate user has opened Chrome browser"
+												},
+												{
+													"is_active": true,
+													"name": "Employee Central landing page is displayed",
+													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "AC 20",
+													"alm_id": "Employee Central landing page is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "Employee Central landing page is displayed",
+													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "AC 20",
+													"alm_id": "Employee Central landing page is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "User navigates to https://urldefense.proofpoint.com/v2/url?u=https-3A__webappsstg.corp.dirsrv.com_sap_bc_ui5-5Fui5_ui2_ushell_shells_abap_FioriLaunchpad.html-23Shell-2Dhome-2522-2C-2522gherkin-5Fkeyword-2522-3A-2522WHEN-2522-2C-2522index-2522-3A3-2C-2522parent-2522-3A-2522AC&d=DwIGAw&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=pWKumEyWP5u7RWXi7mYeRStbHIK4rYclo8EhL79ej9k&s=UOae544DCQCJQ8zQvefuH9a7uEVUaR_tRRhb5vDBDqY&e=  20",
+													"alm_id": "User navigates to https://urldefense.proofpoint.com/v2/url?u=https-3A__webappsstg.corp.dirsrv.com_sap_bc_ui5-5Fui5_ui2_ushell_shells_abap_FioriLaunchpad.html-23Shell-2Dhome-2522-257D-2C-257B-2522is-5Factive-2522-3Atrue-2C-2522name-2522-3A-2522User&d=DwIGAw&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=pWKumEyWP5u7RWXi7mYeRStbHIK4rYclo8EhL79ej9k&s=Kcs4tbOigxhXYBokxL-eM-MGZIKXdqCC3G2pCcoEyyM&e=  navigates to https://urldefense.proofpoint.com/v2/url?u=https-3A__webappsstg.corp.dirsrv.com_sap_bc_ui5-5Fui5_ui2_ushell_shells_abap_FioriLaunchpad.html-23Shell-2Dhome-2522-2C-2522gherkin-5Fkeyword-2522-3A-2522WHEN-2522-2C-2522index-2522-3A3-2C-2522parent-2522-3A-2522AC&d=DwIGAw&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=pWKumEyWP5u7RWXi7mYeRStbHIK4rYclo8EhL79ej9k&s=UOae544DCQCJQ8zQvefuH9a7uEVUaR_tRRhb5vDBDqY&e=  20",
+													"alm_id": "User navigates to https://urldefense.proofpoint.com/v2/url?u=https-3A__webappsstg.corp.dirsrv.com_sap_bc_ui5-5Fui5_ui2_ushell_shells_abap_FioriLaunchpad.html-23Shell-2Dhome-2522-257D-2C-257B-2522is-5Factive-2522-3Atrue-2C-2522name-2522-3A-2522Fiori&d=DwIGAw&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=pWKumEyWP5u7RWXi7mYeRStbHIK4rYclo8EhL79ej9k&s=RhdcWqW_-vSY-WxmkTbdpLSJw9VXgdnqew08CrZygHk&e=  Launchpad is displayed",
+													"gherkin_keyword": "THEN",
+													"index": 4,
+													"parent": "AC 20",
+													"alm_id": "Fiori Launchpad is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "Fiori Launchpad is displayed",
+													"gherkin_keyword": "THEN",
+													"index": 4,
+													"parent": "AC 20",
+													"alm_id": "Fiori Launchpad is displayed"
+												}
+											],
+											"name": "Navigate to Fiori Launchpad as alternate user",
+											"alm_id": "AC 20",
+											"parent": "135"
+										},
+										{
+											"is_active": true,
+											"gherkinsteps": [
+												{
+													"is_active": true,
+													"name": "Fiori Launchpad is displayed for user with access to Fiori Timesheet tile",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 30",
+													"alm_id": "Fiori Launchpad is displayed for user with access to Fiori Timesheet tile"
+												},
+												{
+													"is_active": true,
+													"name": "Fiori Launchpad is displayed for user with access to Fiori Timesheet tile",
+													"gherkin_keyword": "GIVEN",
+													"index": 1,
+													"parent": "AC 30",
+													"alm_id": "Fiori Launchpad is displayed for user with access to Fiori Timesheet tile"
+												},
+												{
+													"is_active": true,
+													"name": "My Timesheets tile is selected",
+													"gherkin_keyword": "WHEN",
+													"index": 2,
+													"parent": "AC 30",
+													"alm_id": "My Timesheets tile is selected"
+												},
+												{
+													"is_active": true,
+													"name": "My Timesheets tile is selected",
+													"gherkin_keyword": "WHEN",
+													"index": 2,
+													"parent": "AC 30",
+													"alm_id": "My Timesheets tile is selected"
+												},
+												{
+													"is_active": true,
+													"name": "Timesheet entry page is displayed",
+													"gherkin_keyword": "THEN",
+													"index": 3,
+													"parent": "AC 30",
+													"alm_id": "Timesheet entry page is displayed"
+												},
+												{
+													"is_active": true,
+													"name": "Timesheet entry page is displayed",
+													"gherkin_keyword": "THEN",
+													"index": 3,
+													"parent": "AC 30",
+													"alm_id": "Timesheet entry page is displayed"
+												}
+											],
+											"name": "Open My Timesheets tile from Fiori Launchpad",
+											"alm_id": "AC 30",
+											"parent": "135"
+										}
+									],
+									"name": "Login to Fiori Timesheet",
+									"alm_id": "135",
+									"requirement": "None Given",
+									"parent": "129"
+								}
+							]
+						}
+					],
+					"name": "SAP Access",
+					"alm_id": "134",
+					"parent": "SAP Pilot Project"
+				}
+			],
+			"name": "SAP Pilot Project",
+			"url": "https://urldefense.proofpoint.com/v2/url?u=http-3A__tfsstg.wecenergygroup.com_tfs_TestingCollection_SAP&d=DwIGAw&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=pWKumEyWP5u7RWXi7mYeRStbHIK4rYclo8EhL79ej9k&s=abuZBzkiLCWvfAQEVLwFIgdKQKjR4qG1ZfgWjv2Zlzk&e=  Pilot Project",
+			"alm_type": "tfs",
+			"alm_id": "SAP Pilot Project"
+		}
+	]
+}
