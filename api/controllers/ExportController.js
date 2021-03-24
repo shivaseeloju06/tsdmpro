@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var path = require('path');
 var fs = require('fs');
+var numeral = require('numeral');
 
 var Project = mongoose.model('Project'),
     Testsuite = mongoose.model('Testsuite'),
@@ -13,11 +14,13 @@ var Project = mongoose.model('Project'),
     Stepaction = mongoose.model('Stepaction'),
     Dataiteration = mongoose.model('Dataiteration'),
     Action = mongoose.model('Action'),
+    Environment = mongoose.model('Environment'),
     Keyvaluepair = mongoose.model('Keyvaluepair');
 
 exports.generate_run_file_for_transaction = async function (req, res) {
     const transaction_id = req.params.transaction_id;
     const publishedTC = await wipToPublishTransaction(transaction_id);
+    //const gitInit = await InitialiseGit
     const returnedResult = await buildTransactionRunfiles(transaction_id);
     let result = [];
     result.push(publishedTC);
@@ -28,7 +31,7 @@ exports.generate_run_file_for_transaction = async function (req, res) {
 async function wipToPublishTransaction(transactionId) {
     let thisGherkinsteps = await Gherkinstep.find({transaction: transactionId}).exec();
     await Promise.all(thisGherkinsteps.map(x => moveWipToPublish(x)));
-    return "Published: " + transactionId
+    return "Published WIP for: " + transactionId
 }
 
 async function moveWipToPublish(gherkinStep) {
@@ -56,17 +59,16 @@ async function buildTransactionRunfiles(transactionId) {
     let thisGherkinsteps = await Gherkinstep.find({transaction: transactionId}).sort({index: 1}).exec();
     let dataIterations = await Dataiteration.find().populate('environment').populate('keyvaluepairs').sort({environment: 1, iteration: 1}).exec();
 
-    // Create an empty driver file
-    let driverFile;
-    let driverFileContent = {"Driver": []};
-    console.log(driverFileContent);
-
     for (const thisDataiteration of dataIterations) {
+      // Create an empty driver file
+      let driverFile;
+      let driverFileContent = {"Driver": []};
+      console.log(driverFileContent);      
       // Set driver file name to
-      driverFile = 'ENV_' + thisDataiteration.environment.name + '_TC_' + thisTransaction.alm_id  + '_DriverSerial.json';
+      driverFile = thisDataiteration.environment.name + '_05_TC_' + thisTransaction.alm_id  + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_DriverSerial.json';
       // Create an empty instruction file
-      let instructionFile = 'ENV_' + thisDataiteration.environment.name + '_TC_' + thisTransaction.alm_id + '_IT_' + thisDataiteration.iteration + '_Script.json';
-      let instructionFileResult = 'ENV_' + thisDataiteration.environment.name + '_TC_' + thisTransaction.alm_id + '_IT_' + thisDataiteration.iteration + '_Output.txt';
+      let instructionFile = thisDataiteration.environment.name + '_05_TC_' + thisTransaction.alm_id + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_Script.json';
+      let instructionFileResult = thisDataiteration.environment.name + '_05_TC_' + thisTransaction.alm_id + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_Output.txt';
       let instructionFileContent = [];
 
       // Build all the instructions for this instrtuction file
@@ -78,7 +80,7 @@ async function buildTransactionRunfiles(transactionId) {
             const instruction = await Instruction.findById(step.action.instruction).exec();
             const stepJason = {};
             stepJason.rowID = counter;
-            stepJason.testCaseID = 'ENV_' + thisDataiteration.environment.name + '_TC_' + thisTransaction.alm_id + '_IT_' + thisDataiteration.iteration + '_STEP_' + gherkinstep.index + '_ROW_' + step.index;
+            stepJason.testCaseID = thisDataiteration.environment.name + '_TC_' + thisTransaction.alm_id + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_STEP_' + gherkinstep.index + '_ROW_' + step.index;
             stepJason.expectedResult = step.action.expected_result;
             stepJason.stepDescription = gherkinstep.name;
             stepJason.notes = gherkinstep.gherkin_keyword + ' ' + gherkinstep.name;
@@ -112,17 +114,19 @@ async function buildTransactionRunfiles(transactionId) {
       });
 
       let tempContent = {
-        "Transaction": instructionFile,
+        "InputFileName": instructionFile, 
         "OutputFileName": instructionFileResult
       }
+
       driverFileContent.Driver.push(tempContent)
+      let thisDriverFile = tempPath + '/' + driverFile;
+      fs.writeFile(thisDriverFile, JSON.stringify(driverFileContent), function (err) {
+        if (err) throw err;
+      });
+  
+
 
     }  
-
-    let thisDriverFile = tempPath + '/' + driverFile;
-    fs.writeFile(thisDriverFile, JSON.stringify(driverFileContent), function (err) {
-      if (err) throw err;
-    });
 
     return 'Built Instruction files for: ' + transactionId
 
