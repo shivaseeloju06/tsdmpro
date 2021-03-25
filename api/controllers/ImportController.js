@@ -103,7 +103,6 @@ async function createWorkflow(workflow) {
 }
 
 async function addScenarios(recJson) {
-  console.log(recJson);
   var arrayCollection = recJson.scenarios;
   await Promise.all(arrayCollection.map(x => createScenario(x)));
   let counter = {};
@@ -139,7 +138,7 @@ async function createTransaction(transaction) {
   var thisParent = await Scenario.findOne({alm_id: transaction.parent}).exec()
   transaction.scenario = thisParent._id;
   delete transaction['parent'];
-  let addedtransaction = await Transaction.findOneAndUpdate( {name: transaction.name}, transaction, {new: true, upsert: true}).exec()
+  let addedtransaction = await Transaction.findOneAndUpdate( {alm_id: transaction.alm_id}, transaction, {new: true, upsert: true}).exec()
   thisParent.transactions.push(addedtransaction._id),
   await thisParent.save();
   const allGherkinsteps = docTranssaction.findValues('gherkinsteps');
@@ -159,7 +158,7 @@ async function creategherkinstep(gherkinstep) {
   var thisParent = await Transaction.findOne({alm_id: gherkinstep.parent}).exec()
   gherkinstep.transaction = thisParent._id;
   delete gherkinstep['parent'];
-  let addedgherkinstep = await Gherkinstep.findOneAndUpdate( {name: gherkinstep.name}, gherkinstep, {new: true, upsert: true}).exec()
+  let addedgherkinstep = await Gherkinstep.findOneAndUpdate( {alm_id: gherkinstep.alm_id}, gherkinstep, {new: true, upsert: true}).exec()
   thisParent.gherkinsteps.push(addedgherkinstep._id),
   await thisParent.save();
 }

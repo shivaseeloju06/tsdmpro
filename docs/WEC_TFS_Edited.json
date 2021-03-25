@@ -92,7 +92,7 @@
 												},
 												{
 													"is_active": true,
-													"name": "User navigates to the link listed below",
+													"name": "User navigates tohttps://webappsstg.corp.dirsrv.com/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html#Shell-home",
 													"gherkin_keyword": "WHEN",
 													"index": 3,
 													"parent": "TR 130 AC 20",
@@ -102,9 +102,9 @@
 													"is_active": true,
 													"name": "Fiori Launchpad is displayed",
 													"gherkin_keyword": "THEN",
-													"index": 5,
+													"index": 4,
 													"parent": "TR 130 AC 20",
-													"alm_id": "TR 130 AC 20 GS 5"
+													"alm_id": "TR 130 AC 20 GS 4"
 												}
 											],
 											"name": "Navigate to Fiori Launchpad as alternate user",
@@ -164,7 +164,7 @@
 												},
 												{
 													"is_active": true,
-													"name": "User navigates to the link listed below",
+													"name": "User navigates tohttps://webappsstg.corp.dirsrv.com/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html#Shell-home",
 													"gherkin_keyword": "AND",
 													"index": 3,
 													"parent": "TR 130 AC 40",
@@ -174,13 +174,21 @@
 													"is_active": true,
 													"name": "Fiori Launchpad is displayed",
 													"gherkin_keyword": "AND",
+													"index": 4,
+													"parent": "TR 130 AC 40",
+													"alm_id": "TR 130 AC 40 GS 4"
+												},
+												{
+													"is_active": true,
+													"name": "My Timesheets tile is selected",
+													"gherkin_keyword": "AND",
 													"index": 5,
 													"parent": "TR 130 AC 40",
 													"alm_id": "TR 130 AC 40 GS 5"
 												},
 												{
 													"is_active": true,
-													"name": "My Timesheets tile is selected",
+													"name": "My Timesheet - Welcome to My Timesheet page is displayed",
 													"gherkin_keyword": "AND",
 													"index": 6,
 													"parent": "TR 130 AC 40",
@@ -188,27 +196,19 @@
 												},
 												{
 													"is_active": true,
-													"name": "My Timesheet - Welcome to My Timesheet page is displayed",
-													"gherkin_keyword": "AND",
+													"name": "User selects Go to Timesheet/Expense Entry link",
+													"gherkin_keyword": "WHEN",
 													"index": 7,
 													"parent": "TR 130 AC 40",
 													"alm_id": "TR 130 AC 40 GS 7"
 												},
 												{
 													"is_active": true,
-													"name": "User selects Go to Timesheet/Expense Entry link",
-													"gherkin_keyword": "WHEN",
+													"name": "Time entry page opens to current week",
+													"gherkin_keyword": "THEN",
 													"index": 8,
 													"parent": "TR 130 AC 40",
 													"alm_id": "TR 130 AC 40 GS 8"
-												},
-												{
-													"is_active": true,
-													"name": "Time entry page opens to current week",
-													"gherkin_keyword": "THEN",
-													"index": 9,
-													"parent": "TR 130 AC 40",
-													"alm_id": "TR 130 AC 40 GS 9"
 												}
 											],
 											"name": "Navigate to time entry page of .NET My Timesheet",
@@ -229,7 +229,7 @@
 											"gherkinsteps": [
 												{
 													"is_active": true,
-													"name": "User navigates to the link listed below",
+													"name": "User navigates to the following:  https://urldefense.proofpoint.com/v2/url?u=https-3A__sts.wecenergygroup.com_adfs_ls_idpinitiatedsignon-2522-2C-2522gherkin-5Fkeyword-2522-3A-2522GIVEN-2522-2C-2522index-2522-3A1-2C-2522parent-2522-3A-2522TR&d=DwIGAw&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=E0kzUUuL1I2ZS6E_SlAo3kTbWn3VBer-IjLtIpEpuEQ&s=ti7iXyp2gbpgHd9Yc87HDvqzQFDZMKv9eiMh4TQy2kI&e=  132 AC 10",
 													"gherkin_keyword": "GIVEN",
 													"index": 1,
 													"parent": "TR 132 AC 10",
@@ -239,33 +239,33 @@
 													"is_active": true,
 													"name": "selects 'Sign in to one of the following sites' radio button",
 													"gherkin_keyword": "AND",
+													"index": 2,
+													"parent": "TR 132 AC 10",
+													"alm_id": "TR 132 AC 10 GS 2"
+												},
+												{
+													"is_active": true,
+													"name": "selects 'SuccessFactors Stage' option from the drop down",
+													"gherkin_keyword": "AND",
 													"index": 3,
 													"parent": "TR 132 AC 10",
 													"alm_id": "TR 132 AC 10 GS 3"
 												},
 												{
 													"is_active": true,
-													"name": "selects 'SuccessFactors Stage' option from the drop down",
-													"gherkin_keyword": "AND",
+													"name": "Sign In button is selected",
+													"gherkin_keyword": "WHEN",
 													"index": 4,
 													"parent": "TR 132 AC 10",
 													"alm_id": "TR 132 AC 10 GS 4"
 												},
 												{
 													"is_active": true,
-													"name": "Sign In button is selected",
-													"gherkin_keyword": "WHEN",
+													"name": "Employee Central landing page is displayed",
+													"gherkin_keyword": "THEN",
 													"index": 5,
 													"parent": "TR 132 AC 10",
 													"alm_id": "TR 132 AC 10 GS 5"
-												},
-												{
-													"is_active": true,
-													"name": "Employee Central landing page is displayed",
-													"gherkin_keyword": "THEN",
-													"index": 6,
-													"parent": "TR 132 AC 10",
-													"alm_id": "TR 132 AC 10 GS 6"
 												}
 											],
 											"name": "User can access Employee Central (MUST be a user with Proxy Now permissions)",
@@ -527,7 +527,9 @@
 												},
 												{
 													"is_active": true,
-													"name": "User navigates to https://urldefense.proofpoint.com/v2/url?u=https-3A__webappsstg.corp.dirsrv.com_sap_bc_ui5-5Fui5_ui2_ushell_shells_abap_FioriLaunchpad.html-23Shell-2Dhome-2522-2C-2522gherkin-5Fkeyword-2522-3A-2522WHEN-2522-2C-2522index-2522-3A3-2C-2522parent-2522-3A-2522TR&d=DwIGAg&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=SNAh8kZSrAyO4wAcYJigzono8aoOf1VsPxOXdaN7XrE&s=ybA4675TPK16gCMQ9Ko5-2UKSbJAodJqDI_eERID1Dk&e=  135 AC 20",
+													"name": "User navigates to https://urldefense.proofpoint.com/v2/url?u=https-3A__webappsstg.corp.dirsrv.com_sap_bc_ui5-5Fui5_ui2_ushell_shells_abap_FioriLaunchpad.html-23Shell-2Dhome-2522-2C-2522gherkin-5Fkeyword-2522-3A-2522WHEN-2522-2C-2522index-2522-3A3-2C-2522parent-2522-3A-2522TR&d=DwIGAw&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=E0kzUUuL1I2ZS6E_SlAo3kTbWn3VBer-IjLtIpEpuEQ&s=IozksBxHSYmtCPLL4BOCwoVErPyW8WLe5Gyc8cj66yQ&e=  135 AC 20",
+													"gherkin_keyword": "AND",
+													"index": 3,
 													"parent": "TR 135 AC 20",
 													"alm_id": "TR 135 AC 20 GS 3"
 												},
@@ -591,7 +593,7 @@
 				}
 			],
 			"name": "SAP Pilot Project",
-			"url": "https://urldefense.proofpoint.com/v2/url?u=http-3A__tfsstg.wecenergygroup.com_tfs_TestingCollection_SAP&d=DwIGAg&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=SNAh8kZSrAyO4wAcYJigzono8aoOf1VsPxOXdaN7XrE&s=9H-u4s9FAJh6nrR-1-BSNA67sZBJcaiQd3MAIIqnn8M&e=  Pilot Project",
+			"url": "https://urldefense.proofpoint.com/v2/url?u=http-3A__tfsstg.wecenergygroup.com_tfs_TestingCollection_SAP&d=DwIGAw&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=E0kzUUuL1I2ZS6E_SlAo3kTbWn3VBer-IjLtIpEpuEQ&s=w_UeZA7dYF1yinGPu5u1ThYKzTry-ocs_E-yZ1IqpLY&e=  Pilot Project",
 			"alm_type": "tfs",
 			"alm_id": "SAP Pilot Project"
 		}
