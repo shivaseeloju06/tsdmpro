@@ -1,1 +1,1 @@
-{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"unique":true,"key":{"name":{"$numberInt":"1"}},"name":"name_1","background":true}],"uuid":"58ff8f62117c4c0bbfbe347b8b305363","collectionName":"tokennames"}
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"unique":true,"key":{"name":{"$numberInt":"1"}},"name":"name_1","background":true}],"uuid":"8ed81c6759944603bc9044aba2e3b770","collectionName":"tokennames"}
