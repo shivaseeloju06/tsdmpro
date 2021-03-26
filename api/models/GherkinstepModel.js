@@ -21,6 +21,10 @@ var gherkinstepSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  alm_id: {
+    type: String,
+    required: 'Please enter the id for the Scenario from the ALM system'
+  },
   transaction: {
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Transaction'

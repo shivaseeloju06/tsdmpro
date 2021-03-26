@@ -12,4 +12,7 @@ module.exports = function(app) {
     .get(Environment.read_an_environment_by_id)
     .put(Environment.update_an_environment_by_id)
     .delete(Environment.delete_an_environment_by_id);
+
+  app.route('/environment/project/almid/:almid')
+    .post(Environment.create_an_environment_by_project_almid);
 };

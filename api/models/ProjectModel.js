@@ -47,6 +47,5 @@ var projectSchema = new Schema({
 projectSchema.virtual('project_id').get(function(){
   return this._id;
 });
-
 module.exports = mongoose.model('Project', projectSchema);
 

@@ -9,11 +9,25 @@ var environmentSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  synced_date: {
+    type: Date,
+    default: Date.now
+  },
+  updated_date: {
+    type: Date,
+    default: Date.now
+  },
   name: {
     type: String,
     required: 'Please enter the name for the Key Value Pair',
     unique: true
-  }  
+  },
+  project: {
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Project',
+    required: 'Please provide a reference to the Project',
+    sparse: true 
+  }   
 })
 environmentSchema.virtual('environment_id').get(function(){
   return this._id;

@@ -17,6 +17,8 @@ var express = require('express'),
   Instruction = require('./api/models/InstructionModel'),
   Environment = require('./api/models/EnvironmentModel'),
   Keyvaluepair = require('./api/models/KeyvaluepairModel'),
+  Dayaiteration = require('./api/models/DataiterationModel'),
+  Tokenname = require('./api/models/TokennameModel'),
   bodyParser = require('body-parser');
 
 app.use(cors());
@@ -26,7 +28,7 @@ app.use(morgan('dev'));
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/tsdmDB', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/tsdmDB', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then(() => console.log("MongoDb Connected"))
   .catch(err => console.log(err));
 
@@ -55,8 +57,14 @@ var EnvironmentRoutes = require('./api/routes/EnvironmentRoutes');
 EnvironmentRoutes(app);
 var KeyvaluepairRoutes = require('./api/routes/KeyvaluepairRoutes');
 KeyvaluepairRoutes(app);
+var DataiterationRoutes = require('./api/routes/DataiterationRoutes');
+DataiterationRoutes(app);
+var TokennameRoutes = require('./api/routes/TokennameRoutes');
+TokennameRoutes(app);
 var DownloadRoutes = require('./api/routes/DownloadRoutes');
 DownloadRoutes(app);
+var ExportRoutes = require('./api/routes/ExportRoutes');
+ExportRoutes(app);
 
 // Error handling
 app.use((req, res, next) => {

@@ -63,15 +63,14 @@ exports.delete_a_transaction_by_id = function (req, res) {
   });
 };
 
-exports.list_gherkinsteps_by_transaction_id = function (req, res) {
-  Gherkinstep.find({ transaction: req.params.transactionId }, function (err, gherkinsteps) {
-    if (err) {
-      res.send(err);
-      console.log(err);
-      return;
-    };
+
+exports.list_gherkinsteps_by_transaction_id = async function (req, res) {
+  try {
+    var gherkinsteps = await Gherkinstep.find({ transaction: req.params.transactionId }).sort({ index: 1 }).exec();
     res.json(gherkinsteps);
-  });
+  } catch (err) {
+    res.status(500).send({ error: err });
+  }
 };
 
 exports.read_a_transaction_by_alm_id = function (req, res) {
@@ -136,9 +135,16 @@ exports.delete_a_transaction_by_name = function (req, res) {
       console.log(err);
       return;
     };
+
     res.json({ message: 'Transaction successfully deleted' });
   });
-};
+}
+
+/*
+exports.publish_a_transaction = async function (req, res) {
+  const transaction_id = req.params.transaction_id;
+  let thisTransaction = await Transaction.findOn
+}*/
 
 async function getScenarioId(passedBody) {
   try {

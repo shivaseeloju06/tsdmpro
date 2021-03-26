@@ -1,0 +1,8 @@
+{
+	"Driver": [
+		{
+			"Transaction": "DEV_TC1_IT_01_Script.json",
+			"OutputFileName": "DEV_TC1_IT_01_Output.txt"
+		}
+	]
+}

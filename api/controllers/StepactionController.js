@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 
 exports.list_all_stepactions = function (req, res) {
   Stepaction.find({})
-  .populate({path: 'wip_step_collection', populate: {path: "action", model: 'Action', populate: [{path: 'instruction', model: 'Instruction'}, {path: 'test_data.environments.environment', model: 'Environment'}, {path: 'test_data.environments.datapairs.valuename', model: 'Keyvaluepair', populate: {path: 'environment', model: 'Environment'}}]}})
+    .populate({ path: 'wip_step_collection', populate: { path: "action", model: 'Action', populate: [{ path: 'instruction', model: 'Instruction' }] } })
     .exec(function (err, stepaction) {
       if (err) {
         res.send(err);
@@ -19,15 +19,15 @@ exports.list_all_stepactions = function (req, res) {
 
 exports.read_a_stepaction_by_id = function (req, res) {
   Stepaction.findById(req.params.id)
-  .populate({path: 'wip_step_collection', populate: {path: "action", model: 'Action', populate: [{path: 'instruction', model: 'Instruction'}, {path: 'test_data.environments.environment', model: 'Environment'}, {path: 'test_data.environments.datapairs.valuename', model: 'Keyvaluepair', populate: {path: 'environment', model: 'Environment'}}]}})
-  .exec( function (err, stepaction) {
-    if (err) {
-      res.send(err);
-      console.log(err);
-      return;
-    };
-    res.json(stepaction);
-  });
+    .populate({ path: 'wip_step_collection', populate: { path: "action", model: 'Action', populate: [{ path: 'instruction', model: 'Instruction' }] } })
+    .exec(function (err, stepaction) {
+      if (err) {
+        res.send(err);
+        console.log(err);
+        return;
+      };
+      res.json(stepaction);
+    });
 };
 
 exports.update_a_stepaction_by_id = function (req, res) {
@@ -54,7 +54,7 @@ exports.delete_a_stepaction_by_id = function (req, res) {
 
 exports.list_all_stepactions_by_wildcard = function (req, res) {
   Stepaction.find({ name: { $regex: req.params.description } })
-    .populate('action')
+    .populate(({ path: 'wip_step_collection', populate: { path: "action", model: 'Action', populate: [{ path: 'instruction', model: 'Instruction' }] } }))
     .exec(function (err, result) {
       if (err) {
         res.send(err);
@@ -92,78 +92,75 @@ exports.create_a_stepaction = function (req, res) {
 };
 
 exports.create_a_step_by_stepaction = async function (req, res) {
-  let wip_action_collection = await buildCollection(req.body);
-  var thisStepAction = await Stepaction.findById(req.params.id, async function (err, stepaction) {
+  try {
+    console.log("Request received");
+    console.log(req.body);
+    var wip_action_collection = await buildCollection(req.body);
+    var stepaction = await Stepaction.findById(req.params.id).exec();
     stepaction.wip_step_collection = wip_action_collection;
-    await stepaction.save((e, updated) => {
-      if (e) {
-        //res.send(e);
-        console.log(e);
-        return;
-      };
-      return updated;
-    });
-    let step_collection = await getStepCollection(stepaction);
-    //console.log(step_collection);
+    await stepaction.save();
+    var step_collection = await getStepCollection(stepaction);
     return res.json(step_collection);
-    });
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
 };
 
-async function buildCollection(coll) {
+async function buildCollection(actions) {
   var return_collection = [];
-  coll.forEach(async (element) => {
-    if (element.action_id == null) {
-      var new_action_array = {
-        "description": element.description, 
-        "expected_result": element.expected_result,
-        "instruction": element.instructionID,
-        "test_data": element.test_data
-      };
-      let new_action = await createNewAction(new_action_array);
-      //console.log(new_action);
-      return_collection.push({"index": element.index, "action": new_action._id});
-    } else {
-      let thisaction = await Action.findById(element.action_id).exec();
-      return_collection.push({"index": element.index, "action": thisaction._id});
-    }
-  });
+  for (const action of actions) {
+    var data = {
+      "description": action.description,
+      "expected_result": action.expected_result,
+      "instruction": action.instruction_id,
+      "argument_datatoken_pairs": action.argument_datatoken_pairs
+    };
+
+    var updatedAction = await createOrUpdateAction(action, data);
+    return_collection.push({ "index": action.index, "action": updatedAction._id });
+
+    // if (action.action_id == null) {
+
+    //   var new_action = await createOrUpdateAction(data);
+    //   //console.log(new_action);
+    //   return_collection.push({ "index": action.index, "action": new_action._id });
+    // } else {
+    //   var thisAction = await Action.findById(action.action_id).exec();
+    //   return_collection.push({ "index": action.index, "action": thisAction._id });
+    // }
+  }
   return return_collection;
 };
 
-async function createNewAction(rec) {
-  var query = {"description": rec.description},
-  options = { upsert: true, new: true, setDefaultsOnInsert: true };
+async function createOrUpdateAction(action, data) {
+  var query = action.action_id ? { "_id": action.action_id } : { "description": action.description },
+    options = { upsert: true, new: true, setDefaultsOnInsert: true };
 
-  var new_action = Action.findOneAndUpdate(query, rec, options, function(error, result) {
-    if (error) {
-      console.log(error);
-      return;
-    };
-  });
+  var new_action = await Action.findOneAndUpdate(query, data, options).exec();
   return new_action;
-};
+}
 
 async function getStepCollection(request) {
   var returnArray = [];
   var thisStepAction = await Stepaction.findById(request._id)
-    .populate({path: 'wip_step_collection.action', model: 'Action'}).exec();
+    .populate({ path: 'wip_step_collection.action', model: 'Action' }).exec();
   var wip_step_collection = thisStepAction.wip_step_collection;
-  await wip_step_collection.forEach( async (element) => {
+
+  for (const element of wip_step_collection) {
     try {
       var line = {
-        "action_id": element.action._id,
+        "action_id": element.action_id,
         "index": element.index,
         "description": element.action.description,
         "expected_result": element.action.expected_result,
-        "instruction": element.action.instruction,
-        "test_data": element.action.test_data
+        "instruction": element.action.instruction
       };
       returnArray.push(line);
     } catch (error) {
       console.log(error);
       return error;
     }
-  });
-  console.log(returnArray);
+  }
   return returnArray;
-};
+}
