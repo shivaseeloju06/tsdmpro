@@ -4,10 +4,10 @@
         "*.test.js",
         "temp/*",
         "bin/*",
-        "published/",
-        "published/DEV",
-        "published/SIT",
-        "published/UAT"
+        "*GitAutomation/*",
+        "*GitAutomation/DEV/*",
+        "*GitAutomation/SIT/*",
+        "*GitAutomation/UAT/*"
     ],
     "env": {
         "NODE_ENV": "development"

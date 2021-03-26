@@ -17,6 +17,14 @@ var Project = mongoose.model('Project'),
     Environment = mongoose.model('Environment'),
     Keyvaluepair = mongoose.model('Keyvaluepair');
 
+let gitClone = require('./gitCloneController.js');
+let gitPull = require('./gitPullController');
+let gitCheckout = require('./gitCheckoutController');
+let gitPush = require('./gitPushController');
+const REPO = "dev.azure.com/SQSDemos/TSDM/_git/GitAutomation";
+const USER = "riaan.roos";
+const PASS = "zpetesbcitcefornx6mj6xyxvpvij3tqozc35wjxmqfrnh2zg6ma";
+
 exports.generate_run_file_for_transaction = async function (req, res) {
     const transaction_id = req.params.transaction_id;
     const publishedTC = await wipToPublishTransaction(transaction_id);
@@ -45,7 +53,6 @@ async function moveWipToPublish(gherkinStep) {
 async function buildTransactionRunfiles(transactionId) {
   try {
     let publishDir = await createPublishedDir();
-    await createEnvSubDirs();
 
     // Get the full tree structure for the transaction
     let thisTransaction = await Transaction.findById(transactionId).exec();
@@ -55,6 +62,21 @@ async function buildTransactionRunfiles(transactionId) {
     let thisProject = await Project.findById(thisTestsuite.project).exec();
     let thisGherkinsteps = await Gherkinstep.find({transaction: transactionId}).sort({index: 1}).exec();
     let dataIterations = await Dataiteration.find().populate('environment').populate('keyvaluepairs').sort({environment: 1, iteration: 1}).exec();
+
+    // git checkout -b new branch
+    Date.prototype.yyyymmdd = function() {
+      var mm = this.getMonth() + 1; // getMonth() is zero-based
+      var dd = this.getDate();
+    
+      return [this.getFullYear(),
+              (mm>9 ? '' : '0') + mm,
+              (dd>9 ? '' : '0') + dd
+             ].join('');
+    };
+    let todayDate = new Date();
+    let newBranchName = "Automation_" + todayDate.yyyymmdd() + "_" + thisTransaction._id;
+    await gitCheckout(publishDir, newBranchName);
+    let addedFiles = [];
 
     for (const thisDataiteration of dataIterations) {
       // Create an empty driver file
@@ -113,6 +135,7 @@ async function buildTransactionRunfiles(transactionId) {
         console.log(err);
           return err;
       });
+      addedFiles.push('./' + thisDataiteration.environment.name + '/' + instructionFile);
 
       let tempContent = {
         "InputFileName": instructionFile, 
@@ -126,9 +149,20 @@ async function buildTransactionRunfiles(transactionId) {
         console.log(err);
           return err;
       });
+      addedFiles.push('./' + thisDataiteration.environment.name + '/' + driverFile);
     }  
 
-    // await buildL5DriverSerial();
+    // TODOawait buildL5DriverSerial();
+    // TODO await buildL4DriverSerial();
+    // TODO await buildL3DriverSerial();
+    // TODO await buildL2DriverSerial();
+    // TODO await buildL1DriverSerial();
+
+    // git add .
+    // git commit -m
+    // git push -u origin new branch
+    // TODO git request-pull 
+    await gitPush(publishDir, newBranchName, addedFiles);
 
     return 'Built Instruction files for: ' + transactionId
 
@@ -140,24 +174,29 @@ async function buildTransactionRunfiles(transactionId) {
 
 async function createPublishedDir() {
   try {
-    // Create the output directory
-    let tempPath = path.normalize(__dirname + `../../../published`);
-    if (!fs.existsSync(tempPath)) {
-      fs.mkdirSync(tempPath);
-    } 
-    return tempPath
+    // Create the output directory by removing it and then cloning from git
+    let exportPath = path.normalize(__dirname + `../../../GitAutomation`);
+    if (!fs.existsSync(exportPath)) {
+      // git clone execution engine repo
+      await gitClone(REPO, exportPath, USER, PASS);
+    } else {
+      // git pull repo main branch
+      await gitPull(exportPath);
+    }
+    // Create missing env dir's
+    await createEnvSubDirs(exportPath);
+    return exportPath
   } catch (err) {
     if (err) throw err
   }
 }
 
-async function createEnvSubDirs() {
+async function createEnvSubDirs(exportPath) {
   try {
     // Create output directory for each environment 
-    let tempPath = path.normalize(__dirname + `../../../published`);
     const allEnvironments = await Environment.find().exec();
     for (const env of allEnvironments) {
-      let envPath = path.normalize(tempPath + '/' + env.name);
+      let envPath = path.normalize(exportPath + '/' + env.name);
       if (!fs.existsSync(envPath)) {
         fs.mkdirSync(envPath);
       } 

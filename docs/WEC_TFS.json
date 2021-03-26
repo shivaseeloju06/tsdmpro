@@ -527,7 +527,7 @@
 												},
 												{
 													"is_active": true,
-													"name": "User navigates to https://urldefense.proofpoint.com/v2/url?u=https-3A__webappsstg.corp.dirsrv.com_sap_bc_ui5-5Fui5_ui2_ushell_shells_abap_FioriLaunchpad.html-23Shell-2Dhome-2522-2C-2522gherkin-5Fkeyword-2522-3A-2522WHEN-2522-2C-2522index-2522-3A3-2C-2522parent-2522-3A-2522TR&d=DwIGAg&c=HW6sFd2W7ocfSPROWztN-Q&r=pu7TLssSypzF_rAyzB7EUAOdapUWHbwApyClE0OzmeM&m=SNAh8kZSrAyO4wAcYJigzono8aoOf1VsPxOXdaN7XrE&s=ybA4675TPK16gCMQ9Ko5-2UKSbJAodJqDI_eERID1Dk&e=  135 AC 20",
+													"name": "User navigates to URL below,
 													"parent": "TR 135 AC 20",
 													"alm_id": "TR 135 AC 20 GS 3"
 												},
