@@ -4,8 +4,7 @@ const git = simpleGit();
 module.exports =  async function (remotePath, localPath, user, password) {
     let URL = `https://${user}:${password}@${remotePath}`
 
-    await git.silent(true)
-        .clone(URL, localPath)
+    await git.clone(URL, localPath)
         .then( () =>
             console.log("Cloned Repo...")
         )
@@ -14,8 +13,16 @@ module.exports =  async function (remotePath, localPath, user, password) {
             throw err
         });
 
-    await git.silent(true)
-        .addRemote('origin', URL)
+    await git.cwd(localPath)
+        .then( () =>
+            console.log("Set working directory for Repo...")
+        )
+        .catch( (err) => {
+            console.log(err);
+            throw err
+        });
+        
+    await git.addRemote('origin', URL)
         .then( () =>
             console.log("Added Remote...")
         )

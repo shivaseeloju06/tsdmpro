@@ -64,7 +64,7 @@ async function buildTransactionRunfiles(transactionId) {
     let dataIterations = await Dataiteration.find().populate('environment').populate('keyvaluepairs').sort({environment: 1, iteration: 1}).exec();
 
     // git checkout -b new branch
-    Date.prototype.yyyymmdd = function() {
+    /*Date.prototype.yyyymmdd = function() {
       var mm = this.getMonth() + 1; // getMonth() is zero-based
       var dd = this.getDate();
     
@@ -72,10 +72,13 @@ async function buildTransactionRunfiles(transactionId) {
               (mm>9 ? '' : '0') + mm,
               (dd>9 ? '' : '0') + dd
              ].join('');
-    };
-    let todayDate = new Date();
-    let newBranchName = "Automation_" + todayDate.yyyymmdd() + "_" + thisTransaction._id;
+    };*/
+    let todayDate = new Date().getTime();
+    let newBranchName = "Automation_" + todayDate + "_" + thisTransaction._id;
     await gitCheckout(publishDir, newBranchName);
+    // Create missing env dir's
+    await createEnvSubDirs(publishDir);
+
     let addedFiles = [];
 
     for (const thisDataiteration of dataIterations) {
@@ -181,10 +184,8 @@ async function createPublishedDir() {
       await gitClone(REPO, exportPath, USER, PASS);
     } else {
       // git pull repo main branch
-      await gitPull(exportPath);
+      await gitPull(REPO, exportPath, USER, PASS);
     }
-    // Create missing env dir's
-    await createEnvSubDirs(exportPath);
     return exportPath
   } catch (err) {
     if (err) throw err
