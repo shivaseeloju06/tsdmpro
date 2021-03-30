@@ -70,7 +70,7 @@ exports.delete_an_environment_by_id = function (req, res) {
 exports.create_an_environment_by_project_almid = async function (req, res) {
   try {
     let newEnvironment = req.body;
-    console.log(req.params.almid);
+    // console.log(req.params.almid);
     var project = await Project.findOne({alm_id: req.params.almid}).exec();
     console.log(project);
     var tokenCollection = await getallTokens();
