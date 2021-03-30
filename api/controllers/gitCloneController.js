@@ -22,7 +22,20 @@ module.exports =  async function (remotePath, localPath, user, password) {
             throw err
         });
         
-    await git.addRemote('origin', URL)
+        let allRemotes = await git.getRemotes(); 
+        if (allRemotes.length !== 0) {
+            console.log(allRemotes);
+            await git.removeRemote('origin')
+            .then( () =>
+                console.log("Remove remotes...")
+            )
+            .catch( (err) => {
+                console.log(err);
+                throw err
+            });
+        }
+
+        await git.addRemote('origin', URL)
         .then( () =>
             console.log("Added Remote...")
         )
