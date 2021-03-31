@@ -29,13 +29,13 @@ exports.create_an_environment = async function (req, res) {
     //var new_environment = new Environment(req.body);
     //new_environment.project = project;
     //await new_environment.save();
-    let new_environment = Environment.findOneAndUpdate( filter, update, options, function (err, instruction, res) {
+    let new_environment = await Environment.findOneAndUpdate( filter, update, options, function (err, instruction, res) {
       if (err) {
         console.log(err);
         throw err
       }
     })
-    await createDataiteration(new_environment._id, "1", emptyKeyValuePairs);
+    await createDataiteration(new_environment, "1", emptyKeyValuePairs);
     res.json(new_environment);
   } catch (err) {
     console.log(err);
@@ -82,6 +82,7 @@ exports.create_an_environment_by_project_almid = async function (req, res) {
     //let newEnvironment = req.body;
     // console.log(req.params.almid);
     var project = await Project.findOne({alm_id: req.params.almid}).exec();
+    //console.log("********************* Project *********************");
     //console.log(project);
     var tokenCollection = await getallTokens();
     var emptyKeyValuePairs = await getEmptyKeyValuePairsFromTokens(tokenCollection);
@@ -93,13 +94,15 @@ exports.create_an_environment_by_project_almid = async function (req, res) {
     //var new_environment = new Environment(newEnvironment);
     //new_environment.project = project;
     //await new_environment.save();
-    let new_environment = Environment.findOneAndUpdate( filter, update, options, function (errr, instruction, ress) {
+    let new_environment = await Environment.findOneAndUpdate( filter, update, options, function (errr, instruction, ress) {
       if (errr) {
         console.log(errr);
         throw errr
       }
     }).exec()
-    await createDataiteration(new_environment._id, "1", emptyKeyValuePairs);
+    //console.log("********************* New Environment *********************");
+    //console.log(new_environment);
+    await createDataiteration(new_environment, "1", emptyKeyValuePairs);
     res.json({"environment_added": new_environment.name});
   } catch (err) {
     console.log(err);
