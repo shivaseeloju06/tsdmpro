@@ -166,8 +166,11 @@ async function creategherkinstep(gherkinstep) {
 function addCollectionOfInstructions(collection) {
   return new Promise(async function (resolve, reject) {
     for (const element of collection) {
-      var new_instruction = new Instruction(element);
-      new_instruction.save( function(err, instruction, res) {
+      const filter = {library: element.library, name: element.name};
+      const options = { upsert: true };
+      //var new_instruction = new Instruction(element);
+      //new_instruction.save( function(err, instruction, res) {
+      let new_instruction = Instruction.findOneAndUpdate( filter, element, options, function(err, instruction, res) { 
         if (err) {
           console.log(err);
           reject(res)
