@@ -137,6 +137,8 @@ async function createTransaction(transaction) {
   transaction.gherkinsteps = [];
   var thisParent = await Scenario.findOne({alm_id: transaction.parent}).exec()
   transaction.scenario = thisParent._id;
+  const thisAlmId = transaction.alm_id;
+  transaction.ui_id = thisAlmId.substring(thisAlmId.indexOf('AC'), thisAlmId.length);
   delete transaction['parent'];
   let addedtransaction = await Transaction.findOneAndUpdate( {alm_id: transaction.alm_id}, transaction, {new: true, upsert: true}).exec()
   thisParent.transactions.push(addedtransaction._id),

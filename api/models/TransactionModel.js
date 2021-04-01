@@ -33,6 +33,9 @@ var transactionSchema = new Schema({
     type: String,
     required: 'Please enter the id for the Transaction from the ALM system'
   },
+  ui_id: {
+    type: String,
+  },
   gherkinsteps: [{
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Testsuite'
