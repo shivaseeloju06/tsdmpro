@@ -1,8 +1,17 @@
 const simpleGit = require('simple-git');
 const git = simpleGit();
+const privateKey = "expleo_azure";
 
-module.exports =  async function (remotePath, localPath, user, password) {
-    let URL = `https://${user}:${password}@${remotePath}`
+module.exports =  async function (remotePath, localPath, user, password, useSSH) {
+    let URL;
+    if (useSSH === false) {
+        URL = `https://${user}:${password}@${remotePath}`;
+    } else {
+        let domain = remotePath.slice(0, remotePath.indexOf('/'));
+        const GIT_SSH_COMMAND = "ssh -o 'IdentitiesOnly=yes' -i ./.ssh/" + privateKey + " " + user + "@" + domain;
+        URL = "https://" + remotePath;
+        await git.env('GIT_SSH_COMMAND', GIT_SSH_COMMAND)
+    }
 
     await git.cwd(localPath)
         .then( () =>

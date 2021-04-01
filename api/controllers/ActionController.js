@@ -53,12 +53,14 @@ exports.delete_an_action_by_id = function (req, res) {
 exports.list_all_actions_by_wildcard = function (req, res) {
   Action.find({description: {$regex: req.params.description,$options:'i'}})
   .populate('instruction')
+  .populate('argument_datatoken_pairs')
   .exec(function (err, result){
       if (err) {
         res.send(err);
         console.log(err);
         return;
       };
+      console.log(result);
       res.json(result);
     });
 };

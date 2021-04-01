@@ -21,9 +21,11 @@ let gitClone = require('./gitCloneController.js');
 let gitPull = require('./gitPullController');
 let gitCheckout = require('./gitCheckoutController');
 let gitPush = require('./gitPushController');
-const REPO = "dev.azure.com/SQSDemos/TSDM/_git/GitAutomation";
-const USER = "riaan.roos";
+const REPO = "github.com/riaanroos/tsdm_test.git";
+const localDir = "tsdm_test";
+const USER = "riaanroos";
 const PASS = "zpetesbcitcefornx6mj6xyxvpvij3tqozc35wjxmqfrnh2zg6ma";
+const useSecureShell = true;
 
 exports.generate_run_file_for_transaction = async function (req, res) {
     const transaction_id = req.params.transaction_id;
@@ -165,7 +167,7 @@ async function buildTransactionRunfiles(transactionId) {
     // git commit -m
     // git push -u origin new branch
     // TODO git request-pull 
-    await gitPush(publishDir, newBranchName, addedFiles);
+    await gitPush(REPO, publishDir, newBranchName, addedFiles, USER, PASS, useSecureShell);
 
     return 'Built Instruction files for: ' + transactionId
 
@@ -178,13 +180,13 @@ async function buildTransactionRunfiles(transactionId) {
 async function createPublishedDir() {
   try {
     // Create the output directory by removing it and then cloning from git
-    let exportPath = path.normalize(__dirname + `../../../GitAutomation`);
+    let exportPath = path.normalize(__dirname + `../../../` + localDir);
     if (!fs.existsSync(exportPath)) {
       // git clone execution engine repo
-      await gitClone(REPO, exportPath, USER, PASS);
+      await gitClone(REPO, exportPath, USER, PASS, useSecureShell);
     } else {
       // git pull repo main branch
-      await gitPull(REPO, exportPath, USER, PASS);
+      await gitPull(REPO, exportPath, USER, PASS, useSecureShell);
     }
     return exportPath
   } catch (err) {
