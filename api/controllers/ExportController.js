@@ -107,7 +107,7 @@ async function buildTransactionRunfiles(transactionId) {
               const instruction = await Instruction.findById(step.action.instruction).exec();
               const stepJason = {};
               stepJason.rowID = counter;
-              stepJason.testCaseID = thisDataiteration.environment.name + '_TC_' + thisTransaction.tc_id + '_US_' + thisScenario.alm_id + '_AC_' + thisTransaction.transaction_index + '_STEP_' + gherkinstep.index + '_ROW_' + step.index + '_IT_' + numeral(thisDataiteration.iteration).format('00');
+              stepJason.testCaseID = thisDataiteration.environment.name + '_TC_' + thisTransaction.tc_id + '_US_' + thisScenario.alm_id + '_AC_' + thisTransaction.transaction_index + '_STEP_' + numeral(gherkinstep.index).format('00') + '_ROW_' + numeral(step.index).format('00') + '_IT_' + numeral(thisDataiteration.iteration).format('00');
               stepJason.expectedResult = step.action.expected_result;
               stepJason.stepDescription = gherkinstep.name;
               stepJason.notes = gherkinstep.gherkin_keyword + ' ' + gherkinstep.name;
