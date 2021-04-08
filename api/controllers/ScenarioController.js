@@ -65,7 +65,7 @@ exports.delete_a_scenario_by_id = function(req, res) {
 };
 
 exports.list_transactions_by_scenario_id = function(req, res) {
-  Transaction.find({scenario: req.params.scenarioId}, function(err, transactions) {
+  Transaction.find({scenario: req.params.scenarioId}).sort({transaction_index: 1}).then( function(err, transactions) {
     if (err) {
       res.send(err);
       console.log(err);

@@ -139,6 +139,9 @@ async function createTransaction(transaction) {
   transaction.scenario = thisParent._id;
   const thisAlmId = transaction.alm_id;
   transaction.ui_id = thisAlmId.substring(thisAlmId.indexOf('AC'), thisAlmId.length);
+  let temp_index = transaction.ui_id.match(/\d/g);
+  temp_index = temp_index.join("");
+  transaction.transaction_index = temp_index;
   delete transaction['parent'];
   let addedtransaction = await Transaction.findOneAndUpdate( {alm_id: transaction.alm_id}, transaction, {new: true, upsert: true}).exec()
   thisParent.transactions.push(addedtransaction._id),
