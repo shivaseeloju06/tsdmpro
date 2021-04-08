@@ -34,7 +34,13 @@ var transactionSchema = new Schema({
     required: 'Please enter the id for the Transaction from the ALM system'
   },
   ui_id: {
-    type: String,
+    type: String
+  },
+  transaction_index: {
+    type: Number
+  },
+  tc_id: {
+    type: String
   },
   gherkinsteps: [{
     type: mongoose.Schema.Types.ObjectId, 
