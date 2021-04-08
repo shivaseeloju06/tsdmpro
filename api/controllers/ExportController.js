@@ -84,14 +84,17 @@ async function buildTransactionRunfiles(transactionId) {
     let addedFiles = [];
 
     for (const thisDataiteration of dataIterations) {
+      if (thisTransaction.tc_id === null || !thisTransaction.hasOwnProperty("tc_id")) {
+        thisTransaction.tc_id = "";
+      }
       // Create an empty driver file
       let driverFile;
       let driverFileContent = {"Driver": []};
       // Set driver file name to
-      driverFile = thisDataiteration.environment.name + '_06_TC_' + thisTransaction.alm_id  + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_DriverSerial.json';
+      driverFile = thisDataiteration.environment.name + '_06_TC_' + thisTransaction.tc_id + '_US_' + thisScenario.alm_id + '_AC_' + thisTransaction.transaction_index + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_DriverSerial.json';
       // Create an empty instruction file
-      let instructionFile = thisDataiteration.environment.name + '_06_TC_' + thisTransaction.alm_id + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_Script.json';
-      let instructionFileResult = thisDataiteration.environment.name + '_06_TC_' + thisTransaction.alm_id + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_Output.txt';
+      let instructionFile = thisDataiteration.environment.name + '_06_TC_' + thisTransaction.tc_id + '_US_' + thisScenario.alm_id + '_AC_' + thisTransaction.transaction_index + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_Script.json';
+      let instructionFileResult = thisDataiteration.environment.name + '_06_TC_' + thisTransaction.tc_id + '_US_' + thisScenario.alm_id + '_AC_' + thisTransaction.transaction_index + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_Output.txt';
       let instructionFileContent = [];
 
       // Build all the instructions for this instrtuction file
@@ -104,7 +107,7 @@ async function buildTransactionRunfiles(transactionId) {
               const instruction = await Instruction.findById(step.action.instruction).exec();
               const stepJason = {};
               stepJason.rowID = counter;
-              stepJason.testCaseID = thisDataiteration.environment.name + '_TC_' + thisTransaction.alm_id + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_STEP_' + gherkinstep.index + '_ROW_' + step.index;
+              stepJason.testCaseID = thisDataiteration.environment.name + '_TC_' + thisTransaction.tc_id + '_US_' + thisScenario.alm_id + '_AC_' + thisTransaction.transaction_index + '_STEP_' + gherkinstep.index + '_ROW_' + step.index + '_IT_' + numeral(thisDataiteration.iteration).format('00');
               stepJason.expectedResult = step.action.expected_result;
               stepJason.stepDescription = gherkinstep.name;
               stepJason.notes = gherkinstep.gherkin_keyword + ' ' + gherkinstep.name;
