@@ -24,6 +24,7 @@
     "mongoose": "^5.11.18",
     "morgan": "^1.10.0",
     "numeral": "^2.0.6",
-    "simple-git": "^2.37.0"
+    "simple-git": "^2.37.0",
+    "sonarqube-scanner": "^2.8.0"
   }
 }
