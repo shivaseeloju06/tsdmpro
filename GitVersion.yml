@@ -1,0 +1,6 @@
+mode: ContinuousDeployment
+tag-prefix: '[vV]'
+ignore:
+  sha: []
+merge-message-formats: {}
+continuous-delivery-fallback-tag: ''
