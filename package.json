@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "build": "node server.js"
   },
   "keywords": [
     "TSDM",
@@ -15,7 +17,8 @@
   "author": "Riaan Roos",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "sonarqube-scanner": "^2.8.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -24,7 +27,6 @@
     "mongoose": "^5.11.18",
     "morgan": "^1.10.0",
     "numeral": "^2.0.6",
-    "simple-git": "^2.37.0",
-    "sonarqube-scanner": "^2.8.0"
+    "simple-git": "^2.37.0"
   }
 }
