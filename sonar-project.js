@@ -9,7 +9,7 @@ scanner(
             "sonar.projectKey": "TSDM_API",
             "sonar.projectName": "TSDM_API",
             "sonar.projectVersion": pkg.version,
-            "sonar.sources": "src"
+            "sonar.sources": "."
             //"sonar.tests": "tests"
             //"sonar.typescript.lcov.reportPaths": ".test_coverage/lcov.info",
             //"sonar.testExecutionReportPaths": ".test_output/test-report.xml"
