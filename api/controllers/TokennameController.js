@@ -12,10 +12,10 @@ exports.list_all_tokennames = function (req, res) {
         res.send(err);
         console.log(err);
         return;
-      };
+      }
       res.json(tokenname);
   });
-};
+}
 
 exports.read_a_tokenname_by_id = function (req, res) {
   Tokenname.findById(req.params.id, function (err, tokenname) {
@@ -23,10 +23,10 @@ exports.read_a_tokenname_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(tokenname);
   });
-};
+}
 
 exports.update_a_tokenname_by_id = function (req, res) {
   // TODO cascade through data iterations
@@ -35,10 +35,10 @@ exports.update_a_tokenname_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(tokenname);
   });
-};
+}
 
 exports.delete_a_tokenname_by_id = function (req, res) {
   // TODO no deletion for now
@@ -47,10 +47,10 @@ exports.delete_a_tokenname_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json({ message: 'Tokenname successfully deleted' });
   });
-};
+}
 
 exports.list_all_tokennames_by_wildcard = function (req, res) {
   Tokenname.find({name: {$regex: req.params.tokenname,$options:'i'}})
@@ -59,10 +59,10 @@ exports.list_all_tokennames_by_wildcard = function (req, res) {
         res.send(err);
         console.log(err);
         return;
-      };
+      }
       res.json(result);
     });
-};
+}
 
 exports.create_a_tokenname = async function (req, res) {
   var new_tokenname = new Tokenname(req.body);
@@ -71,11 +71,11 @@ exports.create_a_tokenname = async function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     addTokenToAllDataiterations(tokenname.name);
     res.json(tokenname);
   });
-};
+}
 
 
 // TODO move business logic into seperate controller
@@ -88,16 +88,16 @@ async function addTokenToAllDataiterations(name) {
         if (err) {
           console.log(err);
           return err
-        };
+        }
         Dataiteration.findByIdAndUpdate({ _id: element._id }, {$push: {keyvaluepairs: keyvaluepair._id}},
           function(err, result) {
             if (err) {
               console.log(err);
-            }; 
+            }
             //console.log(result);
         });
       });
     });
   });
   return;
-};
+}

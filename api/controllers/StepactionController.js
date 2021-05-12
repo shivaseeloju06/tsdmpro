@@ -12,10 +12,10 @@ exports.list_all_stepactions = function (req, res) {
         res.send(err);
         console.log(err);
         return;
-      };
+      }
       res.json(stepaction);
     });
-};
+}
 
 exports.read_a_stepaction_by_id = function (req, res) {
   Stepaction.findById(req.params.id)
@@ -25,10 +25,10 @@ exports.read_a_stepaction_by_id = function (req, res) {
         res.send(err);
         console.log(err);
         return;
-      };
+      }
       res.json(stepaction);
     });
-};
+}
 
 exports.update_a_stepaction_by_id = function (req, res) {
   Stepaction.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, function (err, stepaction) {
@@ -36,10 +36,10 @@ exports.update_a_stepaction_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(stepaction);
   });
-};
+}
 
 exports.delete_a_stepaction_by_id = function (req, res) {
   Stepaction.remove({ _id: req.params.id }, function (err, stepaction) {
@@ -47,10 +47,10 @@ exports.delete_a_stepaction_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json({ message: 'Stepaction successfully deleted' });
   });
-};
+}
 
 exports.list_all_stepactions_by_wildcard = function (req, res) {
   Stepaction.find({ name: { $regex: req.params.description } })
@@ -60,10 +60,10 @@ exports.list_all_stepactions_by_wildcard = function (req, res) {
         res.send(err);
         console.log(err);
         return;
-      };
+      }
       res.json(result);
     });
-};
+}
 
 exports.list_all_stepactions_by_name = function (req, res) {
   console.log(req.params.name);
@@ -74,10 +74,10 @@ exports.list_all_stepactions_by_name = function (req, res) {
         res.send(err);
         console.log(err);
         return;
-      };
+      }
       res.json(result);
     });
-};
+}
 
 exports.create_a_stepaction = function (req, res) {
   var new_stepaction = new Stepaction(req.body);
@@ -86,10 +86,10 @@ exports.create_a_stepaction = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(stepaction);
   });
-};
+}
 
 exports.create_a_step_by_stepaction = async function (req, res) {
   try {
@@ -105,7 +105,7 @@ exports.create_a_step_by_stepaction = async function (req, res) {
     console.log(err);
     res.send(err);
   }
-};
+}
 
 async function buildCollection(actions) {
   var return_collection = [];
@@ -115,7 +115,7 @@ async function buildCollection(actions) {
       "expected_result": action.expected_result,
       "instruction": action.instruction_id,
       "argument_datatoken_pairs": action.argument_datatoken_pairs
-    };
+    }
 
     var updatedAction = await createOrUpdateAction(action, data);
     return_collection.push({ "index": action.index, "action": updatedAction._id });
@@ -131,11 +131,11 @@ async function buildCollection(actions) {
     // }
   }
   return return_collection;
-};
+}
 
 async function createOrUpdateAction(action, data) {
   var query = action.action_id ? { "_id": action.action_id } : { "description": action.description },
-    options = { upsert: true, new: true, setDefaultsOnInsert: true };
+    options = { upsert: true, new: true, setDefaultsOnInsert: true }
 
   var new_action = await Action.findOneAndUpdate(query, data, options).exec();
   return new_action;
@@ -155,7 +155,7 @@ async function getStepCollection(request) {
         "description": element.action.description,
         "expected_result": element.action.expected_result,
         "instruction": element.action.instruction
-      };
+      }
       returnArray.push(line);
     } catch (error) {
       console.log(error);

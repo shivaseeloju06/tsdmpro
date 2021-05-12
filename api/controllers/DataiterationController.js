@@ -12,10 +12,10 @@ exports.list_all_dataiterations = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(dataiteration);
   });
-};
+}
 
 exports.create_a_dataiteration = async function (req, res) {
   var new_record = req.body;
@@ -27,10 +27,10 @@ exports.create_a_dataiteration = async function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(dataiteration);
   });
-};
+}
 
 exports.read_a_dataiteration_by_id = function (req, res) {
   Dataiteration.findById(req.params.id, function (err, dataiteration) {
@@ -38,10 +38,10 @@ exports.read_a_dataiteration_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(dataiteration);
   });
-};
+}
 
 exports.update_a_dataiteration_by_id = function (req, res) {
   Dataiteration.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, function (err, dataiteration) {
@@ -49,10 +49,10 @@ exports.update_a_dataiteration_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(dataiteration);
   });
-};
+}
 
 exports.delete_a_dataiteration_by_id = function (req, res) {
   Dataiteration.remove({ _id: req.params.id }, function (err, dataiteration) {
@@ -60,10 +60,10 @@ exports.delete_a_dataiteration_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json({ message: 'Dataiteration successfully deleted' });
   });
-};
+}
 
 exports.list_all_dataiterations_for_stepactions = async function (req, res) {
   var usedTokens = await getAllUsedTokensByStepaction(req.params.stepaction_id);
@@ -91,7 +91,7 @@ exports.list_all_dataiterations_for_stepactions = async function (req, res) {
           "_id": iteration._id,
           "environment": iteration.environment.name,
           "iteration": iteration.iteration
-        };
+        }
         for (const datapair of iteration.keyvaluepairs) {
           record[datapair.token_name] = datapair.value;
         }
@@ -99,7 +99,7 @@ exports.list_all_dataiterations_for_stepactions = async function (req, res) {
       }
       res.send(returnArray);
     });
-};
+}
 
 exports.update_all_dataiterations_for_stepactions = async function (req, res) {
   for (const di of req.body) {
@@ -124,7 +124,7 @@ exports.update_all_dataiterations_for_stepactions = async function (req, res) {
           res.send(err);
           console.log(err);
           return;
-        };
+        }
       });
     }
   }
@@ -138,7 +138,7 @@ function buildKeyValuePairs(data) {
   let returnArray = [];
   for (const key of Object.keys(data)) {
     if (key !== "iteration" && key !== "environment") {
-      let transposed = { "token_name": key, "value": data[key] };
+      let transposed = { "token_name": key, "value": data[key] }
       returnArray.push(transposed)
     }
   }
@@ -155,7 +155,7 @@ function fillIterationWithExistingTokens() {
     }
     resolve(returnCollection);
   });
-};
+}
 
 function createEmptyKeyvaluepair(token) {
   return new Promise(async function (resolve, reject) {
@@ -164,11 +164,11 @@ function createEmptyKeyvaluepair(token) {
       if (err) {
         console.log(err);
         reject(err);
-      };
+      }
     });
     resolve(new_keyvaluepair);
   });
-};
+}
 
 function getallTokens() {
   return new Promise(function (resolve, reject) {
@@ -190,7 +190,7 @@ function getAllUsedTokensByStepaction(stepaction_id) {
         if (err) {
           console.log(err);
           rejecct(err);
-        };
+        }
         var wip_step_collection = stepaction.wip_step_collection;
         var token_list = [];
         for (const element of wip_step_collection) {

@@ -12,10 +12,10 @@ exports.list_all_actions = function (req, res) {
         res.send(err);
         console.log(err);
         return;
-      };
+      }
       res.json(action);
   });
-};
+}
 
 exports.read_an_action_by_id = function (req, res) {
   Action.findById(req.params.id, function (err, action) {
@@ -23,10 +23,10 @@ exports.read_an_action_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(action);
   });
-};
+}
 
 exports.update_an_action_by_id = function (req, res) {
   Action.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, function (err, action) {
@@ -34,10 +34,10 @@ exports.update_an_action_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(action);
   });
-};
+}
 
 exports.delete_an_action_by_id = function (req, res) {
   Action.remove({ _id: req.params.id }, function (err, action) {
@@ -45,10 +45,10 @@ exports.delete_an_action_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json({ message: 'Action successfully deleted' });
   });
-};
+}
 
 exports.list_all_actions_by_wildcard = function (req, res) {
   Action.find({description: {$regex: req.params.description,$options:'i'}})
@@ -59,11 +59,11 @@ exports.list_all_actions_by_wildcard = function (req, res) {
         res.send(err);
         console.log(err);
         return;
-      };
+      }
       console.log(result);
       res.json(result);
     });
-};
+}
 
 exports.create_an_action = async function (req, res) {
   const doc = JsonFind(req.body);
@@ -76,7 +76,7 @@ exports.create_an_action = async function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(action);
   });
-};
+}

@@ -10,10 +10,10 @@ exports.list_all_transactions = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(transaction);
   });
-};
+}
 
 exports.create_a_transaction = async function (req, res) {
   var newBody = await getScenarioId(req.body);
@@ -23,11 +23,11 @@ exports.create_a_transaction = async function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     pushTransactionToScenario(newBody.scenario, transaction.id);
     res.json(transaction);
   });
-};
+}
 
 exports.read_a_transaction_by_id = function (req, res) {
   Transaction.findById(req.params.transactionId, function (err, transaction) {
@@ -35,10 +35,10 @@ exports.read_a_transaction_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(transaction);
   });
-};
+}
 
 exports.update_a_transaction_by_id = function (req, res) {
   Transaction.findOneAndUpdate({ _id: req.params.transactionId }, req.body, { new: true }, function (err, transaction) {
@@ -46,10 +46,10 @@ exports.update_a_transaction_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(transaction);
   });
-};
+}
 
 exports.delete_a_transaction_by_id = function (req, res) {
   // TODO Cascade deletions up and down
@@ -58,10 +58,10 @@ exports.delete_a_transaction_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json({ message: 'Transaction successfully deleted' });
   });
-};
+}
 
 
 exports.list_gherkinsteps_by_transaction_id = async function (req, res) {
@@ -71,7 +71,7 @@ exports.list_gherkinsteps_by_transaction_id = async function (req, res) {
   } catch (err) {
     res.status(500).send({ error: err });
   }
-};
+}
 
 exports.read_a_transaction_by_alm_id = function (req, res) {
   Transaction.findOne({ alm_id: req.params.almId }, function (err, transaction) {
@@ -79,10 +79,10 @@ exports.read_a_transaction_by_alm_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(transaction);
   });
-};
+}
 
 exports.update_a_transaction_by_alm_id = function (req, res) {
   Transaction.findOneAndUpdate({ alm_id: req.params.almId }, req.body, { new: true }, function (err, transaction) {
@@ -90,10 +90,10 @@ exports.update_a_transaction_by_alm_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(transaction);
-  });
-};
+  })
+}
 
 exports.delete_a_transaction_by_alm_id = function (req, res) {
   Transaction.findOneAndRemove({ alm_id: req.params.almId }, function (err, transaction) {
@@ -101,10 +101,10 @@ exports.delete_a_transaction_by_alm_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json({ message: 'Transaction successfully deleted' });
-  });
-};
+  })
+}
 
 exports.read_a_transaction_by_name = function (req, res) {
   Transaction.findOne({ name: req.params.name }, function (err, transaction) {
@@ -112,10 +112,10 @@ exports.read_a_transaction_by_name = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(transaction);
-  });
-};
+  })
+}
 
 exports.update_a_transaction_by_name = function (req, res) {
   Transaction.findOneAndUpdate({ name: req.params.name }, req.body, { new: true }, function (err, transaction) {
@@ -123,10 +123,10 @@ exports.update_a_transaction_by_name = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(transaction);
-  });
-};
+  })
+}
 
 exports.delete_a_transaction_by_name = function (req, res) {
   Transaction.findOneAndRemove({ name: req.params.name }, function (err, transaction) {
@@ -134,10 +134,10 @@ exports.delete_a_transaction_by_name = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
 
     res.json({ message: 'Transaction successfully deleted' });
-  });
+  })
 }
 
 /*
@@ -161,13 +161,13 @@ async function getScenarioId(passedBody) {
         var theParent = await Scenario.findOne({ alm_id: passedBody.scenario.value }).exec();
         newBody.scenario = theParent._id;
         break;
-    };
+    }
   }
   catch (err) {
     return err;
   }
   return newBody;
-};
+}
 
 async function pushTransactionToScenario(scenarioId, transactionId) {
   var parent_scenario = await Scenario.findById(scenarioId, function (err, project) {
@@ -175,8 +175,8 @@ async function pushTransactionToScenario(scenarioId, transactionId) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
   });
   parent_scenario.transactions.push(transactionId);
   parent_scenario.save();
-};
+}

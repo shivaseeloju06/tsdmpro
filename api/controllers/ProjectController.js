@@ -10,11 +10,11 @@ exports.list_all_projects = function(req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(project);
     // TODO See why populate doesn't return the sub-documents
   });
-};
+}
 
 exports.create_a_project = function(req, res) {
   var new_project = new Project(req.body);
@@ -23,10 +23,10 @@ exports.create_a_project = function(req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(project);
   });
-};
+}
 
 // TODO implement populate
 exports.read_a_project_by_id = function(req, res) {
@@ -35,10 +35,10 @@ exports.read_a_project_by_id = function(req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(project);
   });
-};
+}
 
 exports.update_a_project_by_id = function(req, res) {
   Project.findOneAndUpdate({_id: req.params.projectId}, req.body, {new: true}, function(err, project) {
@@ -46,10 +46,10 @@ exports.update_a_project_by_id = function(req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(project);
   });
-};
+}
 
 exports.delete_a_project_by_id = function(req, res) {
   // TODO Cascade deletions up and down
@@ -58,10 +58,10 @@ exports.delete_a_project_by_id = function(req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json({ message: 'Project successfully deleted' });
   });
-};
+}
 
 exports.list_testsuites_by_project_id = function(req, res) {
   Testsuite.find({project: req.params.projectId}, function(err, testsuites) {
@@ -69,10 +69,10 @@ exports.list_testsuites_by_project_id = function(req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(testsuites);
   });
-};
+}
 
 // TODO implement populate
 exports.read_a_project_by_alm_id = function(req, res) {
@@ -81,10 +81,10 @@ exports.read_a_project_by_alm_id = function(req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(project);
   });
-};
+}
 
 exports.update_a_project_by_alm_id = function(req, res) {
   Project.findOneAndUpdate({alm_id: req.params.almId}, req.body, {new: true}, function(err, project) {
@@ -92,10 +92,10 @@ exports.update_a_project_by_alm_id = function(req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(project);
   });
-};
+}
 
 exports.delete_a_project_by_alm_id = function(req, res) {
   Project.findOneAndRemove({alm_id: req.params.almId}, function(err, project) {
@@ -103,10 +103,10 @@ exports.delete_a_project_by_alm_id = function(req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json({ message: 'Project successfully deleted' });
   });
-};
+}
 
 // TODO implement populate
 exports.read_a_project_by_name = function(req, res) {
@@ -115,10 +115,10 @@ exports.read_a_project_by_name = function(req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(project);
   });
-};
+}
 
 exports.update_a_project_by_name = function(req, res) {
   Project.findOneAndUpdate({name: req.params.name}, req.body, {new: true}, function(err, project) {
@@ -126,10 +126,10 @@ exports.update_a_project_by_name = function(req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(project);
   });
-};
+}
 
 exports.delete_a_project_by_name = function(req, res) {
   Project.findOneAndRemove({name: req.params.name}, function(err, project) {
@@ -137,9 +137,9 @@ exports.delete_a_project_by_name = function(req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json({ message: 'Project successfully deleted' });
   });
-};
+}
 
 //TODO implement routes to CRUD a Project with embedded Testsuites

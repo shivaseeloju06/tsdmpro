@@ -18,10 +18,10 @@ exports.list_all_projects_and_children = function(req, res) {
               res.send(err);
               console.log(err);
               return;
-            };
+            }
             res.json(project);
         });
-      };
+      }
 
 exports.import_all_projects_and_children = async function(req, res) {
   const doc = JsonFind(req.body);
@@ -44,7 +44,7 @@ exports.import_all_instructions = async function(req, res) {
 async function addProjects(recJson) {
   const arrayCollection = recJson.projects;
   await Promise.all(arrayCollection.map(x => createProject(x)));
-  let counter = {};
+  let counter = {}
   counter.projects_added = arrayCollection.length;
   return counter
 }
@@ -61,7 +61,7 @@ async function createProject(project) {
 async function addTestsuites(recJson) {
     var arrayCollection = recJson.testsuites;
     await Promise.all(arrayCollection.map(x => createTestsuite(x)));
-    let counter = {};
+    let counter = {}
     counter.testsuites_added = arrayCollection.length;
     return counter
 }
@@ -83,7 +83,7 @@ async function createTestsuite(testsuitesuite) {
 async function addWorkflows(recJson) {
     var arrayCollection = recJson.workflows;
     await Promise.all(arrayCollection.map(x => createWorkflow(x)));
-    let counter = {};
+    let counter = {}
     counter.workflows_added = arrayCollection.length;
     return counter
 }
@@ -105,7 +105,7 @@ async function createWorkflow(workflow) {
 async function addScenarios(recJson) {
   var arrayCollection = recJson.scenarios;
   await Promise.all(arrayCollection.map(x => createScenario(x)));
-  let counter = {};
+  let counter = {}
   counter.scenarios_added = arrayCollection.length;
   return counter
 }
@@ -127,7 +127,7 @@ async function createScenario(scenario) {
 async function addTransactions(recJson) {
   var arrayCollection = recJson.transactions;
   await Promise.all(arrayCollection.map(x => createTransaction(x)));
-  let counter = {};
+  let counter = {}
   counter.transactions_added = arrayCollection.length;
   return counter
 }
@@ -154,7 +154,7 @@ async function createTransaction(transaction) {
 async function addGherkinsteps(recJson) {
     var arrayCollection = recJson.gherkinsteps;
     await Promise.all(arrayCollection.map(x => creategherkinstep(x)));
-    let counter = {};
+    let counter = {}
     counter.gherkinsteps_added = arrayCollection.length;
     return counter
 }
@@ -171,8 +171,8 @@ async function creategherkinstep(gherkinstep) {
 function addCollectionOfInstructions(collection) {
   return new Promise(async function (resolve, reject) {
     for (const element of collection) {
-      const filter = {library: element.library, name: element.name};
-      const options = { upsert: true };
+      const filter = {library: element.library, name: element.name}
+      const options = { upsert: true }
       //var new_instruction = new Instruction(element);
       //new_instruction.save( function(err, instruction, res) {
       Instruction.findOneAndUpdate( filter, element, options, function(err, instruction, res) { 
@@ -182,7 +182,7 @@ function addCollectionOfInstructions(collection) {
         }
       })
     }
-    let counter = {};
+    let counter = {}
     counter.instructions_added = collection.length;
     resolve(counter)
   })
