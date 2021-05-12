@@ -4,7 +4,7 @@ const pkg = require("./package.json");
 scanner(
     {
         serverUrl:
-            process.env.SONARQUBE_SERVER_URL || "http://swstpbld002.pd.group.intl:9000/",
+            process.env.SONARQUBE_SERVER_URL || "http://s-deecgn-qip01p.ardianet.net:9000/",
         options: {
             "sonar.projectKey": "TSDM_API",
             "sonar.projectName": "TSDM_API",
