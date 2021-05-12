@@ -50,7 +50,7 @@ steps:
       configMode: 'manual'
       cliProjectKey: 'TSDM_API'
       cliProjectName: 'TSDM_API'
-      cliSources: './src'
+      cliSources: './api'
 
   - task: NodeTool@0
     inputs:
