@@ -73,10 +73,10 @@ steps:
       arguments: 'install'
     displayName: "Yarn: Install package dependencies"
 
-  - task: Yarn@3
-    inputs:
-      arguments: 'run build'
-    displayName: "Yarn: Build"
+  # - task: Yarn@3
+  #   inputs:
+  #     arguments: 'run build'
+  #   displayName: "Yarn: Build"
 
   - task: Yarn@3
     inputs:
