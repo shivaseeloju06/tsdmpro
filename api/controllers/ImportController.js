@@ -73,7 +73,7 @@ async function createTestsuite(testsuitesuite) {
   testsuitesuite.project = thisParent._id;
   delete testsuitesuite['parent'];
   let addedtestsuite = await Testsuite.findOneAndUpdate( {name: testsuitesuite.name}, testsuitesuite, {new: true, upsert: true}).exec()
-  thisParent.testsuites.push(addedtestsuite._id),
+  thisParent.testsuites.push(addedtestsuite._id);
   await thisParent.save();
   const allWorkflows = docTestsuite.findValues('workflows');
   const workflowResult = await addWorkflows(allWorkflows);
@@ -95,7 +95,7 @@ async function createWorkflow(workflow) {
   workflow.testsuite = thisParent._id;
   delete workflow['parent'];
   let addedworkflow = await Workflow.findOneAndUpdate( {name: workflow.name}, workflow, {new: true, upsert: true}).exec()
-  thisParent.workflows.push(addedworkflow._id),
+  thisParent.workflows.push(addedworkflow._id);
   await thisParent.save();
   const allScenarios = docWorkflow.findValues('scenarios');
   const scenarioResult = await addScenarios(allScenarios);
@@ -117,7 +117,7 @@ async function createScenario(scenario) {
   scenario.workflow = thisParent._id;
   delete scenario['parent'];
   let addedscenario = await Scenario.findOneAndUpdate( {name: scenario.name}, scenario, {new: true, upsert: true}).exec()
-  thisParent.scenarios.push(addedscenario._id),
+  thisParent.scenarios.push(addedscenario._id);
   await thisParent.save();
   const allTransactions = docScenario.findValues('transactions');
   const transactionResult = await addTransactions(allTransactions);
@@ -144,7 +144,7 @@ async function createTransaction(transaction) {
   transaction.transaction_index = temp_index;
   delete transaction['parent'];
   let addedtransaction = await Transaction.findOneAndUpdate( {alm_id: transaction.alm_id}, transaction, {new: true, upsert: true}).exec()
-  thisParent.transactions.push(addedtransaction._id),
+  thisParent.transactions.push(addedtransaction._id);
   await thisParent.save();
   const allGherkinsteps = docTranssaction.findValues('gherkinsteps');
   const gherkinstepResult = await addGherkinsteps(allGherkinsteps);
@@ -164,7 +164,7 @@ async function creategherkinstep(gherkinstep) {
   gherkinstep.transaction = thisParent._id;
   delete gherkinstep['parent'];
   let addedgherkinstep = await Gherkinstep.findOneAndUpdate( {alm_id: gherkinstep.alm_id}, gherkinstep, {new: true, upsert: true}).exec()
-  thisParent.gherkinsteps.push(addedgherkinstep._id),
+  thisParent.gherkinsteps.push(addedgherkinstep._id);
   await thisParent.save();
 }
 
@@ -175,7 +175,7 @@ function addCollectionOfInstructions(collection) {
       const options = { upsert: true };
       //var new_instruction = new Instruction(element);
       //new_instruction.save( function(err, instruction, res) {
-      let new_instruction = Instruction.findOneAndUpdate( filter, element, options, function(err, instruction, res) { 
+      Instruction.findOneAndUpdate( filter, element, options, function(err, instruction, res) { 
         if (err) {
           console.log(err);
           reject(res)
