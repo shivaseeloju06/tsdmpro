@@ -5,6 +5,7 @@
 
 trigger:
   - master
+  - feature/*
 
 variables:
   GitVersion.SemVer: ''
@@ -42,6 +43,15 @@ steps:
       git config user.email "tsdm@expleogroup.com"
       git config user.name "TSDM Build"
 
+  - task: SonarQubePrepare@4
+    inputs:
+      SonarQube: 'SonarQube'
+      scannerMode: 'CLI'
+      configMode: 'manual'
+      cliProjectKey: 'TSDM_API'
+      cliProjectName: 'TSDM_API'
+      cliSources: './src'
+
   - task: NodeTool@0
     inputs:
       versionSpec: $(node_version)
@@ -53,20 +63,31 @@ steps:
       checkLatest: true
     displayName: "Install Yarn"
 
- # - task: Yarn@3
- #   inputs:
- #     arguments: version --new-version $(buildVersion)
- #   displayName: "Yarn: Set package version"
+#  - task: Yarn@3
+#    inputs:
+#      arguments: 'version --new-version $(buildVersion)'
+#    displayName: "Yarn: Set package version"
 
   - task: Yarn@3
     inputs:
       arguments: 'install'
     displayName: "Yarn: Install package dependencies"
 
-#  - task: Yarn@3
-#    inputs:
-#      arguments: 'run build-prod'
-#    displayName: "Yarn: Build"
+  - task: Yarn@3
+    inputs:
+      arguments: 'run build'
+    displayName: "Yarn: Build"
+
+  - task: Yarn@3
+    inputs:
+      arguments: 'run analyse'
+    displayName: "SonarQube Scanner"
+  
+  - task: SonarQubeAnalyze@4
+    
+  - task: SonarQubePublish@4
+    inputs:
+      pollingTimeoutSec: '300'
 
   - task: PublishTestResults@2
     condition: succeededOrFailed()
