@@ -10,10 +10,10 @@ exports.list_all_keyvaluepairs = function (req, res) {
         res.send(err);
         console.log(err);
         return;
-      };
+      }
       res.json(keyvaluepair);
     });
-};
+}
 
 exports.create_a_keyvaluepair = async function (req, res) {
   var new_keyvaluepair = new Keyvaluepair(req.body);
@@ -22,10 +22,10 @@ exports.create_a_keyvaluepair = async function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(keyvaluepair);
   });
-};
+}
 
 exports.read_a_keyvaluepair_by_id = function (req, res) {
   Keyvaluepair.findById(req.params.id, function (err, keyvaluepair) {
@@ -33,10 +33,10 @@ exports.read_a_keyvaluepair_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(keyvaluepair);
   });
-};
+}
 
 exports.update_a_keyvaluepair_by_id = function (req, res) {
   Keyvaluepair.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, function (err, keyvaluepair) {
@@ -44,10 +44,10 @@ exports.update_a_keyvaluepair_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(keyvaluepair);
   });
-};
+}
 
 exports.delete_a_keyvaluepair_by_id = function (req, res) {
   Keyvaluepair.remove({ _id: req.params.id }, function (err, keyvaluepair) {
@@ -55,10 +55,10 @@ exports.delete_a_keyvaluepair_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json({ message: 'Keyvaluepair successfully deleted' });
   });
-};
+}
 
 exports.list_all_keyvaluepair_by_wildcard = function (req, res) {
   Keyvaluepair.find({ name: { $regex: req.params.name, $options: 'i' } })
@@ -68,8 +68,8 @@ exports.list_all_keyvaluepair_by_wildcard = function (req, res) {
         res.send(err);
         console.log(err);
         return;
-      };
+      }
       res.json(result);
     });
-};
+}
 

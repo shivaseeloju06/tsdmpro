@@ -74,7 +74,7 @@ async function buildTransactionRunfiles(transactionId) {
               (mm>9 ? '' : '0') + mm,
               (dd>9 ? '' : '0') + dd
              ].join('');
-    };*/
+    }*/
     let todayDate = new Date().getTime();
     let newBranchName = "Automation_" + todayDate + "_" + thisTransaction._id;
     await gitCheckout(publishDir, newBranchName);
@@ -89,7 +89,7 @@ async function buildTransactionRunfiles(transactionId) {
       }
       // Create an empty driver file
       let driverFile;
-      let driverFileContent = {"Driver": []};
+      let driverFileContent = {"Driver": []}
       // Set driver file name to
       driverFile = thisDataiteration.environment.name + '_06_TC_' + thisTransaction.tc_id + '_US_' + thisScenario.alm_id + '_AC_' + thisTransaction.transaction_index + '_IT_' + numeral(thisDataiteration.iteration).format('00') + '_DriverSerial.json';
       // Create an empty instruction file
@@ -105,7 +105,7 @@ async function buildTransactionRunfiles(transactionId) {
           for (const step of thisStepaction.published_step_collection) {
             if (step.action !== null) {
               const instruction = await Instruction.findById(step.action.instruction).exec();
-              const stepJason = {};
+              const stepJason = {}
               stepJason.rowID = counter;
               stepJason.testCaseID = thisDataiteration.environment.name + '_TC_' + thisTransaction.tc_id + '_US_' + thisScenario.alm_id + '_AC_' + thisTransaction.transaction_index + '_STEP_' + numeral(gherkinstep.index).format('00') + '_ROW_' + numeral(step.index).format('00') + '_IT_' + numeral(thisDataiteration.iteration).format('00');
               stepJason.expectedResult = step.action.expected_result;
@@ -139,9 +139,10 @@ async function buildTransactionRunfiles(transactionId) {
       let thisInstructionFile = publishDir + '/' + thisDataiteration.environment.name + '/' + instructionFile;
       //let thisInstructionFileTxt = JSON.stringify(instructionFileContent)
       fs.writeFile(thisInstructionFile, JSON.stringify(instructionFileContent), function (err) {
-        if (err)
-        console.log(err);
+        if (err) {
+          console.log(err);
           return err;
+        }
       });
       addedFiles.push('./' + thisDataiteration.environment.name + '/' + instructionFile);
 
@@ -153,9 +154,10 @@ async function buildTransactionRunfiles(transactionId) {
       driverFileContent.Driver.push(tempContent)
       let thisDriverFile = publishDir + '/' + thisDataiteration.environment.name + '/' + driverFile;
       fs.writeFile(thisDriverFile, JSON.stringify(driverFileContent), function (err) {
-        if (err)
-        console.log(err);
+        if (err) {
+          console.log(err);
           return err;
+        }
       });
       addedFiles.push('./' + thisDataiteration.environment.name + '/' + driverFile);
     }  

@@ -29,7 +29,7 @@ const generateTransactionChildren = async function (transaction) {
         "Expected": "PASS"
       },
       "Children": []
-    };
+    }
 
     //Find associated Step Action by name
     var stepAction = await Stepaction.find({ name: step.name })
@@ -221,6 +221,6 @@ exports.download_tfs_transaction_by_id = async function (req, res) {
   } catch (err) {
     res.status(500).send({ error: err });
   }
-};
+}
 
 

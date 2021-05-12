@@ -10,10 +10,10 @@ exports.list_all_instructions = function (req, res) {
         res.send(err);
         console.log(err);
         return;
-      };
+      }
       res.json(instruction);
     });
-};
+}
 
 exports.create_an_instruction = function (req, res) {
   var new_instruction = new Instruction(req.body);
@@ -22,10 +22,10 @@ exports.create_an_instruction = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(instruction);
   });
-};
+}
 
 exports.read_instruction_by_id = function (req, res) {
   Instruction.findById(req.params.id, function (err, action) {
@@ -33,7 +33,7 @@ exports.read_instruction_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(action);
   });
 }

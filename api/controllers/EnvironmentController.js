@@ -12,10 +12,10 @@ exports.list_all_environments = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(environment);
   });
-};
+}
 
 exports.create_an_environment = async function (req, res) {
   try {
@@ -23,8 +23,8 @@ exports.create_an_environment = async function (req, res) {
     var tokenCollection = await getallTokens();
     var emptyKeyValuePairs = await getEmptyKeyValuePairsFromTokens(tokenCollection);
     let update = req.body;
-    const filter = {project: project._id, name: update.name};
-    const options = { upsert: true };
+    const filter = {project: project._id, name: update.name}
+    const options = { upsert: true }
     update.project = project._id;
     //var new_environment = new Environment(req.body);
     //new_environment.project = project;
@@ -41,7 +41,7 @@ exports.create_an_environment = async function (req, res) {
     console.log(err);
     res.send(err);
   }
-};
+}
 
 exports.read_an_environment_by_id = function (req, res) {
   Environment.findById(req.params.id, function (err, environment) {
@@ -49,10 +49,10 @@ exports.read_an_environment_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(environment);
   });
-};
+}
 
 exports.update_an_environment_by_id = function (req, res) {
   Environment.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, function (err, environment) {
@@ -60,10 +60,10 @@ exports.update_an_environment_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json(environment);
   });
-};
+}
 
 exports.delete_an_environment_by_id = function (req, res) {
   // TODO Delete dataiteration for environment
@@ -72,10 +72,10 @@ exports.delete_an_environment_by_id = function (req, res) {
       res.send(err);
       console.log(err);
       return;
-    };
+    }
     res.json({ message: 'Environment successfully deleted' });
   });
-};
+}
 
 exports.create_an_environment_by_project_almid = async function (req, res) {
   try {
@@ -87,8 +87,8 @@ exports.create_an_environment_by_project_almid = async function (req, res) {
     var tokenCollection = await getallTokens();
     var emptyKeyValuePairs = await getEmptyKeyValuePairsFromTokens(tokenCollection);
     let update = req.body;
-    const filter = {project: project._id, name: update.name};
-    const options = { upsert: true };
+    const filter = {project: project._id, name: update.name}
+    const options = { upsert: true }
     update.project = project._id;
     //newEnvironment.project = project._id;
     //var new_environment = new Environment(newEnvironment);
@@ -108,23 +108,23 @@ exports.create_an_environment_by_project_almid = async function (req, res) {
     console.log(err);
     res.send(err);
   }
-};
+}
 
 // TODO Move business logic to seperate controller
 function createDataiteration(env_id, iteration, keyvaluepairs) {
   return new Promise(function (resolve, reject) {
     var query = { $and: [{ environment: env_id }, { iteration: iteration }] },
       update = { "environment": env_id, "iteration": iteration, "keyvaluepairs": keyvaluepairs },
-      options = { upsert: true, new: true, setDefaultsOnInsert: true };
+      options = { upsert: true, new: true, setDefaultsOnInsert: true }
     Dataiteration.findOneAndUpdate(query, update, options, function (error, result) {
       if (error) {
         console.log(error);
         reject(error);
-      };
+      }
       resolve(result);
     }).exec();
   });
-};
+}
 
 function getEmptyKeyValuePairsFromTokens(tokenNames) {
   return new Promise(async function (resolve, reject) {
@@ -135,7 +135,7 @@ function getEmptyKeyValuePairsFromTokens(tokenNames) {
     });
     resolve(returnArray);
   });
-};
+}
 
 function getallTokens() {
   return new Promise(function (resolve, reject) {
@@ -143,11 +143,11 @@ function getallTokens() {
       if (err) {
         console.log(err);
         reject(err);
-      };
+      }
       resolve(tokenArray);
     }).exec();
   });
-};
+}
 
 function createEmptyKeyvaluepair(token) {
   return new Promise(async function (resolve, reject) {
@@ -156,8 +156,8 @@ function createEmptyKeyvaluepair(token) {
       if (err) {
         console.log(err);
         reject(err);
-      };
+      }
     });
     resolve(new_keyvaluepair);
   });
-};
+}
