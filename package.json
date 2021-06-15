@@ -21,6 +21,7 @@
     "sonarqube-scanner": "^2.8.0"
   },
   "dependencies": {
+    "child_process": "^1.0.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "json-find": "^2.0.8",

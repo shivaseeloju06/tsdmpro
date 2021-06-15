@@ -3,53 +3,59 @@ var mongoose = require('mongoose');
 var path = require('path');
 var fs = require('fs');
 var numeral = require('numeral');
+const { exec } = require('child_process');
 
 var Project = mongoose.model('Project'),
-    Testsuite = mongoose.model('Testsuite'),
-    Workflow = mongoose.model('Workflow'),
-    Scenario = mongoose.model('Scenario'),
-    Transaction = mongoose.model('Transaction'),
-    Gherkinstep = mongoose.model('Gherkinstep'),
-    Instruction = mongoose.model('Instruction'),
-    Stepaction = mongoose.model('Stepaction'),
-    Dataiteration = mongoose.model('Dataiteration'),
-    Action = mongoose.model('Action'),
-    Environment = mongoose.model('Environment'),
-    Keyvaluepair = mongoose.model('Keyvaluepair');
+  Testsuite = mongoose.model('Testsuite'),
+  Workflow = mongoose.model('Workflow'),
+  Scenario = mongoose.model('Scenario'),
+  Transaction = mongoose.model('Transaction'),
+  Gherkinstep = mongoose.model('Gherkinstep'),
+  Instruction = mongoose.model('Instruction'),
+  Stepaction = mongoose.model('Stepaction'),
+  Dataiteration = mongoose.model('Dataiteration'),
+  Action = mongoose.model('Action'),
+  Environment = mongoose.model('Environment'),
+  Keyvaluepair = mongoose.model('Keyvaluepair');
 
 let gitClone = require('./gitCloneController.js');
 let gitPull = require('./gitPullController');
 let gitCheckout = require('./gitCheckoutController');
 let gitPush = require('./gitPushController');
-const REPO = "github.com/riaanroos/tsdm_test.git";
+/*const REPO = "github.com/riaanroos/tsdm_test.git";
 const localDir = "tsdm_test";
 const USER = "riaanroos";
-const PASS = "zpetesbcitcefornx6mj6xyxvpvij3tqozc35wjxmqfrnh2zg6ma";
+const PASS = "zpetesbcitcefornx6mj6xyxvpvij3tqozc35wjxmqfrnh2zg6ma";*/
+
+const REPO = "github.com/shivaseeloju06/tsdmpro.git";
+const localDir = "tsdm_test";
+const USER = "shivaseeloju06";
+const PASS = "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";
 const useSecureShell = true;
 
 exports.generate_run_file_for_transaction = async function (req, res) {
-    const transaction_id = req.params.transaction_id;
-    const publishedTC = await wipToPublishTransaction(transaction_id);
-    //const gitInit = await InitialiseGit
-    const returnedResult = await buildTransactionRunfiles(transaction_id);
-    let result = [];
-    result.push(publishedTC);
-    result.push(returnedResult);
-    return res.json(result)
+  const transaction_id = req.params.transaction_id;
+  const publishedTC = await wipToPublishTransaction(transaction_id);
+  //const gitInit = await InitialiseGit
+  const returnedResult = await buildTransactionRunfiles(transaction_id);
+  let result = [];
+  result.push(publishedTC);
+  result.push(returnedResult);
+  return res.json(result)
 }
 
 async function wipToPublishTransaction(transactionId) {
-    let thisGherkinsteps = await Gherkinstep.find({transaction: transactionId}).exec();
-    await Promise.all(thisGherkinsteps.map(x => moveWipToPublish(x)));
-    return "Published WIP for: " + transactionId
+  let thisGherkinsteps = await Gherkinstep.find({transaction: transactionId}).exec();
+  await Promise.all(thisGherkinsteps.map(x => moveWipToPublish(x)));
+  return "Published WIP for: " + transactionId
 }
 
 async function moveWipToPublish(gherkinStep) {
-    let thisStepaction = await Stepaction.findOne({name: gherkinStep.name}).exec();
-    if (thisStepaction !== null && thisStepaction.wip_step_collection !== null) {
-        thisStepaction.published_step_collection = thisStepaction.wip_step_collection;
-        await thisStepaction.save()
-    }
+  let thisStepaction = await Stepaction.findOne({name: gherkinStep.name}).exec();
+  if (thisStepaction !== null && thisStepaction.wip_step_collection !== null) {
+    thisStepaction.published_step_collection = thisStepaction.wip_step_collection;
+    await thisStepaction.save()
+  }
 }
 
 async function buildTransactionRunfiles(transactionId) {
@@ -101,7 +107,7 @@ async function buildTransactionRunfiles(transactionId) {
       for (const gherkinstep of thisGherkinsteps) {
         let counter = 1;
         const thisStepaction = await Stepaction.findOne({name: gherkinstep.name}).populate({path: 'published_step_collection.action', model: 'Action'}).exec();
-        if (thisStepaction.published_step_collection !== null) {
+        if ((null != thisStepaction) && (thisStepaction.published_step_collection !== null)) {
           for (const step of thisStepaction.published_step_collection) {
             if (step.action !== null) {
               const instruction = await Instruction.findById(step.action.instruction).exec();
@@ -125,11 +131,11 @@ async function buildTransactionRunfiles(transactionId) {
                 const keyvaluepair = await Keyvaluepair.findOne({'token_name': args.token_name, '_id': {$in: keyvaluepairFilter}}).exec();
                 let argKey = 'arg' + x;
                 stepJason[argKey] = keyvaluepair.value;
-                x ++;
+                x++;
               }
               stepJason.acceptanceCriteria = thisTransaction.name;
               instructionFileContent.push(stepJason);
-              counter ++;
+              counter++;
             }
           }
         }
@@ -147,7 +153,7 @@ async function buildTransactionRunfiles(transactionId) {
       addedFiles.push('./' + thisDataiteration.environment.name + '/' + instructionFile);
 
       let tempContent = {
-        "InputFileName": instructionFile, 
+        "InputFileName": instructionFile,
         "OutputFileName": instructionFileResult
       }
 
@@ -160,7 +166,7 @@ async function buildTransactionRunfiles(transactionId) {
         }
       });
       addedFiles.push('./' + thisDataiteration.environment.name + '/' + driverFile);
-    }  
+    }
 
     // TODOawait buildL5DriverSerial();
     // TODO await buildL4DriverSerial();
@@ -172,13 +178,29 @@ async function buildTransactionRunfiles(transactionId) {
     // git commit -m
     // git push -u origin new branch
     // TODO git request-pull 
-    await gitPush(REPO, publishDir, newBranchName, addedFiles, USER, PASS, useSecureShell);
+    // await gitPush(REPO, publishDir, newBranchName, addedFiles, USER, PASS, useSecureShell);
+    let cmdInputs = {
+      REPO, publishDir, newBranchName, files: JSON.stringify(addedFiles), USER, PASS, useSecureShell
+    };
+    let commandInput = 'movefiles -n ' + JSON.stringify(cmdInputs);
+
+    exec(commandInput, (error, stdout, stderr) => {
+      if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        return;
+      }
+      console.log(`stdout: ${stdout}`);
+    });
 
     return 'Built Instruction files for: ' + transactionId
 
   } catch (err) {
     console.log(err);
-      return err
+    return err
   }
 }
 
@@ -207,7 +229,7 @@ async function createEnvSubDirs(exportPath) {
       let envPath = path.normalize(exportPath + '/' + env.name);
       if (!fs.existsSync(envPath)) {
         fs.mkdirSync(envPath);
-      } 
+      }
     }
   } catch (err) {
     if (err) throw err
